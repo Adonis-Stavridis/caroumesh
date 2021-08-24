@@ -35,16 +35,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-carousel3d",
+  "name": "caroumesh",
   "author": "Adonis Stavridis",
-  "module": "dist/react-carousel3d.esm.js",
+  "module": "dist/caroumesh.esm.js",
   "size-limit": [
     {
-      "path": "dist/react-carousel3d.cjs.production.min.js",
+      "path": "dist/caroumesh.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-carousel3d.esm.js",
+      "path": "dist/caroumesh.esm.js",
       "limit": "10 KB"
     }
   ],
