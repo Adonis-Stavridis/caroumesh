@@ -21,9 +21,6 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "peerDependencies": {
-    "react": ">=16"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -37,6 +34,7 @@
   },
   "name": "caroumesh",
   "author": "Adonis Stavridis",
+  "description": "A carousel-like display to showcase your 3d models",
   "module": "dist/caroumesh.esm.js",
   "size-limit": [
     {
@@ -60,12 +58,15 @@
     "@types/react-dom": "^17.0.9",
     "babel-loader": "^8.2.2",
     "husky": "^7.0.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
     "react-is": "^17.0.2",
     "size-limit": "^5.0.3",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "three": "^0.131.3"
   }
 }
