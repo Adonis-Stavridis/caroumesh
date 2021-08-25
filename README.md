@@ -179,3 +179,7 @@ Change the `alias` to point to where those packages are actually installed. This
 ```
 
 An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+
+https://jsfiddle.net/2pha/vyz451ux/
+https://hiteshkrsahu.medium.com/three-js-scene-as-a-react-component-c83cc00f8a4a
+https://codesandbox.io/s/staging-models-9b56t

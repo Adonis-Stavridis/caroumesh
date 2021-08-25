@@ -3,12 +3,12 @@ import { Caroumesh } from '../src/components/caroumesh';
 
 <Meta title="Caroumesh" component={Caroumesh} />
 
-export const Template = args => <Caroumesh {...args} />;
+export const Template = (args) => <Caroumesh {...args} />;
 
 # Caroumesh
 
 A simple way to showcase 3d models in carousel-like way.
 
 <Canvas>
-  <Story name="Default" args={{name: "World"}}>{Template.bind()}</Story>
+  <Story name="Default">{Template.bind()}</Story>
 </Canvas>
