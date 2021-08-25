@@ -10,5 +10,10 @@ export const Template = (args) => <Caroumesh {...args} />;
 A simple way to showcase 3d models in carousel-like way.
 
 <Canvas>
-  <Story name="Default">{Template.bind()}</Story>
+  <Story
+    name="Default"
+    args={{ src: 'model.glb' }}
+  >
+    {Template.bind()}
+  </Story>
 </Canvas>
