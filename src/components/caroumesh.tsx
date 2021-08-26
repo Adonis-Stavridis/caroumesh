@@ -1,6 +1,10 @@
-import React, { Suspense } from 'react';
+// import React, { Suspense } from 'react';
+// import { Canvas } from '@react-three/fiber';
+// import { Environment, OrbitControls, Stage } from '@react-three/drei';
+
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls, Stage } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 
 import { Model } from './model';
 
