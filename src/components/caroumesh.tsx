@@ -8,7 +8,7 @@ export interface CaroumeshProps {
   width?: number;
   height?: number;
   backgroundColor?: any;
-  src: string;
+  // src: string;
 }
 
 export function Caroumesh(props: CaroumeshProps) {
@@ -26,7 +26,7 @@ export function Caroumesh(props: CaroumeshProps) {
       ) : null}
       <fog attach="fog" args={['#101010', 10, 50]} />
 
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <Environment path="/cube" />
         <Stage intensity={1} contactShadowOpacity={1} shadowBias={-0.0015}>
           <Model src={props.src} />
@@ -36,7 +36,8 @@ export function Caroumesh(props: CaroumeshProps) {
       <mesh rotation-x={-Math.PI / 2} scale={100}>
         <planeGeometry />
         <meshStandardMaterial color="#101010" transparent depthWrite={false} />
-      </mesh>
+      </mesh> */}
+      <Model />
 
       <OrbitControls
         autoRotate
