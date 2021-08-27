@@ -1,10 +1,6 @@
-// import React, { Suspense } from 'react';
-// import { Canvas } from '@react-three/fiber';
-// import { Environment, OrbitControls, Stage } from '@react-three/drei';
-
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls, Stage, useProgress } from '@react-three/drei';
 
 import { Model } from './model';
 
@@ -12,7 +8,13 @@ export interface CaroumeshProps {
   width?: number;
   height?: number;
   backgroundColor?: any;
-  // src: string;
+  src: string;
+}
+
+function Loader() {
+  const { progress } = useProgress();
+
+  return <Html center>{progress}% loaded</Html>;
 }
 
 export function Caroumesh(props: CaroumeshProps) {
@@ -30,18 +32,11 @@ export function Caroumesh(props: CaroumeshProps) {
       ) : null}
       <fog attach="fog" args={['#101010', 10, 50]} />
 
-      {/* <Suspense fallback={null}>
-        <Environment path="/cube" />
+      <Suspense fallback={<Loader />}>
         <Stage intensity={1} contactShadowOpacity={1} shadowBias={-0.0015}>
           <Model src={props.src} />
         </Stage>
       </Suspense>
-
-      <mesh rotation-x={-Math.PI / 2} scale={100}>
-        <planeGeometry />
-        <meshStandardMaterial color="#101010" transparent depthWrite={false} />
-      </mesh> */}
-      <Model />
 
       <OrbitControls
         autoRotate
