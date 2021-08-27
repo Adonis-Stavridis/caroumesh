@@ -2,14 +2,15 @@ import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls, Stage, useProgress } from '@react-three/drei';
 
+// import { Destroyer } from './destroyer';
 import { Model } from './model';
 
-export interface CaroumeshProps {
+type CaroumeshProps = {
   width?: number;
   height?: number;
   backgroundColor?: any;
   src: string;
-}
+};
 
 function Loader() {
   const { progress } = useProgress();
@@ -20,6 +21,7 @@ function Loader() {
 export function Caroumesh(props: CaroumeshProps) {
   return (
     <Canvas
+      {...props}
       style={{
         width: props.width ? props.width : '100%',
         height: props.height ? props.height : '100%',
@@ -30,7 +32,7 @@ export function Caroumesh(props: CaroumeshProps) {
       {props.backgroundColor ? (
         <color attach="background" args={props.backgroundColor} />
       ) : null}
-      <fog attach="fog" args={['#101010', 10, 50]} />
+      {/* <fog attach="fog" args={['#101010', 10, 50]} /> */}
 
       <Suspense fallback={<Loader />}>
         <Stage intensity={1} contactShadowOpacity={1} shadowBias={-0.0015}>
@@ -42,8 +44,8 @@ export function Caroumesh(props: CaroumeshProps) {
         autoRotate
         enableZoom={false}
         enablePan={false}
-        minPolarAngle={Math.PI / 2.8}
-        maxPolarAngle={Math.PI / 2.8}
+        // minPolarAngle={Math.PI / 2.8}
+        // maxPolarAngle={Math.PI / 2.8}
       />
     </Canvas>
   );

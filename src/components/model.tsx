@@ -1,22 +1,26 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { GLTF } from 'three-stdlib';
-import { Group } from 'three';
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Mesh } from 'three';
 
-export interface ModelProps {
+type ModelProps = JSX.IntrinsicElements['group'] & {
   src: string;
-}
+};
+
+type GLTFResult = GLTF;
 
 export function Model(props: ModelProps) {
-  const loadedModel: GLTF = useGLTF(props.src);
-  const scene: Group = loadedModel.scene;
+  const group = useRef<THREE.Group>();
+  const model = useGLTF(props.src) as GLTFResult;
 
-  useLayoutEffect(() => {
-    scene.traverse(
-      (obj) =>
-        obj.type === 'Mesh' && (obj.receiveShadow = obj.castShadow = true)
-    );
-  }, [scene]);
+  let node = model.scenes[0].children[0] as Mesh;
 
-  return <primitive object={scene} {...props} />;
+  return (
+    <group ref={group} {...props} dispose={null}>
+      <mesh
+        geometry={node.geometry}
+        material={node.material}
+      />
+    </group>
+  );
 }
