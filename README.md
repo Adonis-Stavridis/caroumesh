@@ -183,3 +183,4 @@ An alternative to fixing this problem would be to remove aliases altogether and 
 https://jsfiddle.net/2pha/vyz451ux/
 https://hiteshkrsahu.medium.com/three-js-scene-as-a-react-component-c83cc00f8a4a
 https://codesandbox.io/s/staging-models-9b56t
+npx gltfjsx assets/Star\ destroyer.gltf -t --shadows --root --transform

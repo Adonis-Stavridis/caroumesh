@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 export function Destroyer(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF(
-    'assets/Star destroyer.gltf'
+    'assets/Star destroyer-transformed.glb'
   ) as GLTFResult;
   return (
     <group ref={group} {...props} dispose={null}>
@@ -32,11 +32,11 @@ export function Destroyer(props: JSX.IntrinsicElements['group']) {
           rotation={[-Math.PI / 2, 0, 0]}
         />
       </group>
-      <group position={[-21.82, 0, 0]} rotation={[0, 1.57, 0]}>
+      <group position={[-21.73, 0, 0]} rotation={[0, 1.57, 0]}>
         <pointLight
           intensity={100}
           decay={2}
-          distance={3}
+          distance={3.5}
           color="#1e5bff"
           rotation={[-Math.PI / 2, 0, 0]}
         />
@@ -50,11 +50,11 @@ export function Destroyer(props: JSX.IntrinsicElements['group']) {
           rotation={[-Math.PI / 2, 0, 0]}
         />
       </group>
-      <group position={[-21.82, 0, -7.59]} rotation={[0, 1.57, 0]}>
+      <group position={[-20.85, 0, -7.59]} rotation={[0, 1.57, 0]}>
         <pointLight
           intensity={100}
           decay={2}
-          distance={3}
+          distance={2.5}
           color="#1e5bff"
           rotation={[-Math.PI / 2, 0, 0]}
         />
@@ -68,16 +68,18 @@ export function Destroyer(props: JSX.IntrinsicElements['group']) {
           rotation={[-Math.PI / 2, 0, 0]}
         />
       </group>
-      <group position={[-21.82, 0, 7.51]} rotation={[0, 1.57, 0]}>
+      <group position={[-20.85, 0, 7.51]} rotation={[0, 1.57, 0]}>
         <pointLight
           intensity={100}
           decay={2}
-          distance={3}
+          distance={2.5}
           color="#1e5bff"
           rotation={[-Math.PI / 2, 0, 0]}
         />
       </group>
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Star_Destroyer.geometry}
         material={materials['Light grey']}
       />
@@ -85,4 +87,4 @@ export function Destroyer(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('assets/Star destroyer.gltf');
+useGLTF.preload('assets/Star destroyer-transformed.glb');

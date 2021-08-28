@@ -13,14 +13,32 @@ export function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const model = useGLTF(props.src) as GLTFResult;
 
-  let node = model.scenes[0].children[0] as Mesh;
+  console.log(model);
+
+  const renderMesh = (model: GLTFResult) => {
+    const items: Array<any> = [];
+
+    for (let scene of model.scenes) {
+      for (let child of scene.children) {
+        const meshObject = child as Mesh;
+        items.push(
+          <mesh
+            castShadow
+            receiveShadow
+            key={items.length}
+            geometry={meshObject.geometry}
+            material={meshObject.material}
+          />
+        );
+      }
+    }
+
+    return items;
+  };
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <mesh
-        geometry={node.geometry}
-        material={node.material}
-      />
+      {renderMesh(model)}
     </group>
   );
 }
