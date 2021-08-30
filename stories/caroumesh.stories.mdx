@@ -1,5 +1,7 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
 import { Caroumesh } from '../src/components/caroumesh';
+import { Model } from '../src/components/model';
 
 <Meta title="Caroumesh" component={Caroumesh} />
 
@@ -11,6 +13,9 @@ A simple way to showcase 3d models in carousel-like way.
 
 <Canvas>
   <Story name="Default">
-    {Template.bind()}
+    <Caroumesh>
+      <Model src="assets/Star destroyer-transformed.glb" />
+      <Model src="assets/TIE fighter-transformed.glb" position={[30, 0, 0]} />
+    </Caroumesh>
   </Story>
 </Canvas>
