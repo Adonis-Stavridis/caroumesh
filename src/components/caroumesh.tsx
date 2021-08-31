@@ -2,8 +2,14 @@ import React, { CSSProperties, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, useProgress } from '@react-three/drei';
 import { Color } from 'three';
-import { BrightnessContrast, EffectComposer, HueSaturation, SSAO } from '@react-three/postprocessing';
+import {
+  BrightnessContrast,
+  EffectComposer,
+  HueSaturation,
+  SSAO,
+} from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
+import { CircularProgress } from '@material-ui/core';
 
 type CaroumeshProps = {
   width?: number;
@@ -16,7 +22,15 @@ type CaroumeshProps = {
 function Loader() {
   const { progress } = useProgress();
 
-  return <Html center>{progress}% loaded</Html>;
+  return (
+    <Html center>
+      <CircularProgress
+        style={{ color: 'gold' }}
+        variant="determinate"
+        value={progress}
+      />
+    </Html>
+  );
 }
 
 function Effects() {
