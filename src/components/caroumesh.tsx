@@ -1,6 +1,6 @@
 import React, { CSSProperties, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Html, Stage, useProgress } from '@react-three/drei';
+import { Html, useProgress } from '@react-three/drei';
 import { Color } from 'three';
 
 type CaroumeshProps = {
@@ -27,21 +27,25 @@ export function Caroumesh(props: CaroumeshProps) {
         height: props.height ? props.height : '100%',
       }}
       shadows
-      camera={{ fov: 45 }}
+      camera={{ fov: 45, position: [0, 5, 75] }}
     >
       {props.backgroundColor ? (
         <color attach="background" args={props.backgroundColor} />
       ) : null}
       <Suspense fallback={<Loader />}>
-        <Stage
+        <pointLight
+          color="white"
+          intensity={1}
+          position={[50, 50, 50]}
           castShadow
-          shadowBias={-0.0005}
-          contactShadow
-          contactShadowBlur={0.1}
-          contactShadowOpacity={0.1}
-        >
-          {props.children}
-        </Stage>
+          shadowBias={-0.00075}
+          shadowMapWidth={1024}
+          shadowMapHeight={1024}
+        />
+        <pointLight color="white" intensity={0.3} position={[-50, 50, 50]} />
+        <pointLight color="white" intensity={0.3} position={[50, -50, 50]} />
+        <pointLight color="white" intensity={0.3} position={[-50, -50, 50]} />
+        {props.children}
       </Suspense>
     </Canvas>
   );
