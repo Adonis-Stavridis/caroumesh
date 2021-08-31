@@ -10,13 +10,14 @@ import {
 } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 import { CircularProgress } from '@material-ui/core';
+import { Model } from './model';
 
 type CaroumeshProps = {
   width?: number;
   height?: number;
   backgroundColor?: [Color] | [number, number, number];
   style?: CSSProperties;
-  children?: any;
+  children?: JSX.Element[];
 };
 
 function Loader() {
@@ -63,6 +64,29 @@ function Effects() {
 }
 
 export function Caroumesh(props: CaroumeshProps) {
+  const placeObjectsOnCarousel = (
+    objects: JSX.Element | JSX.Element[] | undefined
+  ) => {
+    if (objects === undefined || !Array.isArray(objects)) return objects;
+
+    var newObjects: JSX.Element[] = [];
+
+    objects.forEach((element, index) => {
+      if (element.type === Model) {
+        var newPosition = [
+          5 * Math.sin(((2 * Math.PI) / objects.length) * index),
+          element.props.position ? element.props.position[1] : 0,
+          5 * Math.cos(((2 * Math.PI) / objects.length) * index),
+        ];
+        newObjects.push(
+          <Model key={index} position={newPosition} {...element.props} />
+        );
+      } else newObjects.push(element);
+    });
+
+    return newObjects;
+  };
+
   return (
     <Canvas
       {...props}
@@ -72,7 +96,7 @@ export function Caroumesh(props: CaroumeshProps) {
         height: props.height ? props.height : '100%',
       }}
       shadows
-      camera={{ fov: 45, position: [0, 5, 75] }}
+      camera={{ fov: 45, position: [0, 0.5, 10] }}
     >
       {props.backgroundColor ? (
         <color attach="background" args={props.backgroundColor} />
@@ -81,16 +105,16 @@ export function Caroumesh(props: CaroumeshProps) {
         <pointLight
           color="white"
           intensity={1}
-          position={[50, 50, 50]}
+          position={[20, 20, 20]}
           castShadow
-          shadowBias={-0.00075}
+          shadowBias={-0.0005}
           shadowMapWidth={1024}
           shadowMapHeight={1024}
         />
-        <pointLight color="white" intensity={0.3} position={[-50, 50, 50]} />
-        <pointLight color="white" intensity={0.3} position={[50, -50, 50]} />
-        <pointLight color="white" intensity={0.3} position={[-50, -50, 50]} />
-        {props.children}
+        <pointLight color="white" intensity={0.3} position={[-20, 20, 20]} />
+        <pointLight color="white" intensity={0.3} position={[20, -20, 20]} />
+        <pointLight color="white" intensity={0.3} position={[-20, -20, 20]} />
+        {placeObjectsOnCarousel(props.children)}
       </Suspense>
 
       <Effects />
