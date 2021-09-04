@@ -1,16 +1,11 @@
-import React, { CSSProperties, Suspense } from 'react';
+import React, { CSSProperties, Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Html, useProgress } from '@react-three/drei';
-import { Color } from 'three';
-import {
-  BrightnessContrast,
-  EffectComposer,
-  HueSaturation,
-  SSAO,
-} from '@react-three/postprocessing';
-import { BlendFunction } from 'postprocessing';
-import { CircularProgress } from '@material-ui/core';
+import { Color, Vector3 } from 'three';
+
+import { Effects } from './effects';
+import { Loader } from './loader';
 import { Model } from './model';
+import { Stats } from '@react-three/drei';
 
 type CaroumeshProps = {
   width?: number;
@@ -18,74 +13,43 @@ type CaroumeshProps = {
   backgroundColor?: [Color] | [number, number, number];
   style?: CSSProperties;
   children?: JSX.Element[];
+  effects?: boolean;
+  stats?: boolean;
 };
 
-function Loader() {
-  const { progress } = useProgress();
-
-  return (
-    <Html center>
-      <CircularProgress
-        style={{ color: 'gold' }}
-        variant="determinate"
-        value={progress}
-      />
-    </Html>
-  );
-}
-
-function Effects() {
-  return (
-    <EffectComposer>
-      <SSAO
-        blendFunction={BlendFunction.MULTIPLY} // blend mode
-        samples={30} // amount of samples per pixel (shouldn't be a multiple of the ring count)
-        rings={4} // amount of rings in the occlusion sampling pattern
-        distanceThreshold={1.0} // global distance threshold at which the occlusion effect starts to fade out. min: 0, max: 1
-        distanceFalloff={0.0} // distance falloff. min: 0, max: 1
-        rangeThreshold={0.5} // local occlusion range threshold at which the occlusion starts to fade out. min: 0, max: 1
-        rangeFalloff={0.1} // occlusion range falloff. min: 0, max: 1
-        luminanceInfluence={0.9} // how much the luminance of the scene influences the ambient occlusion
-        radius={20} // occlusion sampling radius
-        scale={0.5} // scale of the ambient occlusion
-        bias={0.5} // occlusion bias
-      />
-      <HueSaturation
-        blendFunction={BlendFunction.NORMAL} // blend mode
-        hue={0} // hue in radians
-        saturation={0} // saturation in radians
-      />
-      <BrightnessContrast
-        brightness={0} // brightness. min: -1, max: 1
-        contrast={0} // contrast: min -1, max: 1
-      />
-    </EffectComposer>
-  );
-}
-
 export function Caroumesh(props: CaroumeshProps) {
-  const placeObjectsOnCarousel = (
-    objects: JSX.Element | JSX.Element[] | undefined
-  ) => {
-    if (objects === undefined || !Array.isArray(objects)) return objects;
+  const [models, setModels] = useState<JSX.Element | JSX.Element[] | undefined>(
+    props.children
+  );
+
+  useEffect(() => {
+    if (models === undefined) return;
 
     var newObjects: JSX.Element[] = [];
 
-    objects.forEach((element, index) => {
-      if (element.type === Model) {
-        var newPosition = [
-          5 * Math.sin(((2 * Math.PI) / objects.length) * index),
-          element.props.position ? element.props.position[1] : 0,
-          5 * Math.cos(((2 * Math.PI) / objects.length) * index),
-        ];
-        newObjects.push(
-          <Model key={index} position={newPosition} {...element.props} />
-        );
-      } else newObjects.push(element);
-    });
+    if (!Array.isArray(models)) {
+      newObjects.push(models);
+    } else {
+      models.forEach((element, index) => {
+        if (element.type === Model) {
+          var oldPosition = element.props.position
+            ? element.props.position
+            : new Vector3();
+          var newPosition = new Vector3(
+            5 * Math.sin(((2 * Math.PI) / models.length) * index),
+            0,
+            5 * Math.cos(((2 * Math.PI) / models.length) * index)
+          );
+          newPosition.add(oldPosition);
+          newObjects.push(
+            <Model key={index} position={newPosition} {...element.props} />
+          );
+        } else console.log('Caroumesh only accepts <Model/> components.');
+      });
+    }
 
-    return newObjects;
-  };
+    setModels(newObjects);
+  }, [props.children]);
 
   return (
     <Canvas
@@ -108,16 +72,21 @@ export function Caroumesh(props: CaroumeshProps) {
           position={[20, 20, 20]}
           castShadow
           shadowBias={-0.0005}
-          shadowMapWidth={1024}
-          shadowMapHeight={1024}
+          shadowMapWidth={2048}
+          shadowMapHeight={2048}
         />
-        <pointLight color="white" intensity={0.3} position={[-20, 20, 20]} />
-        <pointLight color="white" intensity={0.3} position={[20, -20, 20]} />
-        <pointLight color="white" intensity={0.3} position={[-20, -20, 20]} />
-        {placeObjectsOnCarousel(props.children)}
+        <pointLight color="white" intensity={0.3} position={[-20, 0, 20]} />
+        <pointLight
+          color="white"
+          intensity={2}
+          distance={15}
+          position={[0, 0, 0]}
+        />
+        {models}
       </Suspense>
 
-      <Effects />
+      {props.effects ? <Effects /> : null}
+      {props.stats ? <Stats /> : null}
     </Canvas>
   );
 }
