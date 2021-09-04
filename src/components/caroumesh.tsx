@@ -15,6 +15,15 @@ type CaroumeshProps = {
   children?: JSX.Element[];
   effects?: boolean;
   stats?: boolean;
+  distance?: number;
+};
+
+type defaultValues = {
+  distance: number;
+  yPosition: number;
+  zPosition: number;
+  width: string;
+  height: string;
 };
 
 export function Caroumesh(props: CaroumeshProps) {
@@ -22,7 +31,17 @@ export function Caroumesh(props: CaroumeshProps) {
     props.children
   );
 
+  const defaultValues: defaultValues = {
+    distance: 10,
+    yPosition: 0,
+    zPosition: 0,
+    width: '100%',
+    height: '100%',
+  };
+
   useEffect(() => {
+    const distance = props.distance ?? defaultValues.distance;
+
     if (models === undefined) return;
 
     var newObjects: JSX.Element[] = [];
@@ -36,9 +55,9 @@ export function Caroumesh(props: CaroumeshProps) {
             ? element.props.position
             : new Vector3();
           var newPosition = new Vector3(
-            5 * Math.sin(((2 * Math.PI) / models.length) * index),
-            0,
-            5 * Math.cos(((2 * Math.PI) / models.length) * index)
+            (distance * index) % (models.length * distance),
+            defaultValues.yPosition,
+            defaultValues.zPosition
           );
           newPosition.add(oldPosition);
           newObjects.push(
@@ -56,37 +75,37 @@ export function Caroumesh(props: CaroumeshProps) {
       {...props}
       style={{
         ...props.style,
-        width: props.width ? props.width : '100%',
-        height: props.height ? props.height : '100%',
+        width: props.width ? props.width : defaultValues.width,
+        height: props.height ? props.height : defaultValues.height,
       }}
       shadows
-      camera={{ fov: 45, position: [0, 0.5, 10] }}
+      camera={{ fov: 45, position: [0, 0.5, 5] }}
     >
-      {props.backgroundColor ? (
+      {props.backgroundColor && (
         <color attach="background" args={props.backgroundColor} />
-      ) : null}
+      )}
       <Suspense fallback={<Loader />}>
         <pointLight
           color="white"
           intensity={1}
-          position={[20, 20, 20]}
+          position={[8, 8, 8]}
           castShadow
           shadowBias={-0.0005}
           shadowMapWidth={2048}
           shadowMapHeight={2048}
         />
-        <pointLight color="white" intensity={0.3} position={[-20, 0, 20]} />
+        <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
         <pointLight
           color="white"
           intensity={2}
           distance={15}
-          position={[0, 0, 0]}
+          position={[0, 0, -8]}
         />
         {models}
       </Suspense>
 
-      {props.effects ? <Effects /> : null}
-      {props.stats ? <Stats /> : null}
+      {props.effects && <Effects />}
+      {props.stats && <Stats />}
     </Canvas>
   );
 }
