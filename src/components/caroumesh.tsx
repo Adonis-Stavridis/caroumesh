@@ -18,7 +18,7 @@ type CaroumeshProps = {
   distance?: number;
 };
 
-type defaultValues = {
+type DefaultValues = {
   distance: number;
   yPosition: number;
   zPosition: number;
@@ -31,7 +31,7 @@ export function Caroumesh(props: CaroumeshProps) {
     props.children
   );
 
-  const defaultValues: defaultValues = {
+  const defaultValues: DefaultValues = {
     distance: 10,
     yPosition: 0,
     zPosition: 0,

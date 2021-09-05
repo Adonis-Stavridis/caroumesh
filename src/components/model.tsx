@@ -5,21 +5,33 @@ import { PointLight, SpotLight } from 'three';
 
 type ModelProps = JSX.IntrinsicElements['group'] & {
   src: string;
+  noShadows?: boolean;
+};
+
+type DefaultValues = {
+  rotationSpeed: number;
 };
 
 export function Model(props: ModelProps) {
+  const defaultValues: DefaultValues = {
+    rotationSpeed: 0.1,
+  };
+
   const { scene } = useGLTF(props.src);
   const ref = useRef<THREE.Group>(scene);
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     if (ref.current !== undefined) {
-      ref.current.rotation.y += 0.003;
+      ref.current.rotation.y += delta * defaultValues.rotationSpeed;
     }
   });
 
   useLayoutEffect(() => {
     scene.traverse((obj) => {
-      obj.type === 'Mesh' && (obj.receiveShadow = obj.castShadow = true);
+      if (!props.noShadows) {
+        obj.type === 'Mesh' && (obj.receiveShadow = obj.castShadow = true);
+      }
+
       if (props.scale) {
         obj.type === 'PointLight' &&
           ((obj as PointLight).distance *= props.scale as number);
