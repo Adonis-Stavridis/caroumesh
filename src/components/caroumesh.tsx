@@ -21,7 +21,6 @@ type CaroumeshProps = {
 type DefaultValues = {
   distance: number;
   yPosition: number;
-  zPosition: number;
   width: string;
   height: string;
 };
@@ -34,7 +33,6 @@ export function Caroumesh(props: CaroumeshProps) {
   const defaultValues: DefaultValues = {
     distance: 10,
     yPosition: 0,
-    zPosition: 0,
     width: '100%',
     height: '100%',
   };
@@ -51,13 +49,14 @@ export function Caroumesh(props: CaroumeshProps) {
     } else {
       models.forEach((element, index) => {
         if (element.type === Model) {
-          var oldPosition = element.props.position
-            ? element.props.position
-            : new Vector3();
+          var oldPosition = element.props.position || new Vector3();
           var newPosition = new Vector3(
-            (distance * index) % (models.length * distance),
+            distance *
+              Math.sin(((2 * Math.PI) / models.length) * index + Math.PI),
             defaultValues.yPosition,
-            defaultValues.zPosition
+            distance *
+              Math.cos(((2 * Math.PI) / models.length) * index + Math.PI) +
+              distance
           );
           newPosition.add(oldPosition);
           newObjects.push(
