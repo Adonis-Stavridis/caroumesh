@@ -39,7 +39,7 @@ export function Model(props: ModelProps) {
           ((obj as SpotLight).distance *= props.scale as number);
       }
     });
-  }, [scene]);
+  }, [scene, props.noShadows, props.scale]);
 
   return (
     <primitive ref={ref} object={scene} position={props.position} {...props} />

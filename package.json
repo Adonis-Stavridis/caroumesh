@@ -39,11 +39,11 @@
   "size-limit": [
     {
       "path": "dist/caroumesh.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "700 KB"
     },
     {
       "path": "dist/caroumesh.esm.js",
-      "limit": "10 KB"
+      "limit": "400 KB"
     }
   ],
   "devDependencies": {

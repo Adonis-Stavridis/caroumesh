@@ -89,17 +89,11 @@ export function Caroumesh(props: CaroumeshProps) {
           intensity={1}
           position={[8, 8, 8]}
           castShadow
-          shadowBias={-0.0005}
+          shadowBias={-0.00008}
           shadowMapWidth={2048}
           shadowMapHeight={2048}
         />
         <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
-        <pointLight
-          color="white"
-          intensity={2}
-          distance={15}
-          position={[0, 0, -8]}
-        />
         {models}
       </Suspense>
 
