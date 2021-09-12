@@ -41,5 +41,7 @@ export function Model(props: ModelProps) {
     });
   }, [scene]);
 
-  return <primitive ref={ref} object={scene} {...props} />;
+  return (
+    <primitive ref={ref} object={scene} position={props.position} {...props} />
+  );
 }

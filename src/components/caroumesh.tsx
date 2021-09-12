@@ -26,16 +26,16 @@ type DefaultValues = {
 };
 
 export function Caroumesh(props: CaroumeshProps) {
-  const [models, setModels] = useState<JSX.Element | JSX.Element[] | undefined>(
-    props.children
-  );
-
   const defaultValues: DefaultValues = {
     distance: 10,
     yPosition: 0,
     width: '100%',
     height: '100%',
   };
+
+  const [models, setModels] = useState<JSX.Element | JSX.Element[] | undefined>(
+    props.children
+  );
 
   useEffect(() => {
     const distance = props.distance ?? defaultValues.distance;
