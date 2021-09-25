@@ -1,4 +1,10 @@
-import React, { CSSProperties, Suspense, useEffect, useState } from 'react';
+import React, {
+  cloneElement,
+  CSSProperties,
+  Suspense,
+  useEffect,
+  useState,
+} from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Color, Vector3 } from 'three';
 
@@ -6,6 +12,8 @@ import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
 import { Stats } from '@react-three/drei';
+
+import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 type CaroumeshProps = {
   width?: number;
@@ -33,72 +41,114 @@ export function Caroumesh(props: CaroumeshProps) {
     height: '100%',
   };
 
-  const [models, setModels] = useState<JSX.Element | JSX.Element[] | undefined>(
-    props.children
-  );
+  const [models, setModels] = useState<JSX.Element[]>();
 
-  useEffect(() => {
+  const renderModels = (
+    elements: JSX.Element | JSX.Element[] | undefined = models
+  ) => {
     const distance = props.distance ?? defaultValues.distance;
 
-    if (models === undefined) return;
+    if (elements === undefined) return;
 
     var newObjects: JSX.Element[] = [];
 
-    if (!Array.isArray(models)) {
-      newObjects.push(models);
+    if (!Array.isArray(elements)) {
+      newObjects.push(elements);
     } else {
-      models.forEach((element, index) => {
+      elements.forEach((element, index) => {
         if (element.type === Model) {
-          var oldPosition = element.props.position || new Vector3();
+          // var oldPosition = element.props.position ?? new Vector3();
           var newPosition = new Vector3(
             distance *
-              Math.sin(((2 * Math.PI) / models.length) * index + Math.PI),
+              Math.sin(((2 * Math.PI) / elements.length) * index + Math.PI),
             defaultValues.yPosition,
             distance *
-              Math.cos(((2 * Math.PI) / models.length) * index + Math.PI) +
+              Math.cos(((2 * Math.PI) / elements.length) * index + Math.PI) +
               distance
           );
-          newPosition.add(oldPosition);
+          // newPosition.add(oldPosition);
           newObjects.push(
-            <Model key={index} position={newPosition} {...element.props} />
+            cloneElement(element, {
+              key: index,
+              position: newPosition,
+              ...element.props,
+            })
           );
         } else console.log('Caroumesh only accepts <Model/> components.');
       });
     }
 
     setModels(newObjects);
+    console.log(models);
+  };
+
+  const rotateRight = () => {
+    if (models && models.length > 1) {
+      let last = models.pop();
+      last && models.unshift(last);
+      renderModels();
+    }
+  };
+
+  const rotateLeft = () => {
+    if (models && models.length > 1) {
+      let first = models.shift();
+      first && models.push(first);
+      renderModels();
+    }
+  };
+
+  useEffect(() => {
+    renderModels(props.children);
   }, [props.children]);
 
   return (
-    <Canvas
-      {...props}
+    <div
       style={{
         ...props.style,
-        width: props.width ? props.width : defaultValues.width,
-        height: props.height ? props.height : defaultValues.height,
+        width: props.width ?? defaultValues.width,
+        height: props.height ?? defaultValues.height,
+        position: 'relative',
       }}
-      shadows
-      camera={{ fov: 45, position: [0, 0.5, 5] }}
     >
-      {props.backgroundColor && (
-        <color attach="background" args={props.backgroundColor} />
+      {models && models.length > 1 && (
+        <div style={{ zIndex: 10, position: 'absolute' }}>
+          <div onClick={rotateLeft}>
+            <ChevronLeft color="white" />
+          </div>
+          <div onClick={rotateRight}>
+            <ChevronRight color="white" />
+          </div>
+        </div>
       )}
-      <Suspense fallback={<Loader />}>
-        <pointLight
-          color="white"
-          intensity={1}
-          position={[8, 8, 8]}
-          castShadow
-          shadowBias={-0.00008}
-          shadowMapWidth={2048}
-          shadowMapHeight={2048}
-        />
-        <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
-        {models}
-      </Suspense>
+      <Canvas
+        {...props}
+        shadows
+        camera={{ fov: 45, position: [0, 0.5, 5] }}
+        style={{
+          position: 'absolute',
+        }}
+      >
+        {props.backgroundColor && (
+          <color attach="background" args={props.backgroundColor} />
+        )}
+        <Suspense fallback={<Loader />}>
+          <pointLight
+            color="white"
+            intensity={1}
+            position={[8, 8, 8]}
+            castShadow
+            shadowBias={-0.00008}
+            shadowMapWidth={2048}
+            shadowMapHeight={2048}
+          />
+          <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
+          {models}
+        </Suspense>
 
-      {props.effects && <Effects />}
-      {props.stats && <Stats />}
-    </Canvas>
+        {props.effects && <Effects />}
+        {props.stats && <Stats />}
+      </Canvas>
+    </div>
   );
 }
