@@ -23,6 +23,7 @@ type CaroumeshProps = {
   children?: JSX.Element[];
   effects?: boolean;
   stats?: boolean;
+  shadows?: boolean;
   distance?: number;
 };
 
@@ -127,7 +128,7 @@ export function Caroumesh(props: CaroumeshProps) {
         break;
       case 'ArrowDown':
         rotateLeft();
-        break; 
+        break;
       case 'ArrowLeft':
         rotateLeft();
         break;
@@ -166,7 +167,7 @@ export function Caroumesh(props: CaroumeshProps) {
       )}
       <Canvas
         {...props}
-        shadows
+        shadows={props.shadows}
         camera={{ fov: 45, position: [0, 0.5, 5] }}
         style={{
           position: 'absolute',
@@ -180,7 +181,7 @@ export function Caroumesh(props: CaroumeshProps) {
             color="white"
             intensity={1}
             position={[8, 8, 8]}
-            castShadow
+            castShadow={props.shadows}
             shadowBias={-0.00008}
             shadowMapWidth={2048}
             shadowMapHeight={2048}
@@ -196,7 +197,6 @@ export function Caroumesh(props: CaroumeshProps) {
 
         {props.effects && <Effects />}
         {props.stats && <Stats />}
-
       </Canvas>
     </div>
   );

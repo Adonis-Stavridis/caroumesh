@@ -5,7 +5,7 @@ import { PointLight, SpotLight } from 'three';
 
 type ModelProps = JSX.IntrinsicElements['group'] & {
   src: string;
-  noShadows?: boolean;
+  shadows?: boolean;
 };
 
 type DefaultValues = {
@@ -28,9 +28,8 @@ export function Model(props: ModelProps) {
 
   useLayoutEffect(() => {
     scene.traverse((obj) => {
-      if (!props.noShadows) {
-        obj.type === 'Mesh' && (obj.receiveShadow = obj.castShadow = true);
-      }
+      obj.type === 'Mesh' &&
+        (obj.receiveShadow = obj.castShadow = props.shadows ?? false);
 
       if (props.scale) {
         obj.type === 'PointLight' &&
@@ -39,7 +38,7 @@ export function Model(props: ModelProps) {
           ((obj as SpotLight).distance *= props.scale as number);
       }
     });
-  }, [scene, props.noShadows, props.scale]);
+  }, [scene, props.shadows, props.scale]);
 
   return (
     <primitive ref={ref} object={scene} position={props.position} {...props} />
