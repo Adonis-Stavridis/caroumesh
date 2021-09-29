@@ -156,12 +156,43 @@ export function Caroumesh(props: CaroumeshProps) {
       onKeyDown={keyDownEvent}
     >
       {models.length > 1 && (
-        <div style={{ zIndex: 10, position: 'absolute' }}>
-          <div onClick={rotateLeft}>
-            <ChevronLeft color="white" />
+        <div
+          style={{
+            zIndex: 10,
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <div
+            style={{
+              float: 'left',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onClick={rotateLeft}
+          >
+            <ChevronLeft
+              style={{ width: '1.5em', height: '1.5em' }}
+              color="white"
+            />
           </div>
-          <div onClick={rotateRight}>
-            <ChevronRight color="white" />
+          <div
+            style={{
+              float: 'right',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onClick={rotateRight}
+          >
+            <ChevronRight
+              style={{ width: '1.5em', height: '1.5em' }}
+              color="white"
+            />
           </div>
         </div>
       )}

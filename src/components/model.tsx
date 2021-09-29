@@ -41,6 +41,6 @@ export function Model(props: ModelProps) {
   }, [scene, props.shadows, props.scale]);
 
   return (
-    <primitive ref={ref} object={scene} position={props.position} {...props} />
+    <primitive ref={ref} object={scene} {...props} />
   );
 }
