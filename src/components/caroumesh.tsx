@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stats } from '@react-three/drei';
+import { Stats } from '@react-three/drei';
 import { Color, Vector3 } from 'three';
 
 import { Effects } from './effects';
@@ -197,7 +197,6 @@ export function Caroumesh(props: CaroumeshProps) {
         {props.effects && <Effects />}
         {props.stats && <Stats />}
 
-        <OrbitControls />
       </Canvas>
     </div>
   );
