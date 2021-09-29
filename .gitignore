@@ -5,5 +5,4 @@ node_modules
 dist
 .vscode
 assets
-package-lock.json
 build
