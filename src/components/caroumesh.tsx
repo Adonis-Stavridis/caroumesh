@@ -1,17 +1,17 @@
 import React, {
-  cloneElement,
   CSSProperties,
   Suspense,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Stats } from '@react-three/drei';
 import { Color, Vector3 } from 'three';
 
 import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
-import { Stats } from '@react-three/drei';
 
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
@@ -33,6 +33,11 @@ type DefaultValues = {
   height: string;
 };
 
+type StateModelProps = {
+  position: Vector3;
+  other: any;
+};
+
 export function Caroumesh(props: CaroumeshProps) {
   const defaultValues: DefaultValues = {
     distance: 10,
@@ -41,65 +46,101 @@ export function Caroumesh(props: CaroumeshProps) {
     height: '100%',
   };
 
-  const [models, setModels] = useState<JSX.Element[]>();
+  const [models, setModels] = useState<StateModelProps[]>([]);
+  const indexOffset = useRef<number>(0);
 
-  const renderModels = (
-    elements: JSX.Element | JSX.Element[] | undefined = models
-  ) => {
-    const distance = props.distance ?? defaultValues.distance;
-
-    if (elements === undefined) return;
-
-    var newObjects: JSX.Element[] = [];
-
-    if (!Array.isArray(elements)) {
-      newObjects.push(elements);
-    } else {
-      elements.forEach((element, index) => {
-        if (element.type === Model) {
-          // var oldPosition = element.props.position ?? new Vector3();
-          var newPosition = new Vector3(
-            distance *
-              Math.sin(((2 * Math.PI) / elements.length) * index + Math.PI),
-            defaultValues.yPosition,
-            distance *
-              Math.cos(((2 * Math.PI) / elements.length) * index + Math.PI) +
-              distance
-          );
-          // newPosition.add(oldPosition);
-          newObjects.push(
-            cloneElement(element, {
-              key: index,
-              position: newPosition,
-              ...element.props,
-            })
-          );
-        } else console.log('Caroumesh only accepts <Model/> components.');
-      });
+  const initModels = () => {
+    var children: JSX.Element[] = props.children ?? [];
+    if (!Array.isArray(children)) {
+      children = [children];
     }
 
-    setModels(newObjects);
-    console.log(models);
+    const distance = props.distance ?? defaultValues.distance;
+
+    var newModels: StateModelProps[] = [];
+
+    children.forEach((element, index) => {
+      if (element.type === Model) {
+        var newPosition = new Vector3(
+          distance *
+            Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
+          defaultValues.yPosition,
+          distance *
+            Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
+            distance
+        );
+        var oldPosition = element.props.position ?? new Vector3();
+        newPosition.add(oldPosition);
+        newModels.push({
+          position: newPosition,
+          other: element.props,
+        });
+      } else
+        console.log('Caroumesh only accepts <Model/> components... for now');
+    });
+
+    setModels(newModels);
+  };
+
+  const renderModels = () => {
+    const distance = props.distance ?? defaultValues.distance;
+
+    var newModels: StateModelProps[] = [...models];
+
+    newModels.forEach((_element, index) => {
+      var newPosition = new Vector3(
+        distance *
+          Math.sin(
+            ((2 * Math.PI) / newModels.length) *
+              ((index + indexOffset.current) % newModels.length) +
+              Math.PI
+          ),
+        defaultValues.yPosition,
+        distance *
+          Math.cos(
+            ((2 * Math.PI) / newModels.length) *
+              ((index + indexOffset.current) % newModels.length) +
+              Math.PI
+          ) +
+          distance
+      );
+      newModels[index].position = newPosition;
+    });
+
+    setModels(newModels);
   };
 
   const rotateRight = () => {
-    if (models && models.length > 1) {
-      let last = models.pop();
-      last && models.unshift(last);
-      renderModels();
-    }
+    indexOffset.current = (indexOffset.current - 1) % models.length;
+    renderModels();
   };
 
   const rotateLeft = () => {
-    if (models && models.length > 1) {
-      let first = models.shift();
-      first && models.push(first);
-      renderModels();
+    indexOffset.current = (indexOffset.current + 1) % models.length;
+    renderModels();
+  };
+
+  const keyDownEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        rotateRight();
+        break;
+      case 'ArrowDown':
+        rotateLeft();
+        break; 
+      case 'ArrowLeft':
+        rotateLeft();
+        break;
+      case 'ArrowRight':
+        rotateRight();
+        break;
+      default:
+        break;
     }
   };
 
   useEffect(() => {
-    renderModels(props.children);
+    initModels();
   }, [props.children]);
 
   return (
@@ -110,8 +151,10 @@ export function Caroumesh(props: CaroumeshProps) {
         height: props.height ?? defaultValues.height,
         position: 'relative',
       }}
+      tabIndex={-1}
+      onKeyDown={keyDownEvent}
     >
-      {models && models.length > 1 && (
+      {models.length > 1 && (
         <div style={{ zIndex: 10, position: 'absolute' }}>
           <div onClick={rotateLeft}>
             <ChevronLeft color="white" />
@@ -143,11 +186,18 @@ export function Caroumesh(props: CaroumeshProps) {
             shadowMapHeight={2048}
           />
           <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
-          {models}
+
+          {models.map((model, index) => {
+            return (
+              <Model key={index} position={model.position} {...model.other} />
+            );
+          })}
         </Suspense>
 
         {props.effects && <Effects />}
         {props.stats && <Stats />}
+
+        <OrbitControls />
       </Canvas>
     </div>
   );
