@@ -12,8 +12,7 @@ import { Color, Vector3 } from 'three';
 import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
-
-import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
+import { Controls } from './controls';
 
 type CaroumeshProps = {
   width?: number;
@@ -70,8 +69,7 @@ export function Caroumesh(props: CaroumeshProps) {
             Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
             distance
         );
-        element.props.offset &&
-          newPosition.add(element.props.offset);
+        element.props.offset && newPosition.add(element.props.offset);
         newModels.push({
           position: newPosition,
           other: element.props,
@@ -153,50 +151,11 @@ export function Caroumesh(props: CaroumeshProps) {
         height: props.height ?? defaultValues.height,
         position: 'relative',
       }}
-      tabIndex={-1}
-      onKeyDown={keyDownEvent}
     >
       {models.length > 1 && (
-        <div
-          style={{
-            zIndex: 10,
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <div
-            style={{
-              float: 'left',
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onClick={rotateLeft}
-          >
-            <ChevronLeft
-              style={{ width: '1.5em', height: '1.5em' }}
-              color="white"
-            />
-          </div>
-          <div
-            style={{
-              float: 'right',
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onClick={rotateRight}
-          >
-            <ChevronRight
-              style={{ width: '1.5em', height: '1.5em' }}
-              color="white"
-            />
-          </div>
-        </div>
+        <Controls keys={keyDownEvent} left={rotateLeft} right={rotateRight} />
       )}
+
       <Canvas
         {...props}
         shadows={props.shadows}
@@ -214,7 +173,7 @@ export function Caroumesh(props: CaroumeshProps) {
             intensity={1}
             position={[8, 8, 8]}
             castShadow={props.shadows}
-            shadowBias={-0.00008}
+            shadowBias={-0.0001}
             shadowMapWidth={2048}
             shadowMapHeight={2048}
           />
