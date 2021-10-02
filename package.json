@@ -39,7 +39,7 @@
   "size-limit": [
     {
       "path": "dist/caroumesh.cjs.production.min.js",
-      "limit": "700 KB"
+      "limit": "900 KB"
     },
     {
       "path": "dist/caroumesh.esm.js",
@@ -52,15 +52,15 @@
     "@mdx-js/react": "^1.6.22",
     "@react-three/postprocessing": "^2.0.5",
     "@size-limit/preset-small-lib": "^5.0.5",
-    "@storybook/addon-docs": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-docs": "^6.3.9",
+    "@storybook/addon-essentials": "^6.3.9",
     "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.3.8",
-    "@storybook/addons": "^6.3.8",
-    "@storybook/react": "^6.3.8",
-    "@types/react": "^17.0.24",
+    "@storybook/addon-links": "^6.3.9",
+    "@storybook/addons": "^6.3.9",
+    "@storybook/react": "^6.3.9",
+    "@types/react": "^17.0.26",
     "@types/react-dom": "^17.0.9",
-    "@types/three": "^0.132.1",
+    "@types/three": "^0.132.2",
     "babel-loader": "^8.2.2",
     "husky": "^7.0.2",
     "react-bootstrap-icons": "^1.5.0",
@@ -73,11 +73,11 @@
   },
   "dependencies": {
     "@react-three/drei": "^7.12.5",
-    "@react-three/fiber": "^7.0.7",
+    "@react-three/fiber": "^7.0.9",
     "@react-three/gltfjsx": "^4.3.4",
     "gltf-pipeline": "^3.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "three": "^0.132.2"
+    "three": "^0.133.0"
   }
 }

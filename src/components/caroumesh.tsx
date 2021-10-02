@@ -70,8 +70,8 @@ export function Caroumesh(props: CaroumeshProps) {
             Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
             distance
         );
-        var oldPosition = element.props.position ?? new Vector3();
-        newPosition.add(oldPosition);
+        element.props.offset &&
+          newPosition.add(element.props.offset);
         newModels.push({
           position: newPosition,
           other: element.props,
@@ -88,7 +88,7 @@ export function Caroumesh(props: CaroumeshProps) {
 
     var newModels: StateModelProps[] = [...models];
 
-    newModels.forEach((_element, index) => {
+    newModels.forEach((element, index) => {
       var newPosition = new Vector3(
         distance *
           Math.sin(
@@ -105,6 +105,7 @@ export function Caroumesh(props: CaroumeshProps) {
           ) +
           distance
       );
+      element.other.offset && newPosition.add(element.other.offset);
       newModels[index].position = newPosition;
     });
 

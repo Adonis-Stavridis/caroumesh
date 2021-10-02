@@ -3,6 +3,8 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { Caroumesh } from '../src/components/caroumesh';
 import { Model } from '../src/components/model';
 
+import { Vector3 } from 'three';
+
 <Meta title="Caroumesh" component={Caroumesh} />
 
 export const Template = (args) => <Caroumesh {...args} />;
@@ -13,14 +15,13 @@ A simple way to showcase 3d models in carousel-like way.
 
 <Canvas>
   <Story name="Default">
-    <Caroumesh shadows>
+    <Caroumesh shadows stats>
       <Model
         src="assets/Star destroyer-transformed.glb"
         scale={0.075}
         shadows
       />
       <Model src="assets/TIE fighter-transformed.glb" scale={5} shadows />
-      <Model src="assets/lambo.glb" scale={0.009} />
     </Caroumesh>
   </Story>
 </Canvas>

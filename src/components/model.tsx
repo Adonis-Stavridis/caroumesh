@@ -1,10 +1,11 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, Vector3 } from '@react-three/fiber';
 import { PointLight, SpotLight } from 'three';
 
 type ModelProps = JSX.IntrinsicElements['group'] & {
   src: string;
+  offset?: Vector3;
   shadows?: boolean;
 };
 
