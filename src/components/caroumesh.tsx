@@ -31,6 +31,8 @@ type DefaultValues = {
   yPosition: number;
   width: string;
   height: string;
+  animationTime: number;
+  animationFPS: number;
 };
 
 type StateModelProps = {
@@ -44,10 +46,13 @@ export function Caroumesh(props: CaroumeshProps) {
     yPosition: 0,
     width: '100%',
     height: '100%',
+    animationTime: 1000,
+    animationFPS: 30,
   };
 
   const [models, setModels] = useState<StateModelProps[]>([]);
   const indexOffset = useRef<number>(0);
+  const rotateLock = useRef<boolean>(false);
 
   const initModels = () => {
     var children: JSX.Element[] = props.children ?? [];
@@ -110,14 +115,47 @@ export function Caroumesh(props: CaroumeshProps) {
     setModels(newModels);
   };
 
+  const rotate = (target: number) => {
+    const diff = target - indexOffset.current;
+    const under: number = Math.min(indexOffset.current, target);
+    const over: number = Math.max(indexOffset.current, target);
+
+    rotateLock.current = true;
+
+    const interpolateIndexOffset = () => {
+      const temp = indexOffset.current + diff / defaultValues.animationFPS;
+      indexOffset.current = Math.min(Math.max(temp, under), over);
+      renderModels();
+    };
+
+    const loop: NodeJS.Timer = setInterval(
+      interpolateIndexOffset,
+      defaultValues.animationTime / defaultValues.animationFPS
+    );
+
+    const clearInterpolation = () => {
+      clearInterval(loop);
+      indexOffset.current = target % models.length;
+      renderModels();
+
+      rotateLock.current = false;
+    };
+
+    setTimeout(clearInterpolation, defaultValues.animationTime + 100);
+  };
+
   const rotateRight = () => {
-    indexOffset.current = (indexOffset.current - 1) % models.length;
-    renderModels();
+    if (rotateLock.current) return;
+
+    const target = indexOffset.current + 1;
+    rotate(target);
   };
 
   const rotateLeft = () => {
-    indexOffset.current = (indexOffset.current + 1) % models.length;
-    renderModels();
+    if (rotateLock.current) return;
+
+    const target = indexOffset.current - 1;
+    rotate(target);
   };
 
   const keyDownEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -150,6 +188,7 @@ export function Caroumesh(props: CaroumeshProps) {
         width: props.width ?? defaultValues.width,
         height: props.height ?? defaultValues.height,
         position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {models.length > 1 && (
@@ -167,6 +206,7 @@ export function Caroumesh(props: CaroumeshProps) {
         {props.backgroundColor && (
           <color attach="background" args={props.backgroundColor} />
         )}
+
         <Suspense fallback={<Loader />}>
           <pointLight
             color="white"
