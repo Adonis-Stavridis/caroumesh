@@ -1,4 +1,8 @@
-import React, { KeyboardEventHandler, MouseEventHandler } from 'react';
+import React, {
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useState,
+} from 'react';
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 type ControlsProps = {
@@ -17,6 +21,16 @@ export function Controls(props: ControlsProps) {
     color: 'white',
   };
 
+  const [hover, setHover] = useState<boolean>(false);
+
+  const pointerCursor = (_event: React.MouseEvent<HTMLDivElement>) => {
+    setHover(true);
+  };
+
+  const defaultCursor = (_event: React.MouseEvent<HTMLDivElement>) => {
+    setHover(false);
+  };
+
   return (
     <div
       style={{
@@ -24,6 +38,7 @@ export function Controls(props: ControlsProps) {
         position: 'absolute',
         width: '100%',
         height: '100%',
+        cursor: hover ? 'pointer' : 'default',
       }}
       tabIndex={-1}
       onKeyDown={props.keys}
@@ -36,12 +51,17 @@ export function Controls(props: ControlsProps) {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        onClick={props.left}
       >
-        <ChevronLeft
-          style={{ width: '1.5em', height: '1.5em' }}
-          color={props.color ?? defaultValues.color}
-        />
+        <div
+          onClick={props.left}
+          onMouseEnter={pointerCursor}
+          onMouseLeave={defaultCursor}
+        >
+          <ChevronLeft
+            style={{ width: '1.5em', height: '1.5em', margin: '0.5em' }}
+            color={props.color ?? defaultValues.color}
+          />
+        </div>
       </div>
       <div
         style={{
@@ -51,12 +71,17 @@ export function Controls(props: ControlsProps) {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        onClick={props.right}
       >
-        <ChevronRight
-          style={{ width: '1.5em', height: '1.5em' }}
-          color={props.color ?? defaultValues.color}
-        />
+        <div
+          onClick={props.right}
+          onMouseEnter={pointerCursor}
+          onMouseLeave={defaultCursor}
+        >
+          <ChevronRight
+            style={{ width: '1.5em', height: '1.5em', margin: '0.5em' }}
+            color={props.color ?? defaultValues.color}
+          />
+        </div>
       </div>
     </div>
   );
