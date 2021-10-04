@@ -13,6 +13,7 @@ import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
 import { Controls } from './controls';
+import { lerp } from 'three/src/math/MathUtils';
 
 type CaroumeshProps = {
   width?: number;
@@ -32,7 +33,6 @@ type DefaultValues = {
   width: string;
   height: string;
   animationTime: number;
-  animationFPS: number;
 };
 
 type StateModelProps = {
@@ -47,7 +47,6 @@ export function Caroumesh(props: CaroumeshProps) {
     width: '100%',
     height: '100%',
     animationTime: 1000,
-    animationFPS: 30,
   };
 
   const [models, setModels] = useState<StateModelProps[]>([]);
@@ -116,37 +115,41 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   const rotate = (target: number) => {
-    const diff = target - indexOffset.current;
-    const under: number = Math.min(indexOffset.current, target);
-    const over: number = Math.max(indexOffset.current, target);
+    var animFrame = 0;
+    var startTime = 0;
 
-    var loop: NodeJS.Timeout;
+    const startValue = indexOffset.current;
 
     rotateLock.current = true;
 
-    const interpolateIndexOffset = () => {
-      const temp = indexOffset.current + diff / defaultValues.animationFPS;
-      indexOffset.current = Math.min(Math.max(temp, under), over);
-      renderModels();
-      console.log(indexOffset.current);
-
-      loop = setTimeout(
-        interpolateIndexOffset,
-        defaultValues.animationTime / defaultValues.animationFPS
-      );
-    };
-
-    interpolateIndexOffset();
-
     const stopInterpolation = () => {
-      clearTimeout(loop);
+      cancelAnimationFrame(animFrame);
       indexOffset.current = target % models.length;
       renderModels();
 
       rotateLock.current = false;
     };
 
-    setTimeout(stopInterpolation, defaultValues.animationTime + 100);
+    const interpolation = (time: number) => {
+      if (startTime == 0) startTime = time;
+
+      const elapsedTime = time - startTime;
+
+      indexOffset.current = lerp(
+        startValue,
+        target,
+        elapsedTime / defaultValues.animationTime
+      );
+      renderModels();
+
+      if (elapsedTime < defaultValues.animationTime) {
+        animFrame = requestAnimationFrame(interpolation);
+      } else {
+        stopInterpolation();
+      }
+    };
+
+    animFrame = requestAnimationFrame(interpolation);
   };
 
   const rotateRight = () => {
