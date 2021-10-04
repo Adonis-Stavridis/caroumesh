@@ -40,7 +40,7 @@ export function Controls(props: ControlsProps) {
         height: '100%',
         cursor: hover ? 'pointer' : 'default',
       }}
-      tabIndex={-1}
+      tabIndex={0}
       onKeyDown={props.keys}
     >
       <div

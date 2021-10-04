@@ -134,11 +134,12 @@ export function Caroumesh(props: CaroumeshProps) {
       if (startTime == 0) startTime = time;
 
       const elapsedTime = time - startTime;
+      const lerpValue = elapsedTime / defaultValues.animationTime;
 
       indexOffset.current = lerp(
         startValue,
         target,
-        elapsedTime / defaultValues.animationTime
+        (Math.tanh(6 * lerpValue - 2) + 1) / 2
       );
       renderModels();
 

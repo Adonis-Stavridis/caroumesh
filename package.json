@@ -43,6 +43,8 @@
     "react",
     "three",
     "react-three-fiber",
+    "gltf",
+    "glb",
     "carousel",
     "3d"
   ],
