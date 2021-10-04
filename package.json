@@ -35,6 +35,17 @@
   "name": "caroumesh",
   "author": "Adonis Stavridis",
   "description": "A carousel-like display to showcase your 3d models",
+  "homepage": "https://github.com/Adonis-Stavridis/caroumesh",
+  "bugs": {
+    "url": "https://github.com/Adonis-Stavridis/caroumesh/issues"
+  },
+  "keywords": [
+    "react",
+    "three",
+    "react-three-fiber",
+    "carousel",
+    "3d"
+  ],
   "module": "dist/caroumesh.esm.js",
   "size-limit": [
     {
