@@ -120,28 +120,33 @@ export function Caroumesh(props: CaroumeshProps) {
     const under: number = Math.min(indexOffset.current, target);
     const over: number = Math.max(indexOffset.current, target);
 
+    var loop: NodeJS.Timeout;
+
     rotateLock.current = true;
 
     const interpolateIndexOffset = () => {
       const temp = indexOffset.current + diff / defaultValues.animationFPS;
       indexOffset.current = Math.min(Math.max(temp, under), over);
       renderModels();
+      console.log(indexOffset.current);
+
+      loop = setTimeout(
+        interpolateIndexOffset,
+        defaultValues.animationTime / defaultValues.animationFPS
+      );
     };
 
-    const loop: NodeJS.Timer = setInterval(
-      interpolateIndexOffset,
-      defaultValues.animationTime / defaultValues.animationFPS
-    );
+    interpolateIndexOffset();
 
-    const clearInterpolation = () => {
-      clearInterval(loop);
+    const stopInterpolation = () => {
+      clearTimeout(loop);
       indexOffset.current = target % models.length;
       renderModels();
 
       rotateLock.current = false;
     };
 
-    setTimeout(clearInterpolation, defaultValues.animationTime + 100);
+    setTimeout(stopInterpolation, defaultValues.animationTime + 100);
   };
 
   const rotateRight = () => {
