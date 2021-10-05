@@ -8,12 +8,14 @@ import React, {
 import { Canvas } from '@react-three/fiber';
 import { Stats } from '@react-three/drei';
 import { Color, Vector3 } from 'three';
+import { lerp } from 'three/src/math/MathUtils';
 
 import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
 import { Controls } from './controls';
-import { lerp } from 'three/src/math/MathUtils';
+import { DefaultLights } from './defaultLights';
+import { Lights } from './lights';
 
 type CaroumeshProps = {
   width?: number;
@@ -50,10 +52,11 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   const [models, setModels] = useState<StateModelProps[]>([]);
+  const lights = useRef<JSX.Element>();
   const indexOffset = useRef<number>(0);
   const rotateLock = useRef<boolean>(false);
 
-  const initModels = () => {
+  const initChildren = () => {
     var children: JSX.Element[] = props.children ?? [];
     if (!Array.isArray(children)) {
       children = [children];
@@ -63,23 +66,38 @@ export function Caroumesh(props: CaroumeshProps) {
 
     var newModels: StateModelProps[] = [];
 
+    const initModel = (element: JSX.Element, index: number) => {
+      var newPosition = new Vector3(
+        distance *
+          Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
+        defaultValues.yPosition,
+        distance *
+          Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
+          distance
+      );
+      element.props.offset && newPosition.add(element.props.offset);
+      newModels.push({
+        position: newPosition,
+        other: element.props,
+      });
+    };
+
+    const initLights = (element: JSX.Element) => {
+      lights.current = element;
+    };
+
     children.forEach((element, index) => {
-      if (element.type === Model) {
-        var newPosition = new Vector3(
-          distance *
-            Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
-          defaultValues.yPosition,
-          distance *
-            Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
-            distance
-        );
-        element.props.offset && newPosition.add(element.props.offset);
-        newModels.push({
-          position: newPosition,
-          other: element.props,
-        });
-      } else
-        console.log('Caroumesh only accepts <Model/> components... for now');
+      switch (element.type) {
+        case Model:
+          initModel(element, index);
+          break;
+        case Lights:
+          initLights(element);
+          break;
+        default:
+          console.log('Caroumesh only accepts <Model/> components... for now');
+          break;
+      }
     });
 
     setModels(newModels);
@@ -187,7 +205,7 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   useEffect(() => {
-    initModels();
+    initChildren();
   }, [props.children]);
 
   return (
@@ -205,7 +223,6 @@ export function Caroumesh(props: CaroumeshProps) {
       )}
 
       <Canvas
-        {...props}
         shadows={props.shadows}
         camera={{ fov: 45, position: [0, 0.5, 5] }}
         style={{
@@ -217,16 +234,7 @@ export function Caroumesh(props: CaroumeshProps) {
         )}
 
         <Suspense fallback={<Loader />}>
-          <pointLight
-            color="white"
-            intensity={1}
-            position={[8, 8, 8]}
-            castShadow={props.shadows}
-            shadowBias={-0.0001}
-            shadowMapWidth={2048}
-            shadowMapHeight={2048}
-          />
-          <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
+          {lights.current ?? <DefaultLights shadows={props.shadows} />}
 
           {models.map((model, index) => {
             return (
