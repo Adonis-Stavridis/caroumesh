@@ -74,7 +74,6 @@
     "@types/three": "^0.132.2",
     "babel-loader": "^8.2.2",
     "husky": "^7.0.2",
-    "react-bootstrap-icons": "^1.5.0",
     "react-is": "^17.0.2",
     "size-limit": "^5.0.5",
     "storybook-dark-mode": "^1.0.8",
@@ -90,6 +89,7 @@
     "@react-three/postprocessing": "^2.0.5",
     "gltf-pipeline": "^3.0.4",
     "react": "^17.0.2",
+    "react-bootstrap-icons": "^1.5.0",
     "react-dom": "^17.0.2",
     "three": "^0.133.0"
   }
