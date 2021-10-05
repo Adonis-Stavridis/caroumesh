@@ -61,7 +61,6 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.15.5",
-    "@material-ui/core": "^4.12.3",
     "@mdx-js/react": "^1.6.22",
     "@react-three/postprocessing": "^2.0.5",
     "@size-limit/preset-small-lib": "^5.0.5",
@@ -85,6 +84,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@react-three/drei": "^7.12.5",
     "@react-three/fiber": "^7.0.9",
     "@react-three/gltfjsx": "^4.3.4",
