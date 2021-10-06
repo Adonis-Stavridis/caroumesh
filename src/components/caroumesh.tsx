@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Stats } from '@react-three/drei';
-import { Color, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import { lerp } from 'three/src/math/MathUtils';
 
 import { Effects } from './effects';
@@ -19,19 +19,23 @@ import { ThreePointLights } from './threePointLights';
 import { Lights } from './lights';
 
 type CaroumeshProps = {
-  width?: number;
-  height?: number;
-  backgroundColor?: [Color] | [number, number, number];
-  style?: CSSProperties;
   children?: JSX.Element | JSX.Element[];
+  shadows?: boolean;
+  radius?: number;
   effects?: boolean;
   stats?: boolean;
-  shadows?: boolean;
-  distance?: number;
+  animationTime?: number;
+  theme?: string;
+  width?: number;
+  height?: number;
+  backgroundColor?: string;
+  border?: string;
+  borderRadius?: string;
+  style?: CSSProperties;
 };
 
 type DefaultValues = {
-  distance: number;
+  radius: number;
   yPosition: number;
   width: string;
   height: string;
@@ -45,7 +49,7 @@ type StateModelProps = {
 
 export function Caroumesh(props: CaroumeshProps) {
   const defaultValues: DefaultValues = {
-    distance: 10,
+    radius: 10,
     yPosition: 0,
     width: '100%',
     height: '100%',
@@ -63,18 +67,16 @@ export function Caroumesh(props: CaroumeshProps) {
       children = [children];
     }
 
-    const distance = props.distance ?? defaultValues.distance;
+    const radius = props.radius ?? defaultValues.radius;
 
     var newModels: StateModelProps[] = [];
 
     const initModel = (value: JSX.Element, index: number) => {
       var newPosition = new Vector3(
-        distance *
-          Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
+        radius * Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
         defaultValues.yPosition,
-        distance *
-          Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
-          distance
+        radius * Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
+          radius
       );
       value.props.offset && newPosition.add(value.props.offset);
       newModels.push({
@@ -106,26 +108,26 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   const renderModels = () => {
-    const distance = props.distance ?? defaultValues.distance;
+    const radius = props.radius ?? defaultValues.radius;
 
     var newModels: StateModelProps[] = [...models];
 
     newModels.forEach((value, index) => {
       var newPosition = new Vector3(
-        distance *
+        radius *
           Math.sin(
             ((2 * Math.PI) / newModels.length) *
               ((index + indexOffset.current) % newModels.length) +
               Math.PI
           ),
         defaultValues.yPosition,
-        distance *
+        radius *
           Math.cos(
             ((2 * Math.PI) / newModels.length) *
               ((index + indexOffset.current) % newModels.length) +
               Math.PI
           ) +
-          distance
+          radius
       );
       value.other.offset && newPosition.add(value.other.offset);
       newModels[index].position = newPosition;
@@ -139,6 +141,7 @@ export function Caroumesh(props: CaroumeshProps) {
     var startTime = 0;
 
     const startValue = indexOffset.current;
+    const animationTime = props.animationTime ?? defaultValues.animationTime;
 
     rotateLock.current = true;
 
@@ -154,7 +157,7 @@ export function Caroumesh(props: CaroumeshProps) {
       if (startTime == 0) startTime = time;
 
       const elapsedTime = time - startTime;
-      const lerpValue = elapsedTime / defaultValues.animationTime;
+      const lerpValue = elapsedTime / animationTime;
 
       indexOffset.current = lerp(
         startValue,
@@ -163,7 +166,7 @@ export function Caroumesh(props: CaroumeshProps) {
       );
       renderModels();
 
-      if (elapsedTime < defaultValues.animationTime) {
+      if (elapsedTime < animationTime) {
         animFrame = requestAnimationFrame(interpolation);
       } else {
         stopInterpolation();
@@ -216,12 +219,19 @@ export function Caroumesh(props: CaroumeshProps) {
         ...props.style,
         width: props.width ?? defaultValues.width,
         height: props.height ?? defaultValues.height,
+        border: props.border,
+        borderRadius: props.borderRadius,
         position: 'relative',
         overflow: 'hidden',
       }}
     >
       {models.length > 1 && (
-        <Controls keys={keyDownEvent} left={rotateLeft} right={rotateRight} />
+        <Controls
+          keys={keyDownEvent}
+          left={rotateLeft}
+          right={rotateRight}
+          color={props.theme}
+        />
       )}
 
       <Canvas
@@ -232,10 +242,10 @@ export function Caroumesh(props: CaroumeshProps) {
         }}
       >
         {props.backgroundColor && (
-          <color attach="background" args={props.backgroundColor} />
+          <color attach="background" args={[props.backgroundColor]} />
         )}
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader color={props.theme} />}>
           {lights.current ?? <ThreePointLights shadows={props.shadows} />}
 
           {models.map((model, index) => {

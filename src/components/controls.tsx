@@ -19,7 +19,7 @@ type DefaultValues = {
 
 export function Controls(props: ControlsProps) {
   const defaultValues: DefaultValues = {
-    color: 'white',
+    color: 'black',
   };
 
   const [hover, setHover] = useState<boolean>(false);

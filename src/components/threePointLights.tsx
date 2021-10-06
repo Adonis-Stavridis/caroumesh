@@ -10,7 +10,7 @@ export function ThreePointLights(props: ThreePointLightsProps) {
       <pointLight
         color="white"
         intensity={1}
-        position={[8, 8, 8]}
+        position={[8, 4, 8]}
         castShadow={props.shadows}
         shadowBias={-0.0001}
         shadowMapWidth={2048}
