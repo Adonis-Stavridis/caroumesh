@@ -35,7 +35,7 @@ export function Lights(props: LightsProps) {
           error();
       }
     });
-  }, []);
+  }, [props.children]);
 
   return <Fragment>{props.children}</Fragment>;
 }

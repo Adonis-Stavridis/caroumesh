@@ -61,7 +61,7 @@ export function Caroumesh(props: CaroumeshProps) {
   const indexOffset = useRef<number>(0);
   const rotateLock = useRef<boolean>(false);
 
-  const initChildren = () => {
+  useEffect(() => {
     var children: JSX.Element[] = props.children as Array<JSX.Element>;
     if (!Array.isArray(children)) {
       children = [children];
@@ -105,7 +105,12 @@ export function Caroumesh(props: CaroumeshProps) {
     });
 
     setModels(newModels);
-  };
+  }, [
+    props.children,
+    props.radius,
+    defaultValues.radius,
+    defaultValues.yPosition,
+  ]);
 
   const renderModels = () => {
     const radius = props.radius ?? defaultValues.radius;
@@ -154,7 +159,7 @@ export function Caroumesh(props: CaroumeshProps) {
     };
 
     const interpolation = (time: number) => {
-      if (startTime == 0) startTime = time;
+      if (startTime === 0) startTime = time;
 
       const elapsedTime = time - startTime;
       const lerpValue = elapsedTime / animationTime;
@@ -208,10 +213,6 @@ export function Caroumesh(props: CaroumeshProps) {
         break;
     }
   };
-
-  useEffect(() => {
-    initChildren();
-  }, [props.children]);
 
   return (
     <div
