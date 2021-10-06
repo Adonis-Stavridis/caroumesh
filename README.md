@@ -7,9 +7,11 @@
 ![](https://img.shields.io/npm/l/caroumesh)
 
 Caroumesh is a React component to display your 3d models in a Carousel-like
-fashion inside your application.
+fashion inside your application, using
+[three.js](https://github.com/mrdoob/three.js) and
+[react-three-fiber](https://github.com/pmndrs/react-three-fiber).
 
-[](https://imgur.com/eeA5TUl)
+![](https://i.imgur.com/eeA5TUl.gif)
 
 ## Table of contents <!-- omit in toc -->
 
@@ -17,6 +19,8 @@ fashion inside your application.
 - [Getting started](#getting-started)
   - [Caroumesh component](#caroumesh-component)
   - [Model component](#model-component)
+  - [Lights component](#lights-component)
+  - [CaroumeshContainer component](#caroumeshcontainer-component)
 
 ## Installation
 
@@ -30,7 +34,13 @@ The package and all of its dependencies should be installed.
 
 ## Getting started
 
-The simplest way to create a Caroumesh component is the following:
+Import the React components from the package.
+
+```tsx
+import { Caroumesh, Model } from 'caroumesh';
+```
+
+Add them to your render function inside your application.
 
 ```html
 <Caroumesh>
@@ -43,7 +53,13 @@ The simplest way to create a Caroumesh component is the following:
 ### Caroumesh component
 
 The Caroumesh component is the parent component that sets up the canvas on which
-to display the meshes. It accepts the following props:
+to display the meshes.
+
+```html
+<Caroumesh> ... </Caroumesh>
+```
+
+It accepts the following props:
 
 ```ts
 shadows?: boolean; // enable shadows
@@ -60,12 +76,21 @@ borderRadius?: string; // border-radius CSS property
 style?: React.CSSProperties; // any extra CSS properties
 ```
 
-The component will take the entire space of the parent by default.
+The component will take the entire space of the parent by default. Also while
+developping your application, you can use the `stats` prop to evaluate
+performance and see how adding models or lights may affect your FPS.
 
 ### Model component
 
-The Model component will load a mesh / model onto the Caroumesh component. It
-accepts the following props:
+The Model component will load a mesh / model onto the Caroumesh component.
+
+```html
+<Caroumesh>
+  <Model> ... </Model>
+</Caroumesh>
+```
+
+It accepts the following props:
 
 ```ts
 src: string; // source gltf / glb file
@@ -79,6 +104,76 @@ You can add as many models as you like inside of a Caroumesh, just keep in mind
 that it does affect performance. It is also possible to display a single model,
 or none at all.
 
-_**Important**: Use `offset` prop to offset model instead of `position` prop. The
-latter is set by this package and setting it manually may lead to unwanted
-results._
+**Important**: The `src` prop string should be the relative path to the gltf or
+glb file of your model. It is recommended you compress your models into glb
+files with draco compression, to reduce load, with the following command:
+
+```bash
+npx gltf-pipeline -i model.gltf -o model.glb -d
+```
+
+You can use the `offset`, `scale` and `rotation` props in order to place your
+model wherever you like.
+
+**Important**: Use `offset` prop to offset model instead of `position` prop.
+The latter is set by this package and setting it manually may lead to unwanted
+results.
+
+### Lights component
+
+The Caroumesh component comes by default with a three point light setup, with
+casting shadows to illuminate your models. If you want to setup your own light
+setup you can use the Lights component.
+
+```html
+<Caroumesh>
+  <Lights> ... </Lights>
+</Caroumesh>
+```
+
+Inside of this component you have to add
+[react-three-fiber](https://github.com/pmndrs/react-three-fiber) light
+components. These are all the possible light components you can use:
+
+```html
+<spotLight />
+<pointLight />
+<rectAreaLight />
+<hemisphereLight />
+<directionalLight />
+<ambientLight />
+```
+
+You can find the
+[documentation](https://threejs.org/docs/index.html?q=light#api/en/lights/Light)
+of [three.js](https://github.com/mrdoob/three.js), for more information about
+what props these components use.
+
+You can add as many lights as you want, though, again, keep in mind more lights
+leads to heavier load, thus to worse performance.
+
+### CaroumeshContainer component
+
+The CaroumeshContainer component is useful for catching any errors that could
+occur when building your application. It is by no means necessary, but can come
+in handy during development. You can wrap your Caroumesh component with it.
+
+```html
+<CaroumeshContainer>
+  <Caroumesh> ... </Caroumesh>
+</CaroumeshContainer>
+```
+
+It will display what the error that occurred where your Caroumesh should be
+located inside your app (not inside the console) and possibly the cause and
+potential fix for that error.
+
+If you are using
+[create-react-app](https://github.com/facebook/create-react-app), you don't have
+to use this component because an integrated error logger is already set up.
+
+<!-- TODO: complete example -->
+
+---
+
+Thank you for using Caroumesh ! ❤️
