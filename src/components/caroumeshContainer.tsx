@@ -9,21 +9,36 @@ type FallbackProps = {
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
-    <Alert severity="error">
-      <AlertTitle>
-        <strong>Caroumesh - Error</strong>
-      </AlertTitle>
+    <div style={{ padding: '1em', overflow: 'hidden' }}>
+      <Alert severity="error">
+        <AlertTitle>
+          <strong>Caroumesh - Error</strong>
+        </AlertTitle>
 
-      <strong>Description</strong>
-      <pre>{error.message}</pre>
+        <strong>Description</strong>
+        <pre
+          style={{
+            whiteSpace: 'pre-wrap',
+            padding: '0.5em',
+          }}
+        >
+          {error.message}
+        </pre>
 
-      <strong>Call stack</strong>
-      <pre>{error.stack}</pre>
+        <strong>Call stack</strong>
+        <pre style={{ whiteSpace: 'pre-wrap', padding: '0.5em' }}>
+          {error.stack}
+        </pre>
 
-      <Button variant="contained" color="primary" onClick={resetErrorBoundary}>
-        Retry
-      </Button>
-    </Alert>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={resetErrorBoundary}
+        >
+          Refresh
+        </Button>
+      </Alert>
+    </div>
   );
 }
 
