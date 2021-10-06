@@ -16,9 +16,9 @@ export function Lights(props: LightsProps) {
     };
 
     children.forEach((value) => {
-      if (!value.props || !value.props.mdxType) error();
+      if (!value.type) error();
 
-      switch (value.props.mdxType) {
+      switch (value.type) {
         case 'spotLight':
           break;
         case 'pointLight':

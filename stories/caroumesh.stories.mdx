@@ -18,25 +18,13 @@ A simple way to showcase 3d models in a carousel-like way.
 <Canvas>
   <Story name="Default">
     <CaroumeshContainer>
-      <Caroumesh>
+      <Caroumesh shadows>
         <Model
           src="assets/Star destroyer-transformed.glb"
           scale={0.075}
           shadows
         />
         <Model src="assets/TIE fighter-transformed.glb" scale={5} shadows />
-        <Lights>
-          <pointLight
-            color="white"
-            intensity={1}
-            position={[8, 8, 8]}
-            castShadow={true}
-            shadowBias={-0.0001}
-            shadowMapWidth={2048}
-            shadowMapHeight={2048}
-          />
-          ;;;;
-        </Lights>
       </Caroumesh>
     </CaroumeshContainer>
   </Story>
