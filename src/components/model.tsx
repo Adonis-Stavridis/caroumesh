@@ -5,8 +5,8 @@ import { PointLight, SpotLight } from 'three';
 
 type ModelProps = JSX.IntrinsicElements['group'] & {
   src: string;
-  offset?: Vector3;
   shadows?: boolean;
+  offset?: Vector3;
 };
 
 type DefaultValues = {
