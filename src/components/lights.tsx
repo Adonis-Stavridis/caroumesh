@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { LightsChildrenError } from './caroumeshErrors';
 
 type LightsProps = { children?: JSX.Element | JSX.Element[] };
 
@@ -9,14 +10,8 @@ export function Lights(props: LightsProps) {
       children = [children];
     }
 
-    const error = () => {
-      throw new Error(
-        'Cause:\n<Lights/> only accepts <spotLight/>, <pointLight/>, <rectAreaLight/>, <hemisphereLight/>, <directionalLight/> and <ambientLight/> components !\nFix:\nRemove any other React components or text than the mentionned inside of the <Lights/> component.'
-      );
-    };
-
     children.forEach((value) => {
-      if (!value.type) error();
+      if (!value.type) LightsChildrenError();
 
       switch (value.type) {
         case 'spotLight':
@@ -32,7 +27,7 @@ export function Lights(props: LightsProps) {
         case 'ambientLight':
           break;
         default:
-          error();
+          LightsChildrenError();
       }
     });
   }, [props.children]);

@@ -17,6 +17,7 @@ import { Model } from './model';
 import { Controls } from './controls';
 import { ThreePointLights } from './threePointLights';
 import { Lights } from './lights';
+import { ModelChildrenError } from './caroumeshErrors';
 
 type CaroumeshProps = {
   children?: JSX.Element | JSX.Element[];
@@ -98,9 +99,7 @@ export function Caroumesh(props: CaroumeshProps) {
           initLights(value);
           break;
         default:
-          throw new Error(
-            'Cause:\n<Caroumesh/> only accepts <Model/> and <Lights/> components... for now !\nFix:\nRemove any React components or text other than the mentionned inside of the <Caroumesh/> component.'
-          );
+          ModelChildrenError();
       }
     });
 
