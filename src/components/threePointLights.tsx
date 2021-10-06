@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-type DefaultLightsProps = {
+type ThreePointLightsProps = {
   shadows?: boolean;
 };
 
-export function DefaultLights(props: DefaultLightsProps) {
+export function ThreePointLights(props: ThreePointLightsProps) {
   return (
-    <React.Fragment>
+    <Fragment>
       <pointLight
         color="white"
         intensity={1}
@@ -17,6 +17,6 @@ export function DefaultLights(props: DefaultLightsProps) {
         shadowMapHeight={2048}
       />
       <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
-    </React.Fragment>
+    </Fragment>
   );
 }

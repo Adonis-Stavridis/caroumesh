@@ -1,5 +1,6 @@
 import React, {
   CSSProperties,
+  KeyboardEvent,
   Suspense,
   useEffect,
   useRef,
@@ -14,7 +15,7 @@ import { Effects } from './effects';
 import { Loader } from './loader';
 import { Model } from './model';
 import { Controls } from './controls';
-import { DefaultLights } from './defaultLights';
+import { ThreePointLights } from './threePointLights';
 import { Lights } from './lights';
 
 type CaroumeshProps = {
@@ -22,7 +23,7 @@ type CaroumeshProps = {
   height?: number;
   backgroundColor?: [Color] | [number, number, number];
   style?: CSSProperties;
-  children?: JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
   effects?: boolean;
   stats?: boolean;
   shadows?: boolean;
@@ -57,7 +58,7 @@ export function Caroumesh(props: CaroumeshProps) {
   const rotateLock = useRef<boolean>(false);
 
   const initChildren = () => {
-    var children: JSX.Element[] = props.children ?? [];
+    var children: JSX.Element[] = props.children as Array<JSX.Element>;
     if (!Array.isArray(children)) {
       children = [children];
     }
@@ -66,7 +67,7 @@ export function Caroumesh(props: CaroumeshProps) {
 
     var newModels: StateModelProps[] = [];
 
-    const initModel = (element: JSX.Element, index: number) => {
+    const initModel = (value: JSX.Element, index: number) => {
       var newPosition = new Vector3(
         distance *
           Math.sin(((2 * Math.PI) / children.length) * index + Math.PI),
@@ -75,28 +76,29 @@ export function Caroumesh(props: CaroumeshProps) {
           Math.cos(((2 * Math.PI) / children.length) * index + Math.PI) +
           distance
       );
-      element.props.offset && newPosition.add(element.props.offset);
+      value.props.offset && newPosition.add(value.props.offset);
       newModels.push({
         position: newPosition,
-        other: element.props,
+        other: value.props,
       });
     };
 
-    const initLights = (element: JSX.Element) => {
-      lights.current = element;
+    const initLights = (value: JSX.Element) => {
+      lights.current = value;
     };
 
-    children.forEach((element, index) => {
-      switch (element.type) {
+    children.forEach((value, index) => {
+      switch (value.type) {
         case Model:
-          initModel(element, index);
+          initModel(value, index);
           break;
         case Lights:
-          initLights(element);
+          initLights(value);
           break;
         default:
-          console.log('Caroumesh only accepts <Model/> components... for now');
-          break;
+          throw new Error(
+            'Cause:\n<Caroumesh/> only accepts <Model/> and <Lights/> components... for now !\nFix:\nRemove any React components or text other than the mentionned inside of the <Caroumesh/> component.'
+          );
       }
     });
 
@@ -108,7 +110,7 @@ export function Caroumesh(props: CaroumeshProps) {
 
     var newModels: StateModelProps[] = [...models];
 
-    newModels.forEach((element, index) => {
+    newModels.forEach((value, index) => {
       var newPosition = new Vector3(
         distance *
           Math.sin(
@@ -125,7 +127,7 @@ export function Caroumesh(props: CaroumeshProps) {
           ) +
           distance
       );
-      element.other.offset && newPosition.add(element.other.offset);
+      value.other.offset && newPosition.add(value.other.offset);
       newModels[index].position = newPosition;
     });
 
@@ -185,7 +187,7 @@ export function Caroumesh(props: CaroumeshProps) {
     rotate(target);
   };
 
-  const keyDownEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const keyDownEvent = (event: KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case 'ArrowUp':
         rotateRight();
@@ -234,7 +236,7 @@ export function Caroumesh(props: CaroumeshProps) {
         )}
 
         <Suspense fallback={<Loader />}>
-          {lights.current ?? <DefaultLights shadows={props.shadows} />}
+          {lights.current ?? <ThreePointLights shadows={props.shadows} />}
 
           {models.map((model, index) => {
             return (

@@ -1,5 +1,6 @@
 import React, {
   KeyboardEventHandler,
+  MouseEvent,
   MouseEventHandler,
   useState,
 } from 'react';
@@ -23,11 +24,11 @@ export function Controls(props: ControlsProps) {
 
   const [hover, setHover] = useState<boolean>(false);
 
-  const pointerCursor = (_event: React.MouseEvent<HTMLDivElement>) => {
+  const pointerCursor = (_event: MouseEvent<HTMLDivElement>) => {
     setHover(true);
   };
 
-  const defaultCursor = (_event: React.MouseEvent<HTMLDivElement>) => {
+  const defaultCursor = (_event: MouseEvent<HTMLDivElement>) => {
     setHover(false);
   };
 
