@@ -17,10 +17,11 @@ fashion inside your application, using
 
 - [Installation](#installation)
 - [Getting started](#getting-started)
-  - [Caroumesh component](#caroumesh-component)
-  - [Model component](#model-component)
-  - [Lights component](#lights-component)
-  - [CaroumeshContainer component](#caroumeshcontainer-component)
+- [Components](#components)
+  - [Caroumesh](#caroumesh)
+  - [Model](#model)
+  - [Lights](#lights)
+  - [CaroumeshContainer](#caroumeshcontainer)
 
 ## Installation
 
@@ -50,7 +51,9 @@ Add them to your render function inside your application.
 
 <!-- TODO: add live example and github to caroumesh-example -->
 
-### Caroumesh component
+## Components
+
+### Caroumesh
 
 The Caroumesh component is the parent component that sets up the canvas on which
 to display the meshes.
@@ -80,7 +83,7 @@ The component will take the entire space of the parent by default. Also while
 developping your application, you can use the `stats` prop to evaluate
 performance and see how adding models or lights may affect your FPS.
 
-### Model component
+### Model
 
 The Model component will load a mesh / model onto the Caroumesh component.
 
@@ -119,7 +122,7 @@ model wherever you like.
 The latter is set by this package and setting it manually may lead to unwanted
 results.
 
-### Lights component
+### Lights
 
 The Caroumesh component comes by default with a three point light setup, with
 casting shadows to illuminate your models. If you want to setup your own light
@@ -152,7 +155,7 @@ what props these components use.
 You can add as many lights as you want, though, again, keep in mind more lights
 leads to heavier load, thus to worse performance.
 
-### CaroumeshContainer component
+### CaroumeshContainer
 
 The CaroumeshContainer component is useful for catching any errors that could
 occur when building your application. It is by no means necessary, but can come
