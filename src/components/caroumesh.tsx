@@ -222,6 +222,7 @@ export function Caroumesh(props: CaroumeshProps) {
         borderRadius: props.borderRadius,
         position: 'relative',
         overflow: 'hidden',
+        boxSizing: 'border-box',
         ...props.style,
       }}
     >
