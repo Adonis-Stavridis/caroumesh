@@ -71,8 +71,8 @@ effects?: boolean; // enables SSAO and HueSaturation (negatively affects FPS)
 stats?: boolean; // display FPS (useful for debugging)
 animationTime?: number; // transition animation time in ms (1s = 1000ms)
 theme?: string; // color theme of controls (left / right arrows)
-width?: number; // width CSS property in px
-height?: number; // height CSS property in px
+width?: string; // width CSS property
+height?: string; // height CSS property
 backgroundColor?: string; // background color
 border?: string; // border CSS property
 borderRadius?: string; // border-radius CSS property

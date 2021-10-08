@@ -27,8 +27,8 @@ type CaroumeshProps = {
   stats?: boolean;
   animationTime?: number;
   theme?: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   backgroundColor?: string;
   border?: string;
   borderRadius?: string;
@@ -216,13 +216,13 @@ export function Caroumesh(props: CaroumeshProps) {
   return (
     <div
       style={{
-        ...props.style,
         width: props.width ?? defaultValues.width,
         height: props.height ?? defaultValues.height,
         border: props.border,
         borderRadius: props.borderRadius,
         position: 'relative',
         overflow: 'hidden',
+        ...props.style,
       }}
     >
       {models.length > 1 && (
