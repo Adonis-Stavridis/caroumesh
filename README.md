@@ -22,6 +22,8 @@ fashion inside your application, using
   - [Model](#model)
   - [Lights](#lights)
   - [CaroumeshContainer](#caroumeshcontainer)
+- [Upcoming releases](#upcoming-releases)
+- [Links](#links)
 
 ## Installation
 
@@ -30,6 +32,9 @@ To install Caroumesh execute the following command in your React project:
 ```bash
 npm install caroumesh
 ```
+
+You can also download it from the
+[Caroumesh npm website](https://www.npmjs.com/package/caroumesh).
 
 The package and all of its dependencies should be installed.
 
@@ -49,7 +54,10 @@ Add them to your render function inside your application.
 </Caroumesh>
 ```
 
-<!-- TODO: add live example and github to caroumesh-example -->
+You can view a
+[live example](https://adonis-stavridis.github.io/caroumesh-example) and a
+[live demo](https://codesandbox.io/s/caroumesh-example-kp2tr) to better
+understand how to use this package and what the end result is.
 
 ## Components
 
@@ -175,7 +183,20 @@ If you are using
 [create-react-app](https://github.com/facebook/create-react-app), you don't have
 to use this component because an integrated error logger is already set up.
 
-<!-- TODO: complete example -->
+## Upcoming releases
+
+The next releases would present the following features:
+
+- Display textual information for each model (title and description)
+
+## Links
+
+- [Caroumesh npm website](https://www.npmjs.com/package/caroumesh)
+- [Caroumesh live example](https://adonis-stavridis.github.io/caroumesh-example)
+- [Caroumesh live demo](https://codesandbox.io/s/caroumesh-example-kp2tr)
+- [three.js](https://github.com/mrdoob/three.js)
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [create-react-app](https://github.com/facebook/create-react-app)
 
 ---
 
