@@ -187,6 +187,7 @@ to use this component because an integrated error logger is already set up.
 
 The next releases would present the following features:
 
+- Allow importing JSX models
 - Display textual information for each model (title and description)
 
 ## Links
