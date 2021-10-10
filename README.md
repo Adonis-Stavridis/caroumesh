@@ -74,6 +74,7 @@ It accepts the following props:
 
 ```ts
 shadows?: boolean; // enable shadows
+controls?: boolean; // orbit controls to zoom, rotate and pan around model
 radius?: number; // radius of carousel (brings meshes closer / further together)
 effects?: boolean; // enables SSAO and HueSaturation (negatively affects FPS)
 stats?: boolean; // display FPS (useful for debugging)
