@@ -22,9 +22,7 @@ export function Model(props: ModelProps) {
   const ref = useRef<THREE.Group>(scene);
 
   useFrame((_state, delta) => {
-    if (ref.current !== undefined) {
-      ref.current.rotation.y += delta * defaultValues.rotationSpeed;
-    }
+    ref.current.rotation.y += delta * defaultValues.rotationSpeed;
   });
 
   useLayoutEffect(() => {

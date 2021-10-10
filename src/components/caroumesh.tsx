@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Stats } from '@react-three/drei';
+import { OrbitControls, Stats } from '@react-three/drei';
 import { Vector3 } from 'three';
 import { lerp } from 'three/src/math/MathUtils';
 
@@ -18,10 +18,12 @@ import { Controls } from './controls';
 import { ThreePointLights } from './threePointLights';
 import { Lights } from './lights';
 import { ModelChildrenError } from './caroumeshErrors';
+import { OrbitControls as OrbCtrls } from 'three-stdlib';
 
 type CaroumeshProps = {
   children?: JSX.Element | JSX.Element[];
   shadows?: boolean;
+  controls?: boolean;
   radius?: number;
   effects?: boolean;
   stats?: boolean;
@@ -46,6 +48,7 @@ type DefaultValues = {
 type StateModelProps = {
   position: Vector3;
   other: any;
+  visible: boolean;
 };
 
 export function Caroumesh(props: CaroumeshProps) {
@@ -61,6 +64,7 @@ export function Caroumesh(props: CaroumeshProps) {
   const lights = useRef<JSX.Element>();
   const indexOffset = useRef<number>(0);
   const rotateLock = useRef<boolean>(false);
+  const orbitCtrls = useRef<OrbCtrls>(null);
 
   useEffect(() => {
     var children: JSX.Element[] = props.children as Array<JSX.Element>;
@@ -83,7 +87,10 @@ export function Caroumesh(props: CaroumeshProps) {
       newModels.push({
         position: newPosition,
         other: value.props,
+        visible: false,
       });
+
+      newModels[0].visible = true;
     };
 
     const initLights = (value: JSX.Element) => {
@@ -111,7 +118,7 @@ export function Caroumesh(props: CaroumeshProps) {
     defaultValues.yPosition,
   ]);
 
-  const renderModels = () => {
+  const renderModels = (showHide?: { show?: number; hide?: number }) => {
     const radius = props.radius ?? defaultValues.radius;
 
     var newModels: StateModelProps[] = [...models];
@@ -137,6 +144,12 @@ export function Caroumesh(props: CaroumeshProps) {
       newModels[index].position = newPosition;
     });
 
+    if (showHide && typeof showHide.show !== 'undefined')
+      newModels[showHide.show].visible = true;
+
+    if (showHide && typeof showHide.hide !== 'undefined')
+      newModels[showHide.hide].visible = false;
+
     setModels(newModels);
   };
 
@@ -145,14 +158,17 @@ export function Caroumesh(props: CaroumeshProps) {
     var startTime = 0;
 
     const startValue = indexOffset.current;
+    const endValue = Math.abs(target % models.length);
     const animationTime = props.animationTime ?? defaultValues.animationTime;
 
+    orbitCtrls.current && orbitCtrls.current.reset();
+    renderModels({ show: endValue });
     rotateLock.current = true;
 
     const stopInterpolation = () => {
       cancelAnimationFrame(animFrame);
-      indexOffset.current = target % models.length;
-      renderModels();
+      indexOffset.current = endValue;
+      renderModels({ hide: startValue });
 
       rotateLock.current = false;
     };
@@ -221,7 +237,7 @@ export function Caroumesh(props: CaroumeshProps) {
         border: props.border,
         borderRadius: props.borderRadius,
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible',
         boxSizing: 'border-box',
         ...props.style,
       }}
@@ -251,13 +267,22 @@ export function Caroumesh(props: CaroumeshProps) {
 
           {models.map((model, index) => {
             return (
-              <Model key={index} position={model.position} {...model.other} />
+              <Model
+                key={index}
+                position={model.position}
+                {...model.other}
+                visible={model.visible}
+              />
             );
           })}
         </Suspense>
 
         {props.effects && <Effects />}
         {props.stats && <Stats />}
+
+        {props.controls && (
+          <OrbitControls ref={orbitCtrls} enableZoom enableRotate enablePan />
+        )}
       </Canvas>
     </div>
   );

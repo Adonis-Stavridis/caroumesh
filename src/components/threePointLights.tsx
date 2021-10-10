@@ -17,6 +17,7 @@ export function ThreePointLights(props: ThreePointLightsProps) {
         shadowMapHeight={2048}
       />
       <pointLight color="white" intensity={0.3} position={[-8, 0, 8]} />
+      <pointLight color="white" intensity={0.2} position={[0, -2, -8]} />
     </Fragment>
   );
 }

@@ -39,6 +39,7 @@ export function Controls(props: ControlsProps) {
         position: 'absolute',
         width: '100%',
         height: '100%',
+        pointerEvents: 'none',
         cursor: hover ? 'pointer' : 'default',
       }}
       tabIndex={0}
@@ -54,6 +55,7 @@ export function Controls(props: ControlsProps) {
         }}
       >
         <div
+          style={{ pointerEvents: 'all' }}
           onClick={props.left}
           onMouseEnter={pointerCursor}
           onMouseLeave={defaultCursor}
@@ -74,6 +76,7 @@ export function Controls(props: ControlsProps) {
         }}
       >
         <div
+          style={{ pointerEvents: 'all' }}
           onClick={props.right}
           onMouseEnter={pointerCursor}
           onMouseLeave={defaultCursor}
