@@ -60,9 +60,9 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@mdx-js/react": "^1.6.22",
-    "@size-limit/preset-small-lib": "^5.0.5",
+    "@size-limit/preset-small-lib": "^6.0.1",
     "@storybook/addon-docs": "^6.3.10",
     "@storybook/addon-essentials": "^6.3.10",
     "@storybook/addon-info": "^5.3.21",
@@ -75,7 +75,7 @@
     "babel-loader": "^8.2.2",
     "husky": "^7.0.2",
     "react-is": "^17.0.2",
-    "size-limit": "^5.0.5",
+    "size-limit": "^6.0.1",
     "storybook-dark-mode": "^1.0.8",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
@@ -84,9 +84,9 @@
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@mui/material": "^5.0.2",
-    "@react-three/drei": "^7.12.6",
-    "@react-three/fiber": "^7.0.10",
+    "@mui/material": "^5.0.3",
+    "@react-three/drei": "^7.13.1",
+    "@react-three/fiber": "^7.0.15",
     "@react-three/gltfjsx": "^4.3.4",
     "@react-three/postprocessing": "^2.0.5",
     "gltf-pipeline": "^3.0.4",
