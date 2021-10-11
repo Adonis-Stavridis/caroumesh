@@ -92,6 +92,19 @@ The component will take the entire space of the parent by default. Also while
 developping your application, you can use the `stats` prop to evaluate
 performance and see how adding models or lights may affect your FPS.
 
+The `Left Arrow` and `Right Arrow` keybinds can be used to rotate to the
+previous or next model inside the Caroumesh.
+
+If you have set the `controls` prop, you can use the following keybinds on your
+mouse and keyboard to control the scene:
+
+| Keybind                           | Action         |
+| :-------------------------------- | :------------- |
+| Mouse Left (Hold)                 | Rotate         |
+| Shift or Ctrl + Mouse Left (Hold) | Pan            |
+| Scroll wheel                      | Zoom           |
+| Space                             | Reset view     |
+
 ### Model
 
 The Model component will load a mesh / model onto the Caroumesh component.

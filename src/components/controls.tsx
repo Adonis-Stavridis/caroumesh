@@ -1,13 +1,7 @@
-import React, {
-  KeyboardEventHandler,
-  MouseEvent,
-  MouseEventHandler,
-  useState,
-} from 'react';
+import React, { MouseEvent, MouseEventHandler, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 type ControlsProps = {
-  keys: KeyboardEventHandler<HTMLDivElement>;
   left: MouseEventHandler<HTMLDivElement>;
   right: MouseEventHandler<HTMLDivElement>;
   color?: string;
@@ -42,8 +36,6 @@ export function Controls(props: ControlsProps) {
         pointerEvents: 'none',
         cursor: hover ? 'pointer' : 'default',
       }}
-      tabIndex={0}
-      onKeyDown={props.keys}
     >
       <div
         style={{

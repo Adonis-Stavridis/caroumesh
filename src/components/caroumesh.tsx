@@ -161,7 +161,7 @@ export function Caroumesh(props: CaroumeshProps) {
     const endValue = Math.abs(target % models.length);
     const animationTime = props.animationTime ?? defaultValues.animationTime;
 
-    orbitCtrls.current && orbitCtrls.current.reset();
+    resetOrbitControls();
     renderModels({ show: endValue });
     rotateLock.current = true;
 
@@ -197,32 +197,33 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   const rotateRight = () => {
-    if (rotateLock.current) return;
+    if (rotateLock.current || models.length <= 1) return;
 
     const target = indexOffset.current + 1;
     rotate(target);
   };
 
   const rotateLeft = () => {
-    if (rotateLock.current) return;
+    if (rotateLock.current || models.length <= 1) return;
 
     const target = indexOffset.current - 1;
     rotate(target);
   };
 
+  const resetOrbitControls = () => {
+    orbitCtrls.current && orbitCtrls.current.reset();
+  };
+
   const keyDownEvent = (event: KeyboardEvent<HTMLInputElement>) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        rotateRight();
-        break;
-      case 'ArrowDown':
-        rotateLeft();
-        break;
+    switch (event.code) {
       case 'ArrowLeft':
         rotateLeft();
         break;
       case 'ArrowRight':
         rotateRight();
+        break;
+      case 'Space':
+        resetOrbitControls();
         break;
       default:
         break;
@@ -241,14 +242,11 @@ export function Caroumesh(props: CaroumeshProps) {
         boxSizing: 'border-box',
         ...props.style,
       }}
+      tabIndex={0}
+      onKeyDown={keyDownEvent}
     >
       {models.length > 1 && (
-        <Controls
-          keys={keyDownEvent}
-          left={rotateLeft}
-          right={rotateRight}
-          color={props.theme}
-        />
+        <Controls left={rotateLeft} right={rotateRight} color={props.theme} />
       )}
 
       <Canvas
