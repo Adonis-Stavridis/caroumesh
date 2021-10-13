@@ -197,17 +197,17 @@ export function Caroumesh(props: CaroumeshProps) {
   };
 
   const rotateRight = () => {
-    if (rotateLock.current || models.length <= 1) return;
-
-    const target = indexOffset.current + 1;
-    rotate(target);
+    if (!rotateLock.current || models.length > 1) {
+      const target = indexOffset.current + 1;
+      rotate(target);
+    }
   };
 
   const rotateLeft = () => {
-    if (rotateLock.current || models.length <= 1) return;
-
-    const target = indexOffset.current - 1;
-    rotate(target);
+    if (!rotateLock.current || models.length > 1) {
+      const target = indexOffset.current - 1;
+      rotate(target);
+    }
   };
 
   const resetOrbitControls = () => {
