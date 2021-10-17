@@ -56,7 +56,7 @@ Add them to your render function inside your application.
 
 You can view a
 [live example](https://adonis-stavridis.github.io/caroumesh-example) and a
-[live demo](https://codesandbox.io/s/caroumesh-example-kp2tr) to better
+[live demo](https://codesandbox.io/s/caroumesh-example-8ui0h) to better
 understand how to use this package and what the end result is.
 
 ## Components
@@ -98,12 +98,12 @@ previous or next model inside the Caroumesh.
 If you have set the `controls` prop, you can use the following keybinds on your
 mouse and keyboard to control the scene:
 
-| Keybind                           | Action         |
-| :-------------------------------- | :------------- |
-| Mouse Left (Hold)                 | Rotate         |
-| Shift or Ctrl + Mouse Left (Hold) | Pan            |
-| Scroll wheel                      | Zoom           |
-| Space                             | Reset view     |
+| Keybind            | Action     |
+| :----------------- | :--------- |
+| Mouse Left (Hold)  | Rotate     |
+| Mouse Right (Hold) | Pan        |
+| Scroll wheel       | Zoom       |
+| Space              | Reset view |
 
 ### Model
 
