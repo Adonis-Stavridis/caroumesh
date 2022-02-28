@@ -51,7 +51,7 @@ type StateModelProps = {
   visible: boolean;
 };
 
-export function Caroumesh(props: CaroumeshProps) {
+export const Caroumesh = (props: CaroumeshProps) => {
   const defaultValues: DefaultValues = {
     radius: 10,
     yPosition: 0,
@@ -284,4 +284,4 @@ export function Caroumesh(props: CaroumeshProps) {
       </Canvas>
     </div>
   );
-}
+};

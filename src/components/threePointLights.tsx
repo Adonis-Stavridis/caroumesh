@@ -4,7 +4,7 @@ type ThreePointLightsProps = {
   shadows?: boolean;
 };
 
-export function ThreePointLights(props: ThreePointLightsProps) {
+export const ThreePointLights = (props: ThreePointLightsProps) => {
   return (
     <Fragment>
       <pointLight
@@ -20,4 +20,4 @@ export function ThreePointLights(props: ThreePointLightsProps) {
       <pointLight color="white" intensity={0.2} position={[0, -2, -8]} />
     </Fragment>
   );
-}
+};

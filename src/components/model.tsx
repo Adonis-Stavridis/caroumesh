@@ -13,7 +13,7 @@ type DefaultValues = {
   rotationSpeed: number;
 };
 
-export function Model(props: ModelProps) {
+export const Model = (props: ModelProps) => {
   const defaultValues: DefaultValues = {
     rotationSpeed: 0.1,
   };
@@ -40,4 +40,4 @@ export function Model(props: ModelProps) {
   }, [scene, props.shadows, props.scale]);
 
   return <primitive ref={ref} object={scene} {...props} />;
-}
+};

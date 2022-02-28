@@ -7,7 +7,7 @@ type FallbackProps = {
   resetErrorBoundary: (...args: Array<unknown>) => void;
 };
 
-function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <div style={{ padding: '1em', overflow: 'hidden' }}>
       <Alert severity="error">
@@ -40,16 +40,16 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
       </Alert>
     </div>
   );
-}
+};
 
 type CaroumeshContainerProps = {
   children: ReactNode;
 };
 
-export function CaroumeshContainer(props: CaroumeshContainerProps) {
+export const CaroumeshContainer = (props: CaroumeshContainerProps) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       {props.children}
     </ErrorBoundary>
   );
-}
+};
