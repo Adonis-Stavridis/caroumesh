@@ -74,6 +74,7 @@
     "@types/three": "^0.133.1",
     "babel-loader": "^8.2.2",
     "dotenv-webpack": "^7.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.4.0",
     "husky": "^7.0.2",
     "react-is": "^17.0.2",
