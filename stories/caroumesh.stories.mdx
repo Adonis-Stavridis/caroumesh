@@ -1,10 +1,7 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
 
-import { Caroumesh } from '../src/components/caroumesh';
-import { Model } from '../src/components/model';
-import { Lights } from '../src/components/lights';
-
-import { Vector3 } from 'three';
+import { Caroumesh, Model } from '../src/index';
+import { Children } from './stories.constants';
 
 <Meta title="Caroumesh" component={Caroumesh} />
 
@@ -14,11 +11,47 @@ export const Template = (args) => <Caroumesh {...args} />;
 
 A simple way to showcase 3d models in a carousel-like way.
 
+## Default
+
 <Canvas>
-  <Story name="Default">
-    <Caroumesh shadows controls stats theme={'dodgerblue'}>
-      <Model src="assets/Star destroyer.glb" scale={0.1} shadows />
-      <Model src="assets/TIE fighter.glb" scale={5} shadows />
-    </Caroumesh>
+  <Story
+    name="Default"
+    args={{
+      children: Children,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Styled
+
+<Canvas>
+  <Story
+    name="Styled"
+    args={{
+      shadows: true,
+      controls: true,
+      theme: 'dodgerblue',
+      children: Children,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Single
+
+<Canvas>
+  <Story
+    name="Single"
+    args={{
+      shadows: true,
+      controls: true,
+      theme: 'dodgerblue',
+      children: Children[0],
+    }}
+  >
+    {Template.bind({})}
   </Story>
 </Canvas>

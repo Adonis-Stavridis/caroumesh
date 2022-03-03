@@ -235,6 +235,8 @@ export const Caroumesh = (props: CaroumeshProps) => {
       style={{
         width: props.width ?? defaultValues.width,
         height: props.height ?? defaultValues.height,
+        minWidth: '200px',
+        minHeight: '200px',
         border: props.border,
         borderRadius: props.borderRadius,
         position: 'relative',
