@@ -4,7 +4,7 @@ import React, {
   Suspense,
   useEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stats } from '@react-three/drei';
@@ -57,7 +57,7 @@ export function Caroumesh(props: CaroumeshProps) {
     yPosition: 0,
     width: '100%',
     height: '100%',
-    animationTime: 1000,
+    animationTime: 1000
   };
 
   const [models, setModels] = useState<StateModelProps[]>([]);
@@ -87,7 +87,7 @@ export function Caroumesh(props: CaroumeshProps) {
       newModels.push({
         position: newPosition,
         other: value.props,
-        visible: false,
+        visible: false
       });
 
       newModels[0].visible = true;
@@ -115,7 +115,7 @@ export function Caroumesh(props: CaroumeshProps) {
     props.children,
     props.radius,
     defaultValues.radius,
-    defaultValues.yPosition,
+    defaultValues.yPosition
   ]);
 
   const renderModels = (showHide?: { show?: number; hide?: number }) => {
@@ -240,7 +240,7 @@ export function Caroumesh(props: CaroumeshProps) {
         position: 'relative',
         overflow: 'visible',
         boxSizing: 'border-box',
-        ...props.style,
+        ...props.style
       }}
       tabIndex={0}
       onKeyDown={keyDownEvent}
@@ -253,7 +253,7 @@ export function Caroumesh(props: CaroumeshProps) {
         shadows={props.shadows}
         camera={{ fov: 45, position: [0, 0.5, 5] }}
         style={{
-          position: 'absolute',
+          position: 'absolute'
         }}
       >
         {props.backgroundColor && (

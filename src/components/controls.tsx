@@ -13,7 +13,7 @@ type DefaultValues = {
 
 export function Controls(props: ControlsProps) {
   const defaultValues: DefaultValues = {
-    color: 'black',
+    color: 'black'
   };
 
   const [hover, setHover] = useState<boolean>(false);
@@ -34,7 +34,7 @@ export function Controls(props: ControlsProps) {
         width: '100%',
         height: '100%',
         pointerEvents: 'none',
-        cursor: hover ? 'pointer' : 'default',
+        cursor: hover ? 'pointer' : 'default'
       }}
     >
       <div
@@ -43,7 +43,7 @@ export function Controls(props: ControlsProps) {
           height: '100%',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <div
@@ -64,7 +64,7 @@ export function Controls(props: ControlsProps) {
           height: '100%',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <div

@@ -15,7 +15,7 @@ type DefaultValues = {
 
 export function Model(props: ModelProps) {
   const defaultValues: DefaultValues = {
-    rotationSpeed: 0.1,
+    rotationSpeed: 0.1
   };
 
   const { scene } = useGLTF(props.src);

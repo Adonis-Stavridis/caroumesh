@@ -2,9 +2,9 @@ import React from 'react';
 import {
   EffectComposer,
   HueSaturation,
-  SSAO,
+  SSAO
 } from '@react-three/postprocessing';
-import { BlendFunction } from 'postprocessing';
+import { BlendFunction } from '@react-three/postprocessing/node_modules/postprocessing/build/postprocessing';
 
 export function Effects() {
   return (

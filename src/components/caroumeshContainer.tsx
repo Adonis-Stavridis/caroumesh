@@ -19,7 +19,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         <pre
           style={{
             whiteSpace: 'pre-wrap',
-            padding: '0.5em',
+            padding: '0.5em'
           }}
         >
           {error.message}

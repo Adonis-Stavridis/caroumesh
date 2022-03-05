@@ -12,7 +12,7 @@ type DefaultValues = {
 
 export function Loader(props: LoaderProps) {
   const defaultValues: DefaultValues = {
-    color: 'black',
+    color: 'black'
   };
 
   const { progress } = useProgress();
