@@ -3,7 +3,7 @@ import { LightsChildrenError } from './caroumeshErrors';
 
 type LightsProps = { children?: JSX.Element | JSX.Element[] };
 
-export function Lights(props: LightsProps) {
+export const Lights = (props: LightsProps) => {
   useEffect(() => {
     var children: JSX.Element[] = props.children as Array<JSX.Element>;
     if (!Array.isArray(children)) {
@@ -33,4 +33,4 @@ export function Lights(props: LightsProps) {
   }, [props.children]);
 
   return <Fragment>{props.children}</Fragment>;
-}
+};

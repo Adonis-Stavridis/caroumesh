@@ -98,12 +98,12 @@ previous or next model inside the Caroumesh.
 If you have set the `controls` prop, you can use the following keybinds on your
 mouse and keyboard to control the scene:
 
-| Keybind            | Action     |
-| :----------------- | :--------- |
-| Mouse Left (Hold)  | Rotate     |
-| Mouse Right (Hold) | Pan        |
-| Scroll wheel       | Zoom       |
-| Space              | Reset view |
+| Keybind                           | Action     |
+| :-------------------------------- | :--------- |
+| Mouse Left (Hold)                 | Rotate     |
+| Shift or Ctrl + Mouse Left (Hold) | Pan        |
+| Scroll wheel                      | Zoom       |
+| Space                             | Reset view |
 
 ### Model
 
@@ -216,3 +216,31 @@ The next releases would present the following features:
 ---
 
 Thank you for using Caroumesh ! ❤️
+
+// import { Caroumesh, Model } from './index';
+
+// export default {
+// title: 'Test',
+// component: Caroumesh,
+// };
+
+// const CaroumeshTemplate = (args) => {
+// return (
+
+<!-- // <Caroumesh {...args}>
+// <Model src="assets/Star destroyer.glb" scale={0.1} shadows />
+// <Model src="assets/TIE fighter.glb" scale={5} shadows />
+// </Caroumesh> -->
+
+// );
+// };
+
+// export const DefaultCaroumesh = CaroumeshTemplate.bind({});
+
+// export const StyledCaroumesh = CaroumeshTemplate.bind({});
+// StyledCaroumesh.args = {
+// shadows: true,
+// controls: true,
+// stats: true,
+// theme: 'dodgerblue',
+// };

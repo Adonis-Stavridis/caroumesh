@@ -4,7 +4,7 @@ module.exports = {
     'storybook-dark-mode',
     '@storybook/addon-links',
     '@storybook/addon-docs',
-    '@storybook/addon-essentials'
+    '@storybook/addon-essentials',
   ],
   features: {
     postcss: false,
@@ -18,6 +18,6 @@ module.exports = {
         allowSyntheticDefaultImports: false,
         esModuleInterop: false,
       },
-    }
-  }
+    },
+  },
 };

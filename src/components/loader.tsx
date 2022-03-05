@@ -10,7 +10,7 @@ type DefaultValues = {
   color: string;
 };
 
-export function Loader(props: LoaderProps) {
+export const Loader = (props: LoaderProps) => {
   const defaultValues: DefaultValues = {
     color: 'black'
   };
@@ -26,4 +26,4 @@ export function Loader(props: LoaderProps) {
       />
     </Html>
   );
-}
+};

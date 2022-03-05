@@ -6,7 +6,7 @@ import {
 } from '@react-three/postprocessing';
 import { BlendFunction } from '@react-three/postprocessing/node_modules/postprocessing/build/postprocessing';
 
-export function Effects() {
+export const Effects = () => {
   return (
     <EffectComposer>
       <SSAO
@@ -29,4 +29,4 @@ export function Effects() {
       />
     </EffectComposer>
   );
-}
+};

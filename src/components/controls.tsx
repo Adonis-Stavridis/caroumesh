@@ -11,7 +11,7 @@ type DefaultValues = {
   color: string;
 };
 
-export function Controls(props: ControlsProps) {
+export const Controls = (props: ControlsProps) => {
   const defaultValues: DefaultValues = {
     color: 'black'
   };
@@ -81,4 +81,4 @@ export function Controls(props: ControlsProps) {
       </div>
     </div>
   );
-}
+};
