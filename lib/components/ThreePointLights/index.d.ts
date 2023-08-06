@@ -1,0 +1,1 @@
+export { ThreePointLights } from './ThreePointLights';
