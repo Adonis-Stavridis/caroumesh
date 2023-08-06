@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Caroumesh } from 'caroumesh';
-import { ASSETS_EXAMPLE_PROPS } from 'src/assets/asset.constants';
 
 const meta: Meta<typeof Caroumesh> = {
   title: 'Components/Caroumesh',
@@ -19,6 +18,18 @@ export const Basic: Story = {
     dimensions: {
       height: 500,
     },
-    ...ASSETS_EXAMPLE_PROPS,
+    scenes: [
+      {
+        src: 'assets/StarDestroyer.gltf',
+        scale: 0.05,
+        lightIntensity: 0.01,
+      },
+      { src: 'assets/TieFighter.gltf', scale: 3 },
+    ],
+    controls: true,
+    shadows: true,
+    debugOptions: {
+      gizmos: false,
+    },
   },
 };
