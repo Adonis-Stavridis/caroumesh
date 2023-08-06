@@ -1,0 +1,11 @@
+{
+  "search.exclude": {
+    "**/.git": true,
+    "**/.yarn": true,
+    "**/*.gltf": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/.yarnrc.yml": true,
+    "**/LICENSE": true
+  }
+}

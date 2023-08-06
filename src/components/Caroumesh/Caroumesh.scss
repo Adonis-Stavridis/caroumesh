@@ -1,0 +1,35 @@
+@import '../../lib/styles/imports';
+@import '../../lib/styles/common';
+
+.caroumesh {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  cursor: default;
+
+  &-styles {
+    &--has-border {
+      border: $border;
+    }
+
+    &--is-border-rounded {
+      border-radius: $border-radius;
+      overflow: hidden;
+    }
+  }
+
+  &-canvas {
+    z-index: $z-index-caroumesh;
+
+    &--has-controls {
+      &:hover {
+        cursor: grab;
+      }
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+}

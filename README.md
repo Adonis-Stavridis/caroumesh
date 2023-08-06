@@ -6,22 +6,25 @@
 ![](https://img.shields.io/github/issues/adonis-stavridis/caroumesh)
 ![](https://img.shields.io/npm/l/caroumesh)
 
-Caroumesh is a React component to display your 3d models in a Carousel-like
+Caroumesh is a React component to display your 3D models in a Carousel-like
 fashion inside your application, using
 [three.js](https://github.com/mrdoob/three.js) and
 [react-three-fiber](https://github.com/pmndrs/react-three-fiber).
 
 ![](https://i.imgur.com/eeA5TUl.gif)
 
+---
+
 ## Table of contents <!-- omit in toc -->
 
 - [Installation](#installation)
 - [Getting started](#getting-started)
-- [Components](#components)
-  - [Caroumesh](#caroumesh)
+- [Caroumesh component](#caroumesh-component)
+  - [Overview](#overview)
+  - [Some details](#some-details)
+  - [Interaction](#interaction)
   - [Model](#model)
   - [Lights](#lights)
-  - [CaroumeshContainer](#caroumeshcontainer)
 - [Upcoming releases](#upcoming-releases)
 - [Links](#links)
 
@@ -30,76 +33,69 @@ fashion inside your application, using
 To install Caroumesh execute the following command in your React project:
 
 ```bash
+# With npm
 npm install caroumesh
+# With yarn
+yarn add caroumesh
 ```
-
-You can also download it from the
-[Caroumesh npm website](https://www.npmjs.com/package/caroumesh).
-
-The package and all of its dependencies should be installed.
 
 ## Getting started
 
 Import the React components from the package.
 
 ```tsx
-import { Caroumesh, Model } from 'caroumesh';
+import { Caroumesh } from 'caroumesh';
 ```
 
 Add them to your render function inside your application.
 
-```html
-<Caroumesh>
-  <Model src="Star destroyer.gltf" />
-</Caroumesh>
+```tsx
+<Caroumesh scenes={['assets/StarDestroyer.gltf', 'assets/TieFighter.gltf']} />
 ```
 
-You can view a
+You can also view this
 [live example](https://adonis-stavridis.github.io/caroumesh-example) and a
-[live demo](https://codesandbox.io/s/caroumesh-example-kp2tr) to better
-understand how to use this package and what the end result is.
+[live demo](https://codesandbox.io/s/caroumesh-example-8ui0h).
 
-## Components
+## Caroumesh component
 
-### Caroumesh
+### Overview
 
-The Caroumesh component is the parent component that sets up the canvas on which
-to display the meshes.
+The Caroumesh component is the main and only component of this library (as of now).
 
-```html
-<Caroumesh> ... </Caroumesh>
+```tsx
+<Caroumesh />
 ```
 
 It accepts the following props:
 
-```ts
-shadows?: boolean; // enable shadows
-controls?: boolean; // orbit controls to zoom, rotate and pan around model
-radius?: number; // radius of carousel (brings meshes closer / further together)
-effects?: boolean; // enables SSAO and HueSaturation (negatively affects FPS)
-stats?: boolean; // display FPS (useful for debugging)
-animationTime?: number; // transition animation time in ms (1s = 1000ms)
-theme?: string; // color theme of controls (left / right arrows)
-width?: string; // width CSS property
-height?: string; // height CSS property
-backgroundColor?: string; // background color
-border?: string; // border CSS property
-borderRadius?: string; // border-radius CSS property
-style?: React.CSSProperties; // any extra CSS properties
-```
+| Prop           | Description                       | Type                                                                                                         | Default value             |
+| -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| `scenes`       | Scenes of the carousel            | [`SceneObject[]`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
+| `dimensions`   | Fixed dimensions of the component | [`Dimensions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
+| `shadows`      | Render shadows                    | `boolean`                                                                                                    | `false`                   |
+| `controls`     | Use orbits controls               | `boolean`                                                                                                    | `false`                   |
+| `lights`       | Control lights behavior           | [`LightsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | `undefined`               |
+| `debugOptions` | Options to help with debugging    | [`DebugOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)  | `undefined`               |
+| `styles`       | Set of styles to customize        | [`Styles`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | `undefined`               |
+| `className`    | Custom classname                  | `string`                                                                                                     | `undefined`               |
+
+### Some details
 
 The component will take the entire space of the parent by default. Also while
 developping your application, you can use the `stats` prop to evaluate
 performance and see how adding models or lights may affect your FPS.
 
-The `Left Arrow` and `Right Arrow` keybinds can be used to rotate to the
-previous or next model inside the Caroumesh.
+### Interaction
 
-If you have set the `controls` prop, you can use the following keybinds on your
+The `Left Arrow` and `Right Arrow` keybinds can be used to rotate to the
+previous or next scene inside the Caroumesh.
+
+Also, if you have set the `controls` prop, you can use the following key-binds on your
 mouse and keyboard to control the scene:
 
-| Keybind                           | Action     |
-| :-------------------------------- | :--------- |
+| Key-bind                          | Action     |
+| --------------------------------- | ---------- |
 | Mouse Left (Hold)                 | Rotate     |
 | Shift or Ctrl + Mouse Left (Hold) | Pan        |
 | Scroll wheel                      | Zoom       |
@@ -157,16 +153,16 @@ setup you can use the Lights component.
 ```
 
 Inside of this component you have to add
-[react-three-fiber](https://github.com/pmndrs/react-three-fiber) light
+[react-three-fiber](https://threejs.org/docs/#api/en/lights/AmbientLight) light
 components. These are all the possible light components you can use:
 
 ```html
-<spotLight />
+<ambientLight />
+<directionalLight />
+<hemisphereLight />
 <pointLight />
 <rectAreaLight />
-<hemisphereLight />
-<directionalLight />
-<ambientLight />
+<spotLight />
 ```
 
 You can find the
@@ -174,35 +170,13 @@ You can find the
 of [three.js](https://github.com/mrdoob/three.js), for more information about
 what props these components use.
 
-You can add as many lights as you want, though, again, keep in mind more lights
-leads to heavier load, thus to worse performance.
-
-### CaroumeshContainer
-
-The CaroumeshContainer component is useful for catching any errors that could
-occur when building your application. It is by no means necessary, but can come
-in handy during development. You can wrap your Caroumesh component with it.
-
-```html
-<CaroumeshContainer>
-  <Caroumesh> ... </Caroumesh>
-</CaroumeshContainer>
-```
-
-It will display what the error that occurred where your Caroumesh should be
-located inside your app (not inside the console) and possibly the cause and
-potential fix for that error.
-
-If you are using
-[create-react-app](https://github.com/facebook/create-react-app), you don't have
-to use this component because an integrated error logger is already set up.
-
 ## Upcoming releases
 
-The next releases would present the following features:
+The next releases may present the following features:
 
-- Allow importing JSX models
 - Display textual information for each model (title and description)
+
+For any feature requests, create an issue or feel free to create your own PR and contribute to the project! :trollface:
 
 ## Links
 
@@ -215,30 +189,4 @@ The next releases would present the following features:
 
 ---
 
-Thank you for using Caroumesh ! ❤️
-
-// import { Caroumesh, Model } from './index';
-
-// export default {
-// title: 'Test',
-// component: Caroumesh,
-// };
-
-// const CaroumeshTemplate = (args) => {
-// return (
-<!-- // <Caroumesh {...args}>
-// <Model src="assets/Star destroyer.glb" scale={0.1} shadows />
-// <Model src="assets/TIE fighter.glb" scale={5} shadows />
-// </Caroumesh> -->
-// );
-// };
-
-// export const DefaultCaroumesh = CaroumeshTemplate.bind({});
-
-// export const StyledCaroumesh = CaroumeshTemplate.bind({});
-// StyledCaroumesh.args = {
-// shadows: true,
-// controls: true,
-// stats: true,
-// theme: 'dodgerblue',
-// };
+Thank you for using `Caroumesh`! ❤️

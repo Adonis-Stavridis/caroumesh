@@ -1,0 +1,42 @@
+@import '../../styles/common';
+
+.overlay {
+  z-index: $z-index-overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  pointer-events: none;
+
+  &-click-area {
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    min-width: 1.5rem;
+    height: 100%;
+    cursor: pointer;
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: ease-in-out 0.1s;
+      color: $main-color;
+    }
+
+    &:hover &-icon {
+      filter: drop-shadow(0 0 8px black);
+    }
+
+    &:active &-icon {
+      color: $interaction-color;
+    }
+  }
+}
