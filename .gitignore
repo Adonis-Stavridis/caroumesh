@@ -24,3 +24,4 @@ dist-ssr
 
 # Yarn
 .yarn
+.yarnrc.yml
