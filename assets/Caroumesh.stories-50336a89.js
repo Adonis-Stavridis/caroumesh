@@ -3677,12 +3677,24 @@ version 0.6.9
 @suggestion Do not use in production`,name:"debugOptions",required:!1,type:{name:"DebugOptions"}},styles:{defaultValue:{value:`{
     hasBorder: false,
     isBorderRounded: false,
-  }`},description:"Set of styles to customize",name:"styles",required:!1,type:{name:"Styles"}}}}}catch{}const xB="src/assets/StarDestroyer.gltf",SB="src/assets/TieFighter.gltf",MB={scenes:[{src:xB,scale:.05,lightIntensity:.01},{src:SB,scale:3}],controls:!0,shadows:!0,debugOptions:{gizmos:!1}},IB={title:"Components/Caroumesh",component:zv,tags:["autodocs"]},Yp={args:{dimensions:{height:500},...MB}};var WS,XS,qS;Yp.parameters={...Yp.parameters,docs:{...(WS=Yp.parameters)==null?void 0:WS.docs,source:{originalSource:`{
+  }`},description:"Set of styles to customize",name:"styles",required:!1,type:{name:"Styles"}}}}}catch{}const CB={title:"Components/Caroumesh",component:zv,tags:["autodocs"]},Yp={args:{dimensions:{height:500},scenes:[{src:"assets/StarDestroyer.gltf",scale:.05,lightIntensity:.01},{src:"assets/TieFighter.gltf",scale:3}],controls:!0,shadows:!0,debugOptions:{gizmos:!1}}};var WS,XS,qS;Yp.parameters={...Yp.parameters,docs:{...(WS=Yp.parameters)==null?void 0:WS.docs,source:{originalSource:`{
   args: {
     dimensions: {
       height: 500
     },
-    ...ASSETS_EXAMPLE_PROPS
+    scenes: [{
+      src: 'assets/StarDestroyer.gltf',
+      scale: 0.05,
+      lightIntensity: 0.01
+    }, {
+      src: 'assets/TieFighter.gltf',
+      scale: 3
+    }],
+    controls: true,
+    shadows: true,
+    debugOptions: {
+      gizmos: false
+    }
   }
-}`,...(qS=(XS=Yp.parameters)==null?void 0:XS.docs)==null?void 0:qS.source}}};const DB=["Basic"];export{Yp as Basic,DB as __namedExportsOrder,IB as default};
-//# sourceMappingURL=Caroumesh.stories-13cd544b.js.map
+}`,...(qS=(XS=Yp.parameters)==null?void 0:XS.docs)==null?void 0:qS.source}}};const PB=["Basic"];export{Yp as Basic,PB as __namedExportsOrder,CB as default};
+//# sourceMappingURL=Caroumesh.stories-50336a89.js.map
