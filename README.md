@@ -185,7 +185,6 @@ For any feature requests, create an issue or feel free to create your own PR and
 - [Caroumesh live demo](https://codesandbox.io/s/caroumesh-example-kp2tr)
 - [three.js](https://github.com/mrdoob/three.js)
 - [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
-- [create-react-app](https://github.com/facebook/create-react-app)
 
 ---
 
