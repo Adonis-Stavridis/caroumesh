@@ -35,7 +35,7 @@
   "module": "./dist/caroumesh.es.js",
   "types": "./dist/components/index.d.ts",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn storybook",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
