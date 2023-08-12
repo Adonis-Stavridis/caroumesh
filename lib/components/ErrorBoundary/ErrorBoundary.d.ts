@@ -4,3 +4,4 @@ type ErrorBoundaryProps = {
 };
 export declare const ErrorBoundary: ({ children }: ErrorBoundaryProps) => React.JSX.Element;
 export {};
+//# sourceMappingURL=ErrorBoundary.d.ts.map

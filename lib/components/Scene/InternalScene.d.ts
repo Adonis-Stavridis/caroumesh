@@ -6,3 +6,4 @@ type VisibleSceneProps = {
 export type InternalSceneProps = SceneProps<VisibleSceneProps>;
 export declare const InternalScene: ({ extraProps, ...props }: InternalSceneProps) => React.JSX.Element;
 export {};
+//# sourceMappingURL=InternalScene.d.ts.map

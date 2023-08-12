@@ -6,3 +6,4 @@ export declare const isFileGLTF: (file: unknown) => file is GLTF;
 export declare const isFileGroup: (file: unknown) => file is GLTF;
 export declare const isObjLight: (obj: unknown) => obj is SpotLight | PointLight;
 export declare const isNumberTuple: (tuple: unknown) => tuple is [number, number];
+//# sourceMappingURL=type-guards.d.ts.map

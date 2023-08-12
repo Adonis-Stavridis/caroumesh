@@ -3,3 +3,4 @@ export type ClassNameProps = {
     /** Custom classname */
     className?: string;
 };
+//# sourceMappingURL=props.d.ts.map

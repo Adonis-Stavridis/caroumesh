@@ -6,3 +6,4 @@ type ThreePointLightsProps = {
 };
 export declare const ThreePointLights: ({ shadows, shadowsBias, helpers, }: ThreePointLightsProps) => React.JSX.Element;
 export {};
+//# sourceMappingURL=ThreePointLights.d.ts.map

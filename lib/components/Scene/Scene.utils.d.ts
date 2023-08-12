@@ -6,3 +6,4 @@ import { LoadedScene } from './Scene.types';
 export declare const useSceneLoader: (src: string) => LoadedScene;
 export declare const matchLoaderFromFileExtension: (src: string) => typeof GLTFLoader | typeof OBJLoader | typeof FBXLoader | never;
 export declare const getSceneObject: (scene: LoadedScene, obj: Object3D) => Object3D<import("three").Event> | undefined;
+//# sourceMappingURL=Scene.utils.d.ts.map

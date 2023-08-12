@@ -4,3 +4,4 @@ export declare const onKeyDownHandler: (event: KeyboardEvent, actions: {
     rotateRight: () => void;
     resetControls: (manual?: boolean) => void;
 }) => void;
+//# sourceMappingURL=Caroumesh.utils.d.ts.map

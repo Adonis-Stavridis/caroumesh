@@ -6,7 +6,7 @@ export type CaroumeshProps = ClassNameProps & {
     /** Scenes of the carousel */
     scenes: SceneObject[];
     /** Fixed dimensions of the component
-     * (by default the component fills parent's space)
+     * (default: fills parent's space)
      */
     dimensions?: Dimensions;
     /** Render shadows */
@@ -15,6 +15,10 @@ export type CaroumeshProps = ClassNameProps & {
     controls?: boolean;
     /** Control some of the light's behavior */
     lights?: LightsOptions;
+    /** Radius of carousel (default: 10) */
+    radius?: number;
+    /** Time to transition to new scene, in ms (default: 1000) */
+    animationTime?: number;
     /** Options to help when debugging
      * @suggestion Do not use in production
      */
@@ -22,4 +26,5 @@ export type CaroumeshProps = ClassNameProps & {
     /** Set of styles to customize */
     styles?: Styles;
 };
-export declare const Caroumesh: ({ className, scenes, dimensions, shadows, lights, controls, debugOptions, styles, }: CaroumeshProps) => React.JSX.Element;
+export declare const Caroumesh: ({ className, scenes, dimensions, shadows, controls, radius, animationTime, lights, debugOptions, styles, }: CaroumeshProps) => React.JSX.Element;
+//# sourceMappingURL=Caroumesh.d.ts.map

@@ -25,3 +25,4 @@ export type SceneProps<T = EmptyProps> = {
 };
 export declare const Scene: <T extends Record<string, unknown> = EmptyProps>({ src, shadows, lightIntensity, rotationSpeed, position, up, scale, rotation, matrix, quaternion, extraProps, }: SceneProps<T>) => React.JSX.Element;
 export {};
+//# sourceMappingURL=Scene.d.ts.map
