@@ -8,12 +8,17 @@ import './Overlay.scss';
 const CN = 'overlay';
 
 type OverlayProps = {
+  locked?: boolean;
   onClickLeft?: MouseEventHandler;
   onClickRight?: MouseEventHandler;
 };
 
-export const Overlay = ({ onClickLeft, onClickRight }: OverlayProps) => (
-  <div className={cx(CN)}>
+export const Overlay = ({
+  locked,
+  onClickLeft,
+  onClickRight,
+}: OverlayProps) => (
+  <div className={CN}>
     <div
       className={`${CN}-click-area`}
       tabIndex={0}
@@ -21,7 +26,11 @@ export const Overlay = ({ onClickLeft, onClickRight }: OverlayProps) => (
       onClick={onClickLeft}
       aria-hidden="true"
     >
-      <CaretLeftFill className={`${CN}-click-area-icon`} />
+      <CaretLeftFill
+        className={cx(`${CN}-click-area-icon`, {
+          [`${CN}-click-area-icon--locked`]: locked,
+        })}
+      />
     </div>
     <div
       className={`${CN}-click-area`}
@@ -30,7 +39,11 @@ export const Overlay = ({ onClickLeft, onClickRight }: OverlayProps) => (
       onClick={onClickRight}
       aria-hidden="true"
     >
-      <CaretRightFill className={`${CN}-click-area-icon`} />
+      <CaretRightFill
+        className={cx(`${CN}-click-area-icon`, {
+          [`${CN}-click-area-icon--locked`]: locked,
+        })}
+      />
     </div>
   </div>
 );
