@@ -15,8 +15,8 @@ export type LightsOptions = {
 export type DebugOptions = {
   /** Display statistics */
   stats?: boolean;
-  /** Display light gizmos */
-  gizmos?: boolean;
+  /** Display default three point lights gizmos */
+  defaultLightsGizmos?: boolean;
 };
 
 export type Styles = {

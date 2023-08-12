@@ -60,7 +60,7 @@ export const Caroumesh = ({
   lights,
   debugOptions = {
     stats: false,
-    gizmos: false,
+    defaultLightsGizmos: false,
   },
   styles = {
     hasBorder: false,
@@ -147,7 +147,7 @@ export const Caroumesh = ({
             {/* Lights */}
             <ThreePointLights
               shadows={shadows}
-              helpers={debugOptions.gizmos}
+              helpers={debugOptions.defaultLightsGizmos}
               {...lights}
             />
 
@@ -161,7 +161,11 @@ export const Caroumesh = ({
         </Canvas>
 
         {scenes.length > 1 && (
-          <Overlay onClickLeft={rotateLeft} onClickRight={rotateRight} />
+          <Overlay
+            onClickLeft={rotateLeft}
+            onClickRight={rotateRight}
+            locked={rotateLock}
+          />
         )}
       </div>
     </ErrorBoundary>
