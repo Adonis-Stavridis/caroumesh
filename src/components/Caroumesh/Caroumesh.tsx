@@ -5,6 +5,7 @@ import React from 'react';
 import { PCFSoftShadowMap } from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
+import { ANIMATION_TIME, CAROUSEL_RADIUS } from './Caroumesh.constants';
 import type {
   DebugOptions,
   Dimensions,
@@ -27,7 +28,7 @@ export type CaroumeshProps = ClassNameProps & {
   /** Scenes of the carousel */
   scenes: SceneObject[];
   /** Fixed dimensions of the component
-   * (by default the component fills parent's space)
+   * (default: fills parent's space)
    */
   dimensions?: Dimensions;
   /** Render shadows */
@@ -36,6 +37,10 @@ export type CaroumeshProps = ClassNameProps & {
   controls?: boolean;
   /** Control some of the light's behavior */
   lights?: LightsOptions;
+  /** Radius of carousel (default: 10) */
+  radius?: number;
+  /** Time to transition to new scene, in ms (default: 1000) */
+  animationTime?: number;
   /** Options to help when debugging
    * @suggestion Do not use in production
    */
@@ -49,8 +54,10 @@ export const Caroumesh = ({
   scenes,
   dimensions,
   shadows = false,
-  lights,
   controls = false,
+  radius = CAROUSEL_RADIUS,
+  animationTime = ANIMATION_TIME,
+  lights,
   debugOptions = {
     stats: false,
     gizmos: false,
@@ -67,8 +74,13 @@ export const Caroumesh = ({
     rotateLock,
     rotateLeft: turnLeft,
     rotateRight: turnRight,
-  } = useCarousel(scenes, {
-    shadows,
+  } = useCarousel({
+    scenes,
+    passedProps: {
+      shadows,
+    },
+    radius,
+    animationTime,
   });
 
   const resetControls = React.useCallback(

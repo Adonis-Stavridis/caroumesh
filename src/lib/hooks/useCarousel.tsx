@@ -9,8 +9,6 @@ import { InternalScene } from '../components/Scene/InternalScene';
 import type { SceneProps } from '../components/Scene/Scene';
 import { isSceneProps } from '../types';
 import { CaroumeshError, modulo, normalizedSCurve } from '../utils';
-const RADIUS_LENGTH = 10;
-const ANIMATION_TIME = 1000;
 
 const STORAGE_POSITION = new Vector3(100, 100, 100);
 
@@ -21,10 +19,19 @@ type VisibleIndexes = {
   new: number;
 };
 
-export const useCarousel = (
-  scenes: SceneObject[],
-  passedProps: PassedProps,
-) => {
+type useCarouselProps = {
+  scenes: SceneObject[];
+  passedProps: PassedProps;
+  radius: number;
+  animationTime: number;
+};
+
+export const useCarousel = ({
+  scenes,
+  passedProps,
+  radius,
+  animationTime,
+}: useCarouselProps) => {
   const [currentSceneIndex, setCurrentSceneIndex] = React.useState(0);
   const [visibleIndexes, setVisibleIndexes] = React.useState<VisibleIndexes>({
     previous: 0,
@@ -59,13 +66,13 @@ export const useCarousel = (
         if (startTime === 0) startTime = time;
 
         const elapsedTime = time - startTime;
-        const lerpValue = elapsedTime / ANIMATION_TIME;
+        const lerpValue = elapsedTime / animationTime;
 
         setCurrentSceneIndex(
           lerp(startValue, targetIndex, normalizedSCurve(lerpValue)),
         );
 
-        if (elapsedTime < ANIMATION_TIME) {
+        if (elapsedTime < animationTime) {
           animFrame = requestAnimationFrame(interpolation);
         } else {
           stopInterpolation();
@@ -74,7 +81,7 @@ export const useCarousel = (
 
       animFrame = requestAnimationFrame(interpolation);
     },
-    [currentSceneIndex, scenes.length],
+    [currentSceneIndex, scenes.length, animationTime],
   );
 
   const rotateLeft = React.useCallback(() => {
@@ -117,10 +124,9 @@ export const useCarousel = (
           const offsetIndex = modulo(index - currentSceneIndex, scenes.length);
           positionInCarousel.add(
             new Vector3(
-              RADIUS_LENGTH * Math.sin(circle * offsetIndex + Math.PI),
+              radius * Math.sin(circle * offsetIndex + Math.PI),
               0,
-              RADIUS_LENGTH * Math.cos(circle * offsetIndex + Math.PI) +
-                RADIUS_LENGTH,
+              radius * Math.cos(circle * offsetIndex + Math.PI) + radius,
             ),
           );
           if (sceneProps.position) {
@@ -139,7 +145,7 @@ export const useCarousel = (
 
         return internalSceneProps;
       }),
-    [scenes, circle, currentSceneIndex, isVisible, passedProps.shadows],
+    [scenes, circle, currentSceneIndex, isVisible, passedProps.shadows, radius],
   );
 
   return {
