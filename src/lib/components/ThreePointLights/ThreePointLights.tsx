@@ -2,32 +2,44 @@ import { useHelper } from '@react-three/drei';
 import React from 'react';
 import { Object3D, SpotLightHelper } from 'three';
 
-import type { OptionalProps } from '../../types';
+import {
+  DEFAULT_BACK_LIGHT,
+  DEFAULT_FILL_LIGHT,
+  DEFAULT_KEY_LIGHT,
+  SHADOW_BIAS,
+  SHADOW_MAP_SIZE,
+} from './ThreePointLights.constants';
+import { BaseLightProps } from './ThreePointLights.types';
 
-const SHADOW_MAP_SIZE = 1024;
-
-type ThreePointLightsProps = {
+export type ThreePointLightsProps = {
+  /** Enable lights emitting shadows */
   shadows?: boolean;
-  shadowsBias?: number;
+  /** Display lights gizmos */
   helpers?: boolean;
-};
-
-const DEFAULTS: OptionalProps<ThreePointLightsProps> = {
-  shadows: false,
-  shadowsBias: -0.0025,
-  helpers: false,
+  /** Shadow bias affecting shadow quality */
+  shadowBias?: number;
+  /** Primary light, on the top right of camera */
+  keyLight?: BaseLightProps;
+  /** Secondary light, on the left of camera */
+  fillLight?: BaseLightProps;
+  /** Tertiary light, behind scenes */
+  backLight?: BaseLightProps;
 };
 
 export const ThreePointLights = ({
-  shadows = DEFAULTS.shadows,
-  shadowsBias = DEFAULTS.shadowsBias,
-  helpers = DEFAULTS.helpers,
+  shadows,
+  helpers,
+  shadowBias = SHADOW_BIAS,
+  keyLight,
+  fillLight,
+  backLight,
 }: ThreePointLightsProps) => {
   const spotLight1 = React.useRef(null);
   const spotLight2 = React.useRef(null);
   const spotLight3 = React.useRef(null);
 
   /**
+   * TODO: Improve handling of helpers
    * We type as unknown then as Mutable to make tsc happy
    */
   useHelper(
@@ -46,33 +58,37 @@ export const ThreePointLights = ({
     'blue',
   );
 
+  // Merge default and custom props
+  const keyLightProps = React.useMemo(
+    () => ({ ...DEFAULT_KEY_LIGHT, ...keyLight }),
+    [keyLight],
+  );
+  const fillLightProps = React.useMemo(
+    () => ({ ...DEFAULT_FILL_LIGHT, ...fillLight }),
+    [fillLight],
+  );
+  const backLightProps = React.useMemo(
+    () => ({ ...DEFAULT_BACK_LIGHT, ...backLight }),
+    [backLight],
+  );
+
   return (
     <>
+      {/* Key Light */}
       <spotLight
         ref={helpers ? spotLight1 : undefined}
-        intensity={50}
-        position={[4, 2, 4]}
-        angle={0.3}
-        distance={10}
         castShadow={shadows}
-        shadow-bias={shadowsBias}
+        shadow-bias={shadowBias}
         shadow-mapSize-width={SHADOW_MAP_SIZE}
         shadow-mapSize-height={SHADOW_MAP_SIZE}
+        {...keyLightProps}
       />
-      <spotLight
-        ref={helpers ? spotLight2 : undefined}
-        intensity={20}
-        position={[-4, 0, 4]}
-        angle={0.5}
-        distance={7.5}
-      />
-      <spotLight
-        ref={helpers ? spotLight3 : undefined}
-        intensity={15}
-        position={[0, -2, -4]}
-        angle={0.5}
-        distance={7.5}
-      />
+
+      {/* Fill Light */}
+      <spotLight ref={helpers ? spotLight2 : undefined} {...fillLightProps} />
+
+      {/* Back Light */}
+      <spotLight ref={helpers ? spotLight3 : undefined} {...backLightProps} />
     </>
   );
 };

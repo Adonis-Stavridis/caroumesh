@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react';
 
+import { ThreePointLightsProps } from 'src/lib/components/ThreePointLights';
+
 export type Dimensions =
   | {
       width?: number;
@@ -7,21 +9,14 @@ export type Dimensions =
     }
   | [number, number];
 
-export type LightsOptions = {
-  /** Shadow bias affecting shadow quality */
-  shadowBias?: number;
-};
-
-export type DebugOptions = {
-  /** Display statistics */
-  stats?: boolean;
-  /** Display default three point lights gizmos */
-  defaultLightsGizmos?: boolean;
+export type LightsOptions = Omit<ThreePointLightsProps, 'shadows'> & {
+  /** Custom lights (removes default three point lighting) */
+  customLights?: React.ReactNode;
 };
 
 export type Styles = {
-  hasBorder?: boolean;
   backgroundColor?: CSSProperties['color'];
+  hasBorder?: boolean;
   borderColor?: CSSProperties['borderColor'];
   isBorderRounded?: boolean;
 };

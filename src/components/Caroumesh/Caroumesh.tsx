@@ -6,12 +6,7 @@ import { PCFSoftShadowMap } from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
 import { ANIMATION_TIME, CAROUSEL_RADIUS } from './Caroumesh.constants';
-import type {
-  DebugOptions,
-  Dimensions,
-  LightsOptions,
-  Styles,
-} from './Caroumesh.types';
+import type { Dimensions, LightsOptions, Styles } from './Caroumesh.types';
 import { onKeyDownHandler } from './Caroumesh.utils';
 import { ErrorBoundary, ProgressLoader } from '../../lib/components';
 import { Overlay } from '../../lib/components/Overlay';
@@ -35,16 +30,16 @@ export type CaroumeshProps = ClassNameProps & {
   shadows?: boolean;
   /** Use Orbit controls */
   controls?: boolean;
-  /** Control some of the light's behavior */
+  /** Control lighting behavior */
   lights?: LightsOptions;
   /** Radius of carousel (default: 10) */
   radius?: number;
   /** Time to transition to new scene, in ms (default: 1000) */
   animationTime?: number;
-  /** Options to help when debugging
-   * @suggestion Do not use in production
+  /** Show statistics of Caroumesh performance
+   * @suggestion Only use this when debugging
    */
-  debugOptions?: DebugOptions;
+  stats?: boolean;
   /** Set of styles to customize */
   styles?: Styles;
 };
@@ -53,19 +48,13 @@ export const Caroumesh = ({
   className,
   scenes,
   dimensions,
-  shadows = false,
-  controls = false,
+  shadows,
+  controls,
   radius = CAROUSEL_RADIUS,
   animationTime = ANIMATION_TIME,
   lights,
-  debugOptions = {
-    stats: false,
-    defaultLightsGizmos: false,
-  },
-  styles = {
-    hasBorder: false,
-    isBorderRounded: false,
-  },
+  stats,
+  styles,
 }: CaroumeshProps) => {
   const controlsRef = React.useRef<OrbitControlsType>(null);
 
@@ -116,12 +105,12 @@ export const Caroumesh = ({
       <div
         id="caroumesh"
         className={cx(CN, className, {
-          [`${CN}-styles--has-border`]: styles.hasBorder,
-          [`${CN}-styles--is-border-rounded`]: styles.isBorderRounded,
+          [`${CN}-styles--has-border`]: styles?.hasBorder,
+          [`${CN}-styles--is-border-rounded`]: styles?.isBorderRounded,
         })}
         style={{
           ...dimensionsProps,
-          backgroundColor: styles.backgroundColor,
+          backgroundColor: styles?.backgroundColor,
         }}
         tabIndex={0}
         role="button"
@@ -145,18 +134,18 @@ export const Caroumesh = ({
             {scenesComponents}
 
             {/* Lights */}
-            <ThreePointLights
-              shadows={shadows}
-              helpers={debugOptions.defaultLightsGizmos}
-              {...lights}
-            />
+            {lights?.customLights ? (
+              lights.customLights
+            ) : (
+              <ThreePointLights shadows={shadows} {...lights} />
+            )}
 
             {/* Extra components */}
             <OrbitControls
               ref={controlsRef}
               enabled={controls && !rotateLock}
             />
-            {debugOptions.stats && <Stats />}
+            {stats && <Stats />}
           </React.Suspense>
         </Canvas>
 
