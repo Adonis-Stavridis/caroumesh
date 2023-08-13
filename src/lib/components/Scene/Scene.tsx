@@ -2,23 +2,14 @@ import { Circle } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { isNumber } from 'lodash';
 import React from 'react';
-import type { Matrix4, Quaternion } from 'three';
 import { Euler, Vector3 } from 'three';
 
+import { Object3DProps } from './Scene.types';
 import { getSceneObject, useSceneLoader } from './Scene.utils';
 import { MAIN_COLOR } from '../../styles';
 import { isObjLight } from '../../types';
 import type { EmptyProps, OptionalProps } from '../../types';
 import { CaroumeshError } from '../../utils';
-
-type Object3DProps = {
-  position?: Vector3;
-  up?: Vector3;
-  scale?: number | Vector3;
-  rotation?: Euler;
-  matrix?: Matrix4;
-  quaternion?: Quaternion;
-};
 
 export type SceneProps<T = EmptyProps> = {
   /** Source path to scene file */
