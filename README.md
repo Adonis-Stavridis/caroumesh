@@ -249,7 +249,7 @@ If you have anything less than 50-60 FPS, then you either:
 - Caroumesh is buggy or is built poorly 😳
   - [create an issue](https://github.com/Adonis-Stavridis/caroumesh/issues/new)
     about your use case
-  - [create a Pull Request](https://github.com/Adonis-Stavridis/caroumesh/issues/new) to fix this
+  - [create a Pull Request](https://github.com/Adonis-Stavridis/caroumesh/compare) to fix this
     darn thing
 - if you are certain that all the above are not the reason of poor performance, and FPS is so
   low, Caroumesh is barely useable, then you probably own a "potato computer" 🥔
@@ -264,7 +264,7 @@ The next releases may present the following features:
 
 For any feature requests,
 [create an issue](https://github.com/Adonis-Stavridis/caroumesh/issues/new) or feel free to
-[create your own Pull Request](https://github.com/Adonis-Stavridis/caroumesh/issues/new) and
+[create your own Pull Request](https://github.com/Adonis-Stavridis/caroumesh/compare) and
 contribute to the project! :trollface:
 
 ## Contributing
