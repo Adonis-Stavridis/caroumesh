@@ -233,7 +233,7 @@ If you have anything less than 50-60 FPS, then you either:
 
 - have scenes that are very heavy (lots of polygons or lights usually)
   - [Optimizing your scenes](#optimizing-scenes) might help
-  - Use a 3D editing software (such as [Blender](https://www.blender.com) 🧡) to simplify mesh and remove any components
+  - Use a 3D editing software (such as [Blender](https://www.blender.org) 🧡) to simplify mesh and remove any components
     that could be heavy on the load (lights for example)
 - have added too many scenes into the Caroumesh
   - same suggestions as previous bullet points
