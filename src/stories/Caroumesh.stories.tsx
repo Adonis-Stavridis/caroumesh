@@ -28,8 +28,5 @@ export const Basic: Story = {
     ],
     controls: true,
     shadows: true,
-    lights: {
-      helpers: true,
-    },
   },
 };

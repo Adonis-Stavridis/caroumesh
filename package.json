@@ -43,7 +43,7 @@
     "format": "prettier --write src/**/*.{ts,tsx,scss} --config ./.prettierrc",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs && cp -r src/assets docs"
+    "build-storybook": "storybook build -o docs"
   },
   "dependencies": {
     "@react-three/drei": "^9.80.1",
