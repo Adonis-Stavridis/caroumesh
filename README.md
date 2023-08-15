@@ -5,6 +5,7 @@
 ![](https://img.shields.io/github/workflow/status/adonis-stavridis/caroumesh/CI)
 ![](https://img.shields.io/github/issues/adonis-stavridis/caroumesh)
 ![](https://img.shields.io/npm/l/caroumesh)
+![example workflow](https://github.com/adonis-stavridis/caroumesh/actions/workflows/pages/pages-build-deployment/badge.svg)
 
 Caroumesh is a React component to display your 3D models in a Carousel-like
 fashion inside your application, using
