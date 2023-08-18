@@ -21,10 +21,10 @@ export const Basic: Story = {
     scenes: [
       {
         src: 'assets/StarDestroyer.gltf',
-        scale: 0.05,
-        lightIntensity: 0.01,
+        scale: 0.075,
+        lightIntensity: 0.005,
       },
-      { src: 'assets/TieFighter.gltf', scale: 3 },
+      { src: 'assets/TieFighter.gltf', scale: 4 },
     ],
     controls: true,
     shadows: true,
