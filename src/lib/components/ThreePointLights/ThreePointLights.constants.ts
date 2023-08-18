@@ -9,7 +9,7 @@ export const DEFAULT_KEY_LIGHT: BaseLightProps = {
   intensity: 50,
   position: new Vector3(4, 2, 4),
   angle: 0.5,
-  distance: 10,
+  distance: 25,
 };
 
 export const DEFAULT_FILL_LIGHT: BaseLightProps = {
