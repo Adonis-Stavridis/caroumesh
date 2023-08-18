@@ -43,7 +43,9 @@
     "format": "prettier --write src/**/*.{ts,tsx,scss} --config ./.prettierrc",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs"
+    "build-storybook": "storybook build -o docs",
+    "scene": "yarn gltf-pipeline",
+    "scene:optimize": "yarn gltf-pipeline -d -i"
   },
   "dependencies": {
     "@react-three/drei": "^9.80.1",
@@ -87,6 +89,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "0.6.13",
+    "gltf-pipeline": "^4.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.1",

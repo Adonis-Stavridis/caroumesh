@@ -111,36 +111,52 @@ Otherwise, you might want to modify the scene first. You can import it by passin
 />
 ```
 
-It accepts the following props:
+The [`SceneObject`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/lib/components/Scene/Scene.types.ts) accepts the following props:
 
 ```ts
-src: string; // source gltf / glb file
-shadows?: boolean; // enable shadows on model
-offset?: Vector3; // offset model
-scale?: number | Vector3; // scale model
-rotation?: Vector3; // rotate model
+{
+  /** Source path to scene file */
+  src: string;
+  /** Cast and receive shadows */
+  shadows?: boolean;
+  /** Control intensity of lights in scene */
+  lightIntensity?: number;
+  /** Rotation speed of scene: set this to `0` to disable rotation */
+  rotationSpeed?: number;
+} & {
+  position?: Vector3;
+  up?: Vector3;
+  scale?: number | Vector3;
+  rotation?: Euler;
+  matrix?: Matrix4;
+  quaternion?: Quaternion;
+}
 ```
 
-You can add as many scenes as you want inside of Caroumesh, just keep in mind that
-adding an excessive amount of scenes might affect performance. You can use the `stats`
-prop to evaluate the FPS of the component (cf [#stats](#stats))
+> ⚠️ Adding too many scenes might affect performance. You can use the
+> `stats` prop to analyze impact on the component's FPS (cf [#stats](#stats))
 
 #### Optimizing scenes
 
-**Important**: The `src` prop string should be the relative path to the gltf or
-glb file of your model. It is recommended you compress your models into glb
-files with draco compression, to reduce load, with the following command:
+Generally, 3D scenes and meshes are can be quite heavy, so to reduce load
+as much as possible it is recommended you compress your models into glb
+files with draco compression. You can run the following command to compress
+each gltf/glb file you have.
 
 ```bash
-npx gltf-pipeline -i model.gltf -o model.glb -d
+yarn scene:optimize model.gltf
 ```
 
-You can use the `offset`, `scale` and `rotation` props in order to place your
-model wherever you like.
+> ℹ️ This creates a new gltf file at the same location as the input file
+> using [the Draco compression library](https://github.com/google/draco)
 
-**Important**: Use `offset` prop to offset model instead of `position` prop.
-The latter is set by this package and setting it manually may lead to unwanted
-results.
+If you want more customization over the arguments, use `yarn scene`
+(see [gltf-pipeline CLI documentation](https://github.com/CesiumGS/gltf-pipeline#using-gltf-pipeline-as-a-command-line-tool)
+to learn more about the arguments you can use). For example:
+
+```bash
+yarn scene -i model.gltf -b
+```
 
 ### Dimensions
 
@@ -271,7 +287,7 @@ contribute to the project! :trollface:
 ## Contributing
 
 1. Fork the repository
-2. Setup it up by running: `yarn`
+2. Setup it up by running `yarn`
 3. Create a new branch
 4. Push your changes
 5. Create a Pull Request

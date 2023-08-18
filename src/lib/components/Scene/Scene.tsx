@@ -16,7 +16,7 @@ export type SceneProps<T = EmptyProps> = {
   src: string;
   /** Cast and receive shadows */
   shadows?: boolean;
-  /** Control over light intensity in scene */
+  /** Control intensity of lights in scene */
   lightIntensity?: number;
   /** Rotation speed of scene: set this to `0` to disable rotation */
   rotationSpeed?: number;
