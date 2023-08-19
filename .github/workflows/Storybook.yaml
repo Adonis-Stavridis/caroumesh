@@ -20,9 +20,12 @@ jobs:
         run: yarn install --immutable
 
       - name: Build
-        run: yarn build-storybook
+        run: yarn storybook:build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: docs
+          clean: true
+          clean-exclude: |
+            .nojekyll
