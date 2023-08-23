@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Caroumesh } from 'caroumesh';
 
 const meta: Meta<typeof Caroumesh> = {
-  title: 'Components/Caroumesh',
+  title: 'Caroumesh',
   component: Caroumesh,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],

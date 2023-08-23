@@ -2,10 +2,11 @@
 
 ![](https://img.shields.io/npm/v/caroumesh)
 ![](https://img.shields.io/npm/dt/caroumesh)
-![](https://img.shields.io/github/workflow/status/adonis-stavridis/caroumesh/CI)
-![](https://img.shields.io/github/issues/adonis-stavridis/caroumesh)
 ![](https://img.shields.io/npm/l/caroumesh)
-![example workflow](https://github.com/adonis-stavridis/caroumesh/actions/workflows/pages/pages-build-deployment/badge.svg)
+![](https://img.shields.io/github/issues/adonis-stavridis/caroumesh)
+![](https://img.shields.io/github/issues-pr/adonis-stavridis/caroumesh)
+![](https://img.shields.io/github/actions/workflow/status/adonis-stavridis/caroumesh/CI.yaml)
+![](https://img.shields.io/github/deployments/adonis-stavridis/caroumesh/github-pages?logo=storybook&label=Storybook&labelColor=white&color=%23ff4785)
 
 Caroumesh is a React component to display your 3D models in a Carousel-like
 fashion inside your application, using
@@ -56,14 +57,11 @@ import { Caroumesh } from 'caroumesh';
 ...
 ```
 
-<!-- TODO remove these links and replace them with storybook -->
+You can also view Storybook and play around with the component using this link:
 
-You can also view this
-[live example](https://adonis-stavridis.github.io/caroumesh-example) and a
-[live demo](https://codesandbox.io/s/caroumesh-example-8ui0h).
-
-You can use the `Left Arrow` and `Right Arrow` on the component (or your keyboard)
-to rotate to the previous and next scene.
+<a href='https://adonis-stavridis.github.io/caroumesh'>
+  <img alt="Storybook" src="https://img.shields.io/badge/Storybook-white?style=for-the-badge&logo=storybook">
+</a>
 
 ## Caroumesh component
 
@@ -90,7 +88,7 @@ It accepts the following props:
 
 ### Scenes
 
-You can add a scene by only specifying its' path using a string.
+You can add a scene by only specifying its path using a string.
 
 ```tsx
 <Caroumesh scenes={['assets/StarDestroyer.gltf', 'assets/TieFighter.gltf']} />
@@ -266,7 +264,7 @@ If you have anything less than 50-60 FPS, then you either:
 - Caroumesh is buggy or is built poorly 😳
   - [create an issue](https://github.com/Adonis-Stavridis/caroumesh/issues/new)
     about your use case
-  - [create a Pull Request](https://github.com/Adonis-Stavridis/caroumesh/compare) to fix this
+  - [create a pull request](https://github.com/Adonis-Stavridis/caroumesh/compare) to fix this
     darn thing
 - if you are certain that all the above are not the reason of poor performance, and FPS is so
   low, Caroumesh is barely useable, then you probably own a "potato computer" 🥔
@@ -281,7 +279,7 @@ The next releases may present the following features:
 
 For any feature requests,
 [create an issue](https://github.com/Adonis-Stavridis/caroumesh/issues/new) or feel free to
-[create your own Pull Request](https://github.com/Adonis-Stavridis/caroumesh/compare) and
+[create a pull request](https://github.com/Adonis-Stavridis/caroumesh/compare) and
 contribute to the project! :trollface:
 
 ## Contributing
@@ -290,7 +288,7 @@ contribute to the project! :trollface:
 2. Setup it up by running `yarn`
 3. Create a new branch
 4. Push your changes
-5. Create a Pull Request
+5. Create a pull request
 6. Wait for me to give it a review
 
 Any feedback is welcome through
