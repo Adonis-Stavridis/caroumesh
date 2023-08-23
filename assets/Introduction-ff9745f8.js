@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-a51fe075.js";import{M as s,d as i}from"./index-0aa88c86.js";import{u as a}from"./index-9f0ec060.js";import"./index-6bd1afc7.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-0e224a13.js";import"../sb-preview/runtime.js";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./inheritsLoose-50ceb98b.js";import"./index-82885479.js";import"./index-356e4a49.js";const r=`# Caroumesh <!-- omit in toc -->
+import{j as e}from"./jsx-runtime-a51fe075.js";import{M as s,d as i}from"./index-e128995e.js";import{u as a}from"./index-9f0ec060.js";import"./index-6bd1afc7.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-1357f634.js";import"../sb-preview/runtime.js";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./inheritsLoose-50ceb98b.js";import"./index-82885479.js";import"./index-356e4a49.js";const r=`# Caroumesh <!-- omit in toc -->
 
 ![](https://img.shields.io/npm/v/caroumesh)
 ![](https://img.shields.io/npm/dt/caroumesh)
@@ -75,16 +75,18 @@ The Caroumesh component is the main and only component of this library.
 
 It accepts the following props:
 
-| Prop         | Description                              | Type                                                                                                         | Default value             |
-| ------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| \`scenes\`     | Scenes of the carousel                   | [\`SceneObject[]\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
-| \`dimensions\` | Fixed dimensions of the component        | [\`Dimensions\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
-| \`shadows\`    | Render shadows                           | \`boolean\`                                                                                                    | \`false\`                   |
-| \`controls\`   | Use orbits controls                      | \`boolean\`                                                                                                    | \`false\`                   |
-| \`lights\`     | Control lights behavior                  | [\`LightsOptions\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | \`undefined\`               |
-| \`stats\`      | Show statistics of Caroumesh performance | \`boolean\`                                                                                                    | \`undefined\`               |
-| \`styles\`     | Set of styles to customize               | [\`Styles\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | \`undefined\`               |
-| \`className\`  | Custom classname                         | \`string\`                                                                                                     | \`undefined\`               |
+| Prop            | Description                                       | Type                                                                                                         | Default value             |
+| --------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| \`scenes\`        | Scenes of the carousel                            | [\`SceneObject[]\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
+| \`dimensions\`    | Fixed dimensions of the component                 | [\`Dimensions\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
+| \`shadows\`       | Render shadows                                    | \`boolean\`                                                                                                    | \`false\`                   |
+| \`controls\`      | Use orbits controls                               | \`boolean\`                                                                                                    | \`false\`                   |
+| \`lights\`        | Control lights behavior                           | [\`LightsOptions\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | \`undefined\`               |
+| \`radius\`        | Control how far apart scenes are from one another | \`number\`                                                                                                     | \`10\`                      |
+| \`animationTime\` | Time to transition to new scene, in ms            | \`number\`                                                                                                     | \`1000\`                    |
+| \`stats\`         | Show statistics of Caroumesh performance          | \`boolean\`                                                                                                    | \`undefined\`               |
+| \`styles\`        | Set of styles to customize                        | [\`Styles\`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | \`undefined\`               |
+| \`className\`     | Custom classname                                  | \`string\`                                                                                                     | \`undefined\`               |
 
 ### Scenes
 
@@ -289,7 +291,7 @@ contribute to the project! :trollface:
 3. Create a new branch
 4. Push your changes
 5. Create a pull request
-6. Wait for me to give it a review
+6. Wait for a review
 
 Any feedback is welcome through
 [issues](https://github.com/Adonis-Stavridis/caroumesh/issues) as well. 🙏
@@ -303,4 +305,4 @@ Thanks to the amazing teams and contributors of
 But also, **Thank You** for using \`Caroumesh\`! ❤️
 `;function o(n){return e.jsxs(e.Fragment,{children:[e.jsx(s,{title:"Introduction"}),`
 `,e.jsx(i,{children:r})]})}function v(n={}){const{wrapper:t}=Object.assign({},a(),n.components);return t?e.jsx(t,Object.assign({},n,{children:e.jsx(o,n)})):o()}export{v as default};
-//# sourceMappingURL=Introduction-e3c07fbf.js.map
+//# sourceMappingURL=Introduction-ff9745f8.js.map
