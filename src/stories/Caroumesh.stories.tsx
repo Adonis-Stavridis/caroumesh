@@ -55,6 +55,7 @@ export const Styles: Story = {
       hasBorder: true,
       borderColor: 'dodgerblue',
       isBorderRounded: true,
+      backgroundColor: 'lightgrey',
     },
   },
 };
