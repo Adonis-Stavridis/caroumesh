@@ -32,7 +32,7 @@ export type CaroumeshProps = ClassNameProps & {
   controls?: boolean;
   /** Control lighting behavior */
   lights?: LightsOptions;
-  /** Radius of carousel (default: 10) */
+  /** Control how far apart scenes are from one another (default: 10) */
   radius?: number;
   /** Time to transition to new scene, in ms (default: 1000) */
   animationTime?: number;

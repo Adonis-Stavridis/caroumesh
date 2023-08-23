@@ -75,16 +75,18 @@ The Caroumesh component is the main and only component of this library.
 
 It accepts the following props:
 
-| Prop         | Description                              | Type                                                                                                         | Default value             |
-| ------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| `scenes`     | Scenes of the carousel                   | [`SceneObject[]`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
-| `dimensions` | Fixed dimensions of the component        | [`Dimensions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
-| `shadows`    | Render shadows                           | `boolean`                                                                                                    | `false`                   |
-| `controls`   | Use orbits controls                      | `boolean`                                                                                                    | `false`                   |
-| `lights`     | Control lights behavior                  | [`LightsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | `undefined`               |
-| `stats`      | Show statistics of Caroumesh performance | `boolean`                                                                                                    | `undefined`               |
-| `styles`     | Set of styles to customize               | [`Styles`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | `undefined`               |
-| `className`  | Custom classname                         | `string`                                                                                                     | `undefined`               |
+| Prop            | Description                                       | Type                                                                                                         | Default value             |
+| --------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| `scenes`        | Scenes of the carousel                            | [`SceneObject[]`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
+| `dimensions`    | Fixed dimensions of the component                 | [`Dimensions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
+| `shadows`       | Render shadows                                    | `boolean`                                                                                                    | `false`                   |
+| `controls`      | Use orbits controls                               | `boolean`                                                                                                    | `false`                   |
+| `lights`        | Control lights behavior                           | [`LightsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | `undefined`               |
+| `radius`        | Control how far apart scenes are from one another | `number`                                                                                                     | `10`                      |
+| `animationTime` | Time to transition to new scene, in ms            | `number`                                                                                                     | `1000`                    |
+| `stats`         | Show statistics of Caroumesh performance          | `boolean`                                                                                                    | `undefined`               |
+| `styles`        | Set of styles to customize                        | [`Styles`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | `undefined`               |
+| `className`     | Custom classname                                  | `string`                                                                                                     | `undefined`               |
 
 ### Scenes
 
