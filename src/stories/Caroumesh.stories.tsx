@@ -13,23 +13,48 @@ export default meta;
 
 type Story = StoryObj<typeof Caroumesh>;
 
+const baseArgs = {
+  scenes: [
+    {
+      src: 'assets/StarDestroyer.gltf',
+      scale: 0.08,
+      lightIntensity: 0.005,
+    },
+    { src: 'assets/TieFighter.gltf', scale: 4 },
+  ],
+  dimensions: {
+    height: 500,
+  },
+};
+
 export const Basic: Story = {
   args: {
-    scenes: [
-      {
-        src: 'assets/StarDestroyer.gltf',
-        scale: 0.08,
-        lightIntensity: 0.005,
-      },
-      { src: 'assets/TieFighter.gltf', scale: 4 },
-    ],
-    dimensions: {
-      height: 500,
-    },
-    controls: true,
+    ...baseArgs,
+  },
+};
+
+export const Shadows: Story = {
+  args: {
+    ...baseArgs,
     shadows: true,
+  },
+};
+
+export const Controls: Story = {
+  args: {
+    ...baseArgs,
+    controls: true,
+  },
+};
+
+export const Styles: Story = {
+  args: {
+    ...baseArgs,
     styles: {
-      colorTheme: 'red',
+      colorTheme: 'tomato',
+      hasBorder: true,
+      borderColor: 'dodgerblue',
+      isBorderRounded: true,
     },
   },
 };

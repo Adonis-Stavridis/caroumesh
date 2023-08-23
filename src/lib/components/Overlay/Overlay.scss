@@ -22,6 +22,10 @@
     height: 100%;
     cursor: pointer;
 
+    &:hover {
+      filter: $drop-shadow;
+    }
+
     &-icon {
       display: flex;
       align-items: center;
@@ -29,15 +33,10 @@
       font-size: 1.5rem;
       transition: ease-in-out $transition-time;
       color: var(--caroumesh-color-theme);
-    }
 
-    &:hover &-icon {
-      filter: $drop-shadow;
-    }
-
-    &:active &-icon,
-    &-icon--locked {
-      color: var(--caroumesh-interaction-color);
+      &--locked {
+        filter: var(--caroumesh-lock-filter);
+      }
     }
   }
 }

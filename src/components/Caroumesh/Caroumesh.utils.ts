@@ -26,10 +26,16 @@ export const onKeyDownHandler = (
   }
 };
 
-export const getColorsFromColorTheme = (color: CSSProperties['color']) =>
-  color
+export const getColorTheme = (color: CSSProperties['color']) => {
+  // Depending on color brightness we darken or lighten color on locked transition
+  const colorBrightness = tinycolor(color).getBrightness();
+  const lockFilter =
+    colorBrightness > 127 ? 'brightness(75%)' : 'brightness(125%)';
+
+  return color
     ? {
         '--caroumesh-color-theme': color,
-        '--caroumesh-interaction-color': tinycolor(color).brighten(40),
+        '--caroumesh-lock-filter': lockFilter,
       }
     : {};
+};

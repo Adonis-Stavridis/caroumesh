@@ -1,16 +1,11 @@
 // colors
 :root {
   --caroumesh-color-theme: gray;
-  --caroumesh-interaction-color: color-mix(
-    in srgb,
-    var(--caroumesh-color-theme),
-    #fff 40%
-  );
+  --caroumesh-lock-filter: brightness(125%);
 }
 
 // border
 $border-width: 1px;
-$border: $border-width solid var(--caroumesh-color-theme);
 $border-radius: 1rem;
 $drop-shadow: drop-shadow(0 0 6px gray);
 

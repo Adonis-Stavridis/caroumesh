@@ -7,7 +7,7 @@ import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
 import { ANIMATION_TIME, CAROUSEL_RADIUS } from './Caroumesh.constants';
 import type { Dimensions, LightsOptions, Styles } from './Caroumesh.types';
-import { getColorsFromColorTheme, onKeyDownHandler } from './Caroumesh.utils';
+import { getColorTheme, onKeyDownHandler } from './Caroumesh.utils';
 import { ErrorBoundary, ProgressLoader } from '../../lib/components';
 import { Overlay } from '../../lib/components/Overlay';
 import { SceneObject } from '../../lib/components/Scene';
@@ -100,6 +100,11 @@ export const Caroumesh = ({
     [dimensions],
   );
 
+  const colorThemeColors = React.useMemo(
+    () => getColorTheme(styles?.colorTheme),
+    [styles?.colorTheme],
+  );
+
   return (
     <ErrorBoundary>
       <div
@@ -110,8 +115,9 @@ export const Caroumesh = ({
         })}
         style={{
           ...dimensionsProps,
+          ...colorThemeColors,
           backgroundColor: styles?.backgroundColor,
-          ...getColorsFromColorTheme(styles?.colorTheme),
+          borderColor: styles?.borderColor,
         }}
         tabIndex={0}
         role="button"
@@ -144,7 +150,7 @@ export const Caroumesh = ({
             {/* Extra components */}
             <OrbitControls
               ref={controlsRef}
-              enabled={controls && !rotateLock}
+              enabled={!!controls && !rotateLock}
             />
             {stats && <Stats />}
           </React.Suspense>

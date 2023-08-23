@@ -10,7 +10,7 @@
 
   &-styles {
     &--has-border {
-      border: $border;
+      border: $border-width solid var(--caroumesh-color-theme);
     }
 
     &--is-border-rounded {
