@@ -7,7 +7,7 @@ import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
 import { ANIMATION_TIME, CAROUSEL_RADIUS } from './Caroumesh.constants';
 import type { Dimensions, LightsOptions, Styles } from './Caroumesh.types';
-import { onKeyDownHandler } from './Caroumesh.utils';
+import { getColorsFromColorTheme, onKeyDownHandler } from './Caroumesh.utils';
 import { ErrorBoundary, ProgressLoader } from '../../lib/components';
 import { Overlay } from '../../lib/components/Overlay';
 import { SceneObject } from '../../lib/components/Scene';
@@ -111,6 +111,7 @@ export const Caroumesh = ({
         style={{
           ...dimensionsProps,
           backgroundColor: styles?.backgroundColor,
+          ...getColorsFromColorTheme(styles?.colorTheme),
         }}
         tabIndex={0}
         role="button"

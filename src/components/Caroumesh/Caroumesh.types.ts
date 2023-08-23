@@ -15,6 +15,7 @@ export type LightsOptions = Omit<ThreePointLightsProps, 'shadows'> & {
 };
 
 export type Styles = {
+  colorTheme?: CSSProperties['color'];
   backgroundColor?: CSSProperties['color'];
   hasBorder?: boolean;
   borderColor?: CSSProperties['borderColor'];

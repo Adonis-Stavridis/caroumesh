@@ -15,9 +15,6 @@ type Story = StoryObj<typeof Caroumesh>;
 
 export const Basic: Story = {
   args: {
-    dimensions: {
-      height: 500,
-    },
     scenes: [
       {
         src: 'assets/StarDestroyer.gltf',
@@ -26,7 +23,13 @@ export const Basic: Story = {
       },
       { src: 'assets/TieFighter.gltf', scale: 4 },
     ],
+    dimensions: {
+      height: 500,
+    },
     controls: true,
     shadows: true,
+    styles: {
+      colorTheme: 'red',
+    },
   },
 };

@@ -57,7 +57,7 @@ import { Caroumesh } from 'caroumesh';
 ...
 ```
 
-You can also view Storybook and play around with the component using this link:
+You can also view and play around with Caroumesh using this Storybook:
 
 <a href='https://adonis-stavridis.github.io/caroumesh'>
   <img alt="Storybook" src="https://img.shields.io/badge/Storybook-white?style=for-the-badge&logo=storybook">
@@ -67,7 +67,7 @@ You can also view Storybook and play around with the component using this link:
 
 ### Overview
 
-The Caroumesh component is the main and only component of this library (as of now).
+The Caroumesh component is the main and only component of this library.
 
 ```tsx
 <Caroumesh />

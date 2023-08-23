@@ -10,10 +10,10 @@
   gap: 10px;
 
   &-spinner {
-    color: $main-color;
+    color: var(--caroumesh-color-theme);
   }
 
   &-text {
-    color: $main-color;
+    color: var(--caroumesh-color-theme);
   }
 }

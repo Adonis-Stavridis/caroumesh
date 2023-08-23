@@ -1,4 +1,5 @@
-import { KeyboardEvent } from 'react';
+import { CSSProperties, KeyboardEvent } from 'react';
+import tinycolor from 'tinycolor2';
 
 export const onKeyDownHandler = (
   event: KeyboardEvent,
@@ -24,3 +25,11 @@ export const onKeyDownHandler = (
       break;
   }
 };
+
+export const getColorsFromColorTheme = (color: CSSProperties['color']) =>
+  color
+    ? {
+        '--caroumesh-color-theme': color,
+        '--caroumesh-interaction-color': tinycolor(color).brighten(40),
+      }
+    : {};

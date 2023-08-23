@@ -1,12 +1,22 @@
 // colors
-$main-color: gray;
-$interaction-color: darkgray;
+:root {
+  --caroumesh-color-theme: gray;
+  --caroumesh-interaction-color: color-mix(
+    in srgb,
+    var(--caroumesh-color-theme),
+    #fff 40%
+  );
+}
 
 // border
 $border-width: 1px;
-$border: $border-width solid $main-color;
+$border: $border-width solid var(--caroumesh-color-theme);
 $border-radius: 1rem;
+$drop-shadow: drop-shadow(0 0 6px gray);
 
 // z-index
 $z-index-caroumesh: 1;
 $z-index-overlay: 2;
+
+// transitions
+$transition-time: 0.15s;
