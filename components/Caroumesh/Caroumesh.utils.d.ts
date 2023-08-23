@@ -1,15 +1,14 @@
 import { CSSProperties, KeyboardEvent } from 'react';
-import tinycolor from 'tinycolor2';
 export declare const onKeyDownHandler: (event: KeyboardEvent, actions: {
     rotateLeft: () => void;
     rotateRight: () => void;
     resetControls: (manual?: boolean) => void;
 }) => void;
-export declare const getColorsFromColorTheme: (color: CSSProperties['color']) => {
+export declare const getColorTheme: (color: CSSProperties['color']) => {
     '--caroumesh-color-theme': import("csstype").Property.Color;
-    '--caroumesh-interaction-color': tinycolor.Instance;
+    '--caroumesh-lock-filter': string;
 } | {
     '--caroumesh-color-theme'?: undefined;
-    '--caroumesh-interaction-color'?: undefined;
+    '--caroumesh-lock-filter'?: undefined;
 };
 //# sourceMappingURL=Caroumesh.utils.d.ts.map
