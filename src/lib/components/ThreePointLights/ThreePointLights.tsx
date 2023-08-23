@@ -1,6 +1,6 @@
 import { useHelper } from '@react-three/drei';
 import React from 'react';
-import { Object3D, SpotLightHelper } from 'three';
+import { SpotLightHelper } from 'three';
 
 import {
   DEFAULT_BACK_LIGHT,
@@ -34,29 +34,13 @@ export const ThreePointLights = ({
   fillLight,
   backLight,
 }: ThreePointLightsProps) => {
-  const spotLight1 = React.useRef(null);
-  const spotLight2 = React.useRef(null);
-  const spotLight3 = React.useRef(null);
+  const spotLight1 = React.useRef(null!);
+  const spotLight2 = React.useRef(null!);
+  const spotLight3 = React.useRef(null!);
 
-  /**
-   * TODO: Improve handling of helpers
-   * We type as unknown then as Mutable to make tsc happy
-   */
-  useHelper(
-    spotLight1 as unknown as React.MutableRefObject<Object3D>,
-    SpotLightHelper,
-    'red',
-  );
-  useHelper(
-    spotLight2 as unknown as React.MutableRefObject<Object3D>,
-    SpotLightHelper,
-    'green',
-  );
-  useHelper(
-    spotLight3 as unknown as React.MutableRefObject<Object3D>,
-    SpotLightHelper,
-    'blue',
-  );
+  useHelper(spotLight1, SpotLightHelper, 'red');
+  useHelper(spotLight2, SpotLightHelper, 'green');
+  useHelper(spotLight3, SpotLightHelper, 'blue');
 
   // Merge default and custom props
   const keyLightProps = React.useMemo(
