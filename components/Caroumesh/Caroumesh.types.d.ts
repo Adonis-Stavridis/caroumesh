@@ -9,6 +9,7 @@ export type LightsOptions = Omit<ThreePointLightsProps, 'shadows'> & {
     customLights?: React.ReactNode;
 };
 export type Styles = {
+    colorTheme?: CSSProperties['color'];
     backgroundColor?: CSSProperties['color'];
     hasBorder?: boolean;
     borderColor?: CSSProperties['borderColor'];

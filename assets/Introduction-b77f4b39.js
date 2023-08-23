@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-a51fe075.js";import{M as s,d as i}from"./index-6cce7ff7.js";import{u as a}from"./index-9f0ec060.js";import"./index-6bd1afc7.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-1914547c.js";import"../sb-preview/runtime.js";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./inheritsLoose-50ceb98b.js";import"./index-82885479.js";import"./index-356e4a49.js";const r=`# Caroumesh <!-- omit in toc -->
+import{j as e}from"./jsx-runtime-a51fe075.js";import{M as s,d as i}from"./index-8da714f9.js";import{u as a}from"./index-9f0ec060.js";import"./index-6bd1afc7.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-b4a3a892.js";import"../sb-preview/runtime.js";import"./index-d475d2ea.js";import"./index-d37d4223.js";import"./inheritsLoose-50ceb98b.js";import"./index-82885479.js";import"./index-356e4a49.js";const r=`# Caroumesh <!-- omit in toc -->
 
 ![](https://img.shields.io/npm/v/caroumesh)
 ![](https://img.shields.io/npm/dt/caroumesh)
@@ -57,7 +57,7 @@ import { Caroumesh } from 'caroumesh';
 ...
 \`\`\`
 
-You can also view Storybook and play around with the component using this link:
+You can also view and play around with Caroumesh using this Storybook:
 
 <a href='https://adonis-stavridis.github.io/caroumesh'>
   <img alt="Storybook" src="https://img.shields.io/badge/Storybook-white?style=for-the-badge&logo=storybook">
@@ -67,7 +67,7 @@ You can also view Storybook and play around with the component using this link:
 
 ### Overview
 
-The Caroumesh component is the main and only component of this library (as of now).
+The Caroumesh component is the main and only component of this library.
 
 \`\`\`tsx
 <Caroumesh />
@@ -303,4 +303,4 @@ Thanks to the amazing teams and contributors of
 But also, **Thank You** for using \`Caroumesh\`! ❤️
 `;function o(n){return e.jsxs(e.Fragment,{children:[e.jsx(s,{title:"Introduction"}),`
 `,e.jsx(i,{children:r})]})}function v(n={}){const{wrapper:t}=Object.assign({},a(),n.components);return t?e.jsx(t,Object.assign({},n,{children:e.jsx(o,n)})):o()}export{v as default};
-//# sourceMappingURL=Introduction-177c9668.js.map
+//# sourceMappingURL=Introduction-b77f4b39.js.map
