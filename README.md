@@ -289,7 +289,7 @@ contribute to the project! :trollface:
 3. Create a new branch
 4. Push your changes
 5. Create a pull request
-6. Wait for me to give it a review
+6. Wait for a review
 
 Any feedback is welcome through
 [issues](https://github.com/Adonis-Stavridis/caroumesh/issues) as well. 🙏
