@@ -1,4 +1,4 @@
-import { Bloom, HueSaturation } from '@react-three/postprocessing';
+import { Bloom } from '@react-three/postprocessing';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
@@ -32,6 +32,11 @@ const baseArgs = {
 export const Basic: Story = {
   args: {
     ...baseArgs,
+    controls: true,
+    shadows: true,
+    effects: {
+      children: [<Bloom key="bloom" intensity={1.0} />],
+    },
   },
 };
 
@@ -71,10 +76,7 @@ export const Effects: Story = {
   args: {
     ...baseArgs,
     effects: {
-      children: [
-        <Bloom key="bloom" intensity={2.0} />,
-        <HueSaturation key="hue-saturation" hue={2} saturation={0.25} />,
-      ],
+      children: [<Bloom key="bloom" intensity={2.0} />],
     },
   },
 };

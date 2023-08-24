@@ -6,7 +6,7 @@ import './ProgressLoader.scss';
 
 const CN = 'progress-loader';
 
-const TIMEOUT_TIME = 3000;
+const TIMEOUT_TIME = 5000;
 
 export const ProgressLoader = () => {
   const [displayMessage, setDisplayMessage] = React.useState(false);
