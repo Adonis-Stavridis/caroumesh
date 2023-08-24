@@ -48,7 +48,7 @@
     "scene:optimize": "yarn gltf-pipeline -d -i"
   },
   "dependencies": {
-    "@react-three/drei": "^9.80.3",
+    "@react-three/drei": "^9.80.6",
     "@react-three/fiber": "^8.13.7",
     "@react-three/postprocessing": "^2.15.1",
     "bootstrap": "^5.3.1",
@@ -70,20 +70,20 @@
     "@storybook/react": "^7.3.2",
     "@storybook/react-vite": "^7.3.2",
     "@storybook/testing-library": "^0.2.0",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@types/three": "^0.155.0",
+    "@types/three": "^0.155.1",
     "@types/tinycolor2": "^1.4.3",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "@vitejs/plugin-react": "^4.0.4",
     "classnames": "^2.3.2",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-config-standard-with-typescript": "^38.0.0",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-n": "^16.0.2",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
@@ -93,7 +93,7 @@
     "eslint-plugin-storybook": "0.6.13",
     "gltf-pipeline": "^4.1.0",
     "husky": "^8.0.3",
-    "lint-staged": "^14.0.0",
+    "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
     "react-hooks": "^1.0.1",
     "sass": "^1.66.1",
@@ -107,7 +107,7 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "peerDependencies": {
-    "@react-three/drei": "^9.80.3",
+    "@react-three/drei": "^9.80.6",
     "@react-three/fiber": "^8.13.7",
     "@react-three/postprocessing": "^2.15.1",
     "bootstrap": "^5.3.1",
@@ -116,9 +116,7 @@
     "react-bootstrap": "^2.8.0",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.11",
-    "three": "^0.155.0",
-    "tinycolor2": "^1.6.0"
+    "three": "^0.155.0"
   },
   "husky": {
     "hooks": {
