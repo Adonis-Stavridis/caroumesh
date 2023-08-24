@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 
+import { EffectsProps } from 'src/lib/components/Effects/Effects';
 import { ThreePointLightsProps } from 'src/lib/components/ThreePointLights';
 
 export type Dimensions =
@@ -10,9 +11,11 @@ export type Dimensions =
   | [number, number];
 
 export type LightsOptions = Omit<ThreePointLightsProps, 'shadows'> & {
-  /** Custom lights (removes default three point lighting) */
+  /** Lights nodes from [three.js](https://threejs.org/docs/?q=light#api/en/lights/AmbientLight) */
   customLights?: React.ReactNode;
 };
+
+export type EffectsOptions = EffectsProps;
 
 export type Styles = {
   colorTheme?: CSSProperties['color'];

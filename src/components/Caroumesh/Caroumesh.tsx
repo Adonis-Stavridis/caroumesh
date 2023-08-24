@@ -5,8 +5,15 @@ import React from 'react';
 import { PCFSoftShadowMap } from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
+import { Effects } from 'src/lib/components/Effects/Effects';
+
 import { ANIMATION_TIME, CAROUSEL_RADIUS } from './Caroumesh.constants';
-import type { Dimensions, LightsOptions, Styles } from './Caroumesh.types';
+import type {
+  Dimensions,
+  EffectsOptions,
+  LightsOptions,
+  Styles,
+} from './Caroumesh.types';
 import { getColorTheme, onKeyDownHandler } from './Caroumesh.utils';
 import { ErrorBoundary, ProgressLoader } from '../../lib/components';
 import { Overlay } from '../../lib/components/Overlay';
@@ -32,6 +39,8 @@ export type CaroumeshProps = ClassNameProps & {
   controls?: boolean;
   /** Control lighting behavior */
   lights?: LightsOptions;
+  /** Add postprocessing effects */
+  effects?: EffectsOptions;
   /** Control how far apart scenes are from one another (default: 10) */
   radius?: number;
   /** Time to transition to new scene, in ms (default: 1000) */
@@ -50,9 +59,10 @@ export const Caroumesh = ({
   dimensions,
   shadows,
   controls,
+  lights,
+  effects,
   radius = CAROUSEL_RADIUS,
   animationTime = ANIMATION_TIME,
-  lights,
   stats,
   styles,
 }: CaroumeshProps) => {
@@ -112,6 +122,16 @@ export const Caroumesh = ({
     [styles?.colorTheme],
   );
 
+  const lightsComponents = React.useMemo(
+    () =>
+      lights?.customLights ? (
+        lights.customLights
+      ) : (
+        <ThreePointLights shadows={shadows} {...lights} />
+      ),
+    [lights, shadows],
+  );
+
   return (
     <ErrorBoundary>
       <div
@@ -148,11 +168,10 @@ export const Caroumesh = ({
             {scenesComponents}
 
             {/* Lights */}
-            {lights?.customLights ? (
-              lights.customLights
-            ) : (
-              <ThreePointLights shadows={shadows} {...lights} />
-            )}
+            {lightsComponents}
+
+            {/* Effects */}
+            <Effects {...effects} />
 
             {/* Extra components */}
             <OrbitControls

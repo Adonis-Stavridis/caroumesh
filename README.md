@@ -193,9 +193,9 @@ If you want to setup your own light setup you can use the `lights: { customLight
 />
 ```
 
-This prop accepts a `ReactNode` of
-[react-three-fiber](https://threejs.org/docs/#api/en/lights/AmbientLight) light
-components. These are all the possible light components you can use:
+This prop accepts
+[react-three-fiber light components](https://threejs.org/docs/?q=light#api/en/lights/AmbientLight).
+These are all the possible light components you can use:
 
 ```html
 <ambientLight />
@@ -205,11 +205,6 @@ components. These are all the possible light components you can use:
 <rectAreaLight />
 <spotLight />
 ```
-
-You can find the
-[documentation](https://threejs.org/docs/index.html?q=light#api/en/lights/Light)
-of [three.js](https://github.com/mrdoob/three.js), for more information about
-these components.
 
 ### Controls
 

@@ -1,4 +1,6 @@
+import { Bloom, HueSaturation } from '@react-three/postprocessing';
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { Caroumesh } from 'caroumesh';
 
@@ -33,6 +35,13 @@ export const Basic: Story = {
   },
 };
 
+export const Controls: Story = {
+  args: {
+    ...baseArgs,
+    controls: true,
+  },
+};
+
 export const Shadows: Story = {
   args: {
     ...baseArgs,
@@ -40,10 +49,33 @@ export const Shadows: Story = {
   },
 };
 
-export const Controls: Story = {
+export const Lights: Story = {
   args: {
     ...baseArgs,
-    controls: true,
+    lights: {
+      keyLight: {
+        color: '#b947ff',
+      },
+      fillLight: {
+        color: '#47ff67',
+      },
+      backLight: {
+        color: '#ffc647',
+      },
+      helpers: true,
+    },
+  },
+};
+
+export const Effects: Story = {
+  args: {
+    ...baseArgs,
+    effects: {
+      children: [
+        <Bloom key="bloom" intensity={2.0} />,
+        <HueSaturation key="hue-saturation" hue={2} saturation={0.25} />,
+      ],
+    },
   },
 };
 
