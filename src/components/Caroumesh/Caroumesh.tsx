@@ -57,10 +57,11 @@ export const Caroumesh = ({
   styles,
 }: CaroumeshProps) => {
   const controlsRef = React.useRef<OrbitControlsType>(null);
+  const [isPending, startTransition] = React.useTransition();
 
   const {
     scenes: scenesComponents,
-    rotateLock,
+    rotateLock: rotating,
     rotateLeft: turnLeft,
     rotateRight: turnRight,
   } = useCarousel({
@@ -72,6 +73,8 @@ export const Caroumesh = ({
     animationTime,
   });
 
+  const rotateLock = rotating || isPending;
+
   const resetControls = React.useCallback(
     (manual = false) => {
       if (rotateLock || (manual && !controls)) return; // ignore all events
@@ -81,15 +84,19 @@ export const Caroumesh = ({
   );
 
   const rotateLeft = React.useCallback(() => {
-    if (rotateLock) return; // ignore all events
-    resetControls();
-    turnLeft();
+    startTransition(() => {
+      if (rotateLock) return; // ignore all events
+      resetControls();
+      turnLeft();
+    });
   }, [rotateLock, resetControls, turnLeft]);
 
   const rotateRight = React.useCallback(() => {
-    if (rotateLock) return; // ignore all events
-    resetControls();
-    turnRight();
+    startTransition(() => {
+      if (rotateLock) return; // ignore all events
+      resetControls();
+      turnRight();
+    });
   }, [rotateLock, resetControls, turnRight]);
 
   const dimensionsProps = React.useMemo(
