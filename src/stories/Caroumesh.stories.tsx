@@ -22,7 +22,7 @@ const baseArgs = {
       scale: 0.08,
       lightIntensity: 0.005,
     },
-    { src: 'assets/TieFighter.gltf', scale: 4 },
+    { src: 'assets/TieFighter.gltf', scale: 4, rotationSpeed: 0.25 },
   ],
   dimensions: {
     height: 500,

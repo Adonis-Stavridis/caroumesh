@@ -121,7 +121,7 @@ The [`SceneObject`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/
   shadows?: boolean;
   /** Control intensity of lights in scene */
   lightIntensity?: number;
-  /** Rotation speed of scene: set this to `0` to disable rotation */
+  /** Rotation speed of scene: set to `0` to disable rotation */
   rotationSpeed?: number;
 } & {
   position?: Vector3;

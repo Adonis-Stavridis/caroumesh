@@ -18,7 +18,7 @@ export type SceneProps<T = EmptyProps> = {
   shadows?: boolean;
   /** Control intensity of lights in scene */
   lightIntensity?: number;
-  /** Rotation speed of scene: set this to `0` to disable rotation */
+  /** Rotation speed of scene: set to `0` to disable rotation */
   rotationSpeed?: number;
 } & Object3DProps & {
     /** Extra props defined in the three.js docs */
