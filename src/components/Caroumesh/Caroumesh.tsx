@@ -53,7 +53,7 @@ export type CaroumeshProps = ClassNameProps & {
   styles?: Styles;
 };
 
-export const Caroumesh = ({
+const CaroumeshComponent = ({
   className,
   scenes,
   dimensions,
@@ -193,3 +193,5 @@ export const Caroumesh = ({
     </ErrorBoundary>
   );
 };
+
+export const Caroumesh = React.memo(CaroumeshComponent);

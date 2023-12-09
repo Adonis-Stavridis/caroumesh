@@ -34,9 +34,6 @@ export const Basic: Story = {
     ...baseArgs,
     controls: true,
     shadows: true,
-    effects: {
-      children: [<Bloom key="bloom" intensity={1.0} />],
-    },
   },
 };
 
@@ -72,15 +69,6 @@ export const Lights: Story = {
   },
 };
 
-export const Effects: Story = {
-  args: {
-    ...baseArgs,
-    effects: {
-      children: [<Bloom key="bloom" intensity={2.0} />],
-    },
-  },
-};
-
 export const Styles: Story = {
   args: {
     ...baseArgs,
@@ -90,6 +78,21 @@ export const Styles: Story = {
       borderColor: 'dodgerblue',
       isBorderRounded: true,
       backgroundColor: 'lightgrey',
+    },
+  },
+};
+
+export const Effects: Story = {
+  args: {
+    ...baseArgs,
+    controls: true,
+    effects: {
+      children: [<Bloom key="bloom" intensity={0.1} />],
+    },
+    styles: {
+      hasBorder: true,
+      isBorderRounded: true,
+      backgroundColor: 'black',
     },
   },
 };

@@ -24,11 +24,16 @@ fashion inside your application, using
 - [Caroumesh component](#caroumesh-component)
   - [Overview](#overview)
   - [Scenes](#scenes)
-    - [Optimizing scenes](#optimizing-scenes)
   - [Dimensions](#dimensions)
-  - [Lights](#lights)
+  - [Shadows](#shadows)
   - [Controls](#controls)
+  - [Lights](#lights)
+  - [Effects](#effects)
+  - [Radius](#radius)
+  - [Animation Time](#animation-time)
   - [Stats](#stats)
+  - [Styles](#styles)
+  - [ClassName](#classname)
 - [Upcoming releases](#upcoming-releases)
 - [Contributing](#contributing)
 
@@ -75,18 +80,19 @@ The Caroumesh component is the main and only component of this library.
 
 It accepts the following props:
 
-| Prop            | Description                                       | Type                                                                                                         | Default value             |
-| --------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| `scenes`        | Scenes of the carousel                            | [`SceneObject[]`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | ❗️ Required               |
-| `dimensions`    | Fixed dimensions of the component                 | [`Dimensions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)    | Takes all available space |
-| `shadows`       | Render shadows                                    | `boolean`                                                                                                    | `false`                   |
-| `controls`      | Use orbits controls                               | `boolean`                                                                                                    | `false`                   |
-| `lights`        | Control lights behavior                           | [`LightsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts) | `undefined`               |
-| `radius`        | Control how far apart scenes are from one another | `number`                                                                                                     | `10`                      |
-| `animationTime` | Time to transition to new scene, in ms            | `number`                                                                                                     | `1000`                    |
-| `stats`         | Show statistics of Caroumesh performance          | `boolean`                                                                                                    | `undefined`               |
-| `styles`        | Set of styles to customize                        | [`Styles`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh.types.ts)        | `undefined`               |
-| `className`     | Custom classname                                  | `string`                                                                                                     | `undefined`               |
+| Prop                               | Description                                       | Type                                                                                                                    | Default value             |
+| ---------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`scenes`](#scenes)                | Scenes of the carousel                            | [`SceneObject`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh/Caroumesh.types.ts)[]  | ❗️ Required               |
+| [`dimensions`](#dimensions)        | Fixed dimensions of the component                 | [`Dimensions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh/Caroumesh.types.ts)     | Takes all available space |
+| [`shadows`](#shadows)              | Render shadows                                    | `boolean`                                                                                                               | `false`                   |
+| [`controls`](#controls)            | Use orbits controls                               | `boolean`                                                                                                               | `false`                   |
+| [`lights`](#lights)                | Control lights behavior                           | [`LightsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh/Caroumesh.types.ts)  | `undefined`               |
+| [`effects`](#effects)              | Add post-processing effects                       | [`EffectsOptions`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh/Caroumesh.types.ts) | `undefined`               |
+| [`radius`](#radius)                | Control how far apart scenes are from one another | `number`                                                                                                                | `10`                      |
+| [`animationTime`](#animation-time) | Time to transition to new scene, in ms            | `number`                                                                                                                | `1000`                    |
+| [`stats`](#stats)                  | Show statistics of Caroumesh performance          | `boolean`                                                                                                               | `undefined`               |
+| [`styles`](#styles)                | Set of styles to customize                        | [`Styles`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/components/Caroumesh/Caroumesh.types.ts)         | `undefined`               |
+| [`className`](#classname)          | Custom classname                                  | `string`                                                                                                                | `undefined`               |
 
 ### Scenes
 
@@ -136,7 +142,7 @@ The [`SceneObject`](https://github.com/Adonis-Stavridis/caroumesh/tree/main/src/
 > ⚠️ Adding too many scenes might affect performance. You can use the
 > `stats` prop to analyze impact on the component's FPS (cf [#stats](#stats))
 
-#### Optimizing scenes
+#### Optimizing scenes <!-- omit in toc -->
 
 Generally, 3D scenes and meshes are can be quite heavy, so to reduce load
 as much as possible it is recommended you compress your models into glb
@@ -170,6 +176,41 @@ You can manually set the dimensions using the `dimensions` prop.
   ...
 />
 ```
+
+### Shadows
+
+By default, `shadows` are disabled. When enabled, built-in lights will emit shadows on scenes that cast and receive them.
+
+```tsx
+<Caroumesh
+  ...
+  shadows
+  ...
+/>
+```
+
+### Controls
+
+You can enable enhanced controls over the scenes using the `controls` prop.
+
+```tsx
+<Caroumesh
+  ...
+  controls
+  ...
+/>
+```
+
+You can use the following key-binds on your mouse and keyboard to control the scene:
+
+| Key-bind                          | Action     |
+| --------------------------------- | ---------- |
+| Mouse Left (Hold)                 | Rotate     |
+| Shift or Ctrl + Mouse Left (Hold) | Pan        |
+| Scroll wheel                      | Zoom       |
+| Space                             | Reset view |
+
+The view resets every time you switch to a new scene.
 
 ### Lights
 
@@ -206,19 +247,51 @@ These are all the possible light components you can use:
 <spotLight />
 ```
 
-### Controls
+### Effects
 
-You can enable enhanced controls over the scenes using the `controls` prop.
-You can use the following key-binds on your mouse and keyboard to control the scene:
+You can add postprocessing `effects` to your Caroumesh rendering, based on the [@react-three/postprocessing](https://docs.pmnd.rs/react-postprocessing) library.
+The list of effects components are listed [here](https://docs.pmnd.rs/react-postprocessing/effects).
 
-| Key-bind                          | Action     |
-| --------------------------------- | ---------- |
-| Mouse Left (Hold)                 | Rotate     |
-| Shift or Ctrl + Mouse Left (Hold) | Pan        |
-| Scroll wheel                      | Zoom       |
-| Space                             | Reset view |
+> ⚠️ Effects can have a great impact on performance. Use with caution!
 
-The view resets every time you switch to a new scene.
+```tsx
+import { Bloom } from '@react-three/postprocessing';
+...
+<Caroumesh
+  ...
+  effects={{
+    children: [<Bloom key="bloom" intensity={0.1} />],
+    ...
+  }}
+  ...
+/>
+```
+
+### Radius
+
+The `radius` prop controls the radius of the carousel-circle upon which the scenes are placed,
+thus the distance between the scenes. By default, the radius is set to 10.
+
+```tsx
+<Caroumesh
+  ...
+  radius={6}
+  ...
+/>
+```
+
+### Animation Time
+
+You can change the time to transition between the different scenes using the `animationTime` prop.
+The value is set in milliseconds (ms), and by default it is set to 1000ms.
+
+```tsx
+<Caroumesh
+  ...
+  animationTime={500}
+  ...
+/>
+```
 
 ### Stats
 
@@ -226,6 +299,14 @@ The view resets every time you switch to a new scene.
 
 While developing, you can use the `stats` prop to evaluate performance
 and check how adding models or lights may affect your FPS.
+
+```tsx
+<Caroumesh
+  ...
+  stats
+  ...
+/>
+```
 
 > ⚠️ It's suggested to enable this prop only when developing, for
 > debugging purposes, and disable it when deploying to production.
@@ -241,7 +322,8 @@ If you have more than 60 FPS, then you probably have a "better than average" wor
 so don't be fooled into overloaded the scenes with high-poly meshes, lots of lights, and effects.
 You might be able to run it, but maybe not the average user.
 
-If you have anything less than 50-60 FPS, then you either:
+<details>
+<summary>If you have anything less than 50-60 FPS, then you might (click me👇)</summary>
 
 - have scenes that are very heavy (lots of polygons or lights usually)
   - [Optimizing your scenes](#optimizing-scenes) might help
@@ -251,11 +333,13 @@ If you have anything less than 50-60 FPS, then you either:
   - same suggestions as previous bullet points
   - Remove any scene you deem optional
   - Remove any scene that could be heavy
-- are rerendering the Caroumesh several times
+- have added effects which have a big impact on performance
+  - you can remove them if they're not strictly necessary
+  - reducing
+- are re-rendering the Caroumesh several times
   - the props you are passing could be changing
-  - memoize props passed to Caroumesh with `React.useMemo`
+  - memoize props passed to Caroumesh with [`React.useMemo`](https://react.dev/reference/react/useMemo)
   - fix the parent components of Caroumesh from updating too much
-  - memoize your Caroumesh component with `React.memo` so that it only rerenders when necessary
 - are using a browser with locked FPS
   - not sure if you can change this, you should look it up
 - Caroumesh is buggy or is built poorly 😳
@@ -266,6 +350,47 @@ If you have anything less than 50-60 FPS, then you either:
 - if you are certain that all the above are not the reason of poor performance, and FPS is so
   low, Caroumesh is barely useable, then you probably own a "potato computer" 🥔
   - getting a better computer 🤷
+
+</details>
+
+### Styles
+
+The `styles` prop is a set of predefined styling options that you can use to
+customize the look of Caroumesh. You can directly control the following CSS properties:
+
+```tsx
+{
+  colorTheme?: CSSProperties['color'];
+  backgroundColor?: CSSProperties['color'];
+  hasBorder?: boolean;
+  borderColor?: CSSProperties['borderColor'];
+  isBorderRounded?: boolean;
+}
+```
+
+```tsx
+<Caroumesh
+  ...
+  styles={{
+    hasBorder: true,
+    isBorderRounded: true,
+  }}
+  ...
+/>
+```
+
+### ClassName
+
+This `className` prop allows you to add a custom classname to the Caroumesh component,
+so that you can style your component however you want.
+
+```tsx
+<Caroumesh
+  ...
+  className="my-custom-classname"
+  ...
+/>
+```
 
 ## Upcoming releases
 
