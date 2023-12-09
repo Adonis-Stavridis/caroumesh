@@ -22,10 +22,10 @@ export const ProgressLoader = () => {
       progress < 30
         ? 'This is taking more time than expected...'
         : progress < 60
-        ? 'Ahhh progress'
-        : progress < 90
-        ? 'Almost there...'
-        : 'Finalizing!',
+          ? 'Ahhh progress'
+          : progress < 90
+            ? 'Almost there...'
+            : 'Finalizing!',
     [progress],
   );
 

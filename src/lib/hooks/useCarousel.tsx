@@ -109,8 +109,8 @@ export const useCarousel = ({
         const sceneProps: SceneProps | undefined = isString(scene)
           ? { src: scene }
           : isSceneProps(scene)
-          ? scene
-          : undefined;
+            ? scene
+            : undefined;
 
         if (!sceneProps) {
           throw new CaroumeshError(
