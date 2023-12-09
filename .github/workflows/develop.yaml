@@ -1,4 +1,4 @@
-name: Continous-Integration
+name: Continous Integration
 
 on:
   push:
@@ -7,14 +7,13 @@ on:
     branches: [main, develop]
 
 jobs:
-  build:
-    name: Lint & Build
-
+  lint-and-build:
+    name: Lint & Build 🔧
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v3
