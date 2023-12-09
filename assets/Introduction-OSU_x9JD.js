@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-vNq4Oc-g.js";import{M as o,d as a}from"./index-d6dtlMG9.js";import{u as i}from"./index-Dbo06S9W.js";import"./index-4g5l5LRQ.js";import"./_commonjsHelpers-4gQjN7DL.js";import"./iframe-vF6q9-MM.js";import"../sb-preview/runtime.js";import"./index-jmm5gWkb.js";import"./index-ogXoivrg.js";import"./inheritsLoose-bRBo5p-3.js";import"./index-79gNKF5D.js";import"./index-PPLHz8o0.js";const r=`# Caroumesh <!-- omit in toc -->
+import{j as e}from"./jsx-runtime-vNq4Oc-g.js";import{M as o,d as a}from"./index-XedUGVYY.js";import{u as i}from"./index-Dbo06S9W.js";import"./index-4g5l5LRQ.js";import"./_commonjsHelpers-4gQjN7DL.js";import"./iframe-_JxjZego.js";import"../sb-preview/runtime.js";import"./index-jmm5gWkb.js";import"./index-ogXoivrg.js";import"./inheritsLoose-bRBo5p-3.js";import"./index-79gNKF5D.js";import"./index-PPLHz8o0.js";const r=`# Caroumesh <!-- omit in toc -->
 
 ![](https://img.shields.io/npm/v/caroumesh)
 ![](https://img.shields.io/npm/dt/caroumesh)
