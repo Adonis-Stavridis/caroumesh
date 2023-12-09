@@ -1,7 +1,7 @@
 {
   "name": "caroumesh",
   "license": "MIT",
-  "version": "1.2.7",
+  "version": "1.2.0",
   "type": "module",
   "author": "Adonis Stavridis",
   "description": "A carousel-like display to showcase your 3D models",
