@@ -28,5 +28,5 @@ export type CaroumeshProps = ClassNameProps & {
     /** Set of styles to customize */
     styles?: Styles;
 };
-export declare const Caroumesh: ({ className, scenes, dimensions, shadows, controls, lights, effects, radius, animationTime, stats, styles, }: CaroumeshProps) => React.JSX.Element;
+export declare const Caroumesh: React.MemoExoticComponent<({ className, scenes, dimensions, shadows, controls, lights, effects, radius, animationTime, stats, styles, }: CaroumeshProps) => React.JSX.Element>;
 //# sourceMappingURL=Caroumesh.d.ts.map
