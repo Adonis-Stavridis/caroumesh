@@ -13,7 +13,7 @@ fashion inside your application, using
 [three.js](https://github.com/mrdoob/three.js) and
 [react-three-fiber](https://github.com/pmndrs/react-three-fiber).
 
-![](https://i.imgur.com/eeA5TUl.gif)
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOThodTZvdWR6enJwdmN4c3lld2RjNXA0dGZvcnd1d2E2b2FkanhpMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DjEblIMf31NTeRe9dd/giphy.gif)
 
 ---
 
