@@ -18,11 +18,11 @@ type Story = StoryObj<typeof Caroumesh>;
 const baseArgs = {
   scenes: [
     {
-      src: 'assets/StarDestroyer.gltf',
+      src: 'src/assets/StarDestroyer.gltf',
       scale: 0.08,
       lightIntensity: 0.005,
     },
-    { src: 'assets/TieFighter.gltf', scale: 4, rotationSpeed: 0.25 },
+    { src: 'src/assets/TieFighter.gltf', scale: 4, rotationSpeed: 0.25 },
   ],
   dimensions: {
     height: 500,
